@@ -145,6 +145,27 @@
       border-radius: 1px;
     }
 
+    .preloader-enter {
+      font-family: 'Playfair Display';
+      letter-spacing: 4px;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      opacity: 0;
+      margin-top: 30px;
+      cursor: pointer;
+      border: 1px solid rgba(205, 164, 52, 0.4);
+      padding: 10px 32px;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      background: transparent;
+      color: var(--meenaya-gold);
+    }
+    .preloader-enter:hover {
+      background: rgba(205, 164, 52, 0.15);
+      border-color: var(--meenaya-gold);
+      letter-spacing: 6px;
+    }
+
     /* ====== ORNAMENTAL DIVIDER ====== */
     .ornament {
       display: flex;
@@ -1295,6 +1316,7 @@
     <div class="preloader-monogram">U & A</div>
     <div class="preloader-text">Beginning the journey</div>
     <div class="preloader-bar"><div class="preloader-bar-fill" id="preloader-fill"></div></div>
+    <button class="preloader-enter" id="preloader-enter">Tap to Enter</button>
   </div>
 
   <!-- FLOATING PETALS -->
@@ -1634,15 +1656,34 @@
 
     // --- PRELOADER ---
     window.addEventListener('load', () => {
+      const enterBtn = document.getElementById('preloader-enter');
       const tl = gsap.timeline();
       tl.to(".preloader-monogram", { opacity: 1, duration: 0.6, ease: "power2.out" })
         .to(".preloader-text", { opacity: 1, duration: 0.4, ease: "power2.out" }, "-=0.3")
         .to("#preloader-fill", { width: "100%", duration: 1, ease: "power2.inOut" }, "-=0.2")
-        .to("#preloader", {
+        .to(".preloader-enter", { opacity: 1, duration: 0.6, ease: "power2.out" });
+
+      // Wait for user tap to dismiss preloader & start music
+      function enterSite() {
+        enterBtn.removeEventListener('click', enterSite);
+        enterBtn.removeEventListener('touchend', enterSite);
+
+        // Start music on this user gesture
+        const bgMusic = document.getElementById('bg-music');
+        const musicBars = document.getElementById('music-bars');
+        bgMusic.volume = 0.3;
+        bgMusic.play().then(() => {
+          window.__musicPlaying = true;
+          window.__musicStarted = true;
+          musicBars.classList.add('playing');
+        }).catch(() => {});
+
+        // Dismiss preloader and run hero animations
+        const tl2 = gsap.timeline();
+        tl2.to("#preloader", {
           yPercent: -100,
           duration: 1.5,
-          ease: "expo.inOut",
-          delay: 0.2
+          ease: "expo.inOut"
         })
         .to(".mantra", { opacity: 1, duration: 1.5, ease: "power2.out" }, "-=0.5")
         .fromTo(".hero-names .char",
@@ -1670,15 +1711,31 @@
           { y: 0, opacity: 1, duration: 0.8, ease: "power2.out" }, "-=0.6"
         )
         .to("#scroll-hint", { opacity: 1, duration: 1, ease: "power2.out" }, "-=0.5");
+      }
+
+      enterBtn.addEventListener('click', enterSite);
+      enterBtn.addEventListener('touchend', enterSite);
     });
 
     // Preloader failsafe
     setTimeout(() => {
       const pre = document.getElementById('preloader');
-      if (pre && pre.style.transform !== 'translateY(-100%)') {
+      if (pre && getComputedStyle(pre).display !== 'none' && !pre.classList.contains('dismissed')) {
+        pre.classList.add('dismissed');
         gsap.to(pre, { yPercent: -100, duration: 1, ease: "expo.inOut" });
+        // Also try to start music
+        const bgm = document.getElementById('bg-music');
+        const bars = document.getElementById('music-bars');
+        if (bgm && !window.__musicStarted) {
+          bgm.volume = 0.3;
+          bgm.play().then(() => {
+            window.__musicPlaying = true;
+            window.__musicStarted = true;
+            bars.classList.add('playing');
+          }).catch(() => {});
+        }
       }
-    }, 5000);
+    }, 8000);
 
     // --- PARALLAX & SCROLL ANIMATIONS ---
     gsap.to(".hero-image", {
@@ -2023,55 +2080,21 @@
       }
     );
 
-    // --- MUSIC TOGGLE (autoplay on first interaction) ---
+    // --- MUSIC TOGGLE ---
     const musicBtn = document.getElementById('music-btn');
     const bgMusic = document.getElementById('bg-music');
     const musicBars = document.getElementById('music-bars');
-    let isPlaying = false;
-    let hasStarted = false;
 
-    bgMusic.volume = 0.3;
-
-    // Try to autoplay immediately
-    function startMusic() {
-      if (hasStarted) return;
-      bgMusic.play().then(() => {
-        isPlaying = true;
-        hasStarted = true;
-        musicBars.classList.add('playing');
-        // Remove interaction listeners once music starts
-        document.removeEventListener('click', startMusic);
-        document.removeEventListener('touchstart', startMusic);
-        document.removeEventListener('scroll', startMusic);
-        document.removeEventListener('keydown', startMusic);
-      }).catch(() => {});
-    }
-
-    // Attempt autoplay right away (works if browser allows)
-    startMusic();
-
-    // Fallback: start on first user interaction (browsers require it)
-    document.addEventListener('click', startMusic, { once: false });
-    document.addEventListener('touchstart', startMusic, { once: false });
-    document.addEventListener('scroll', startMusic, { once: false });
-    document.addEventListener('keydown', startMusic, { once: false });
-
-    // Toggle button: pause/resume
-    musicBtn.addEventListener('click', (e) => {
-      e.stopPropagation(); // Don't trigger startMusic
-      if (!hasStarted) {
-        // First click starts music
-        startMusic();
-        return;
-      }
-      if (isPlaying) {
+    // Music state is set by preloader enter button
+    musicBtn.addEventListener('click', () => {
+      if (window.__musicPlaying) {
         bgMusic.pause();
         musicBars.classList.remove('playing');
-        isPlaying = false;
+        window.__musicPlaying = false;
       } else {
         bgMusic.play().catch(() => {});
         musicBars.classList.add('playing');
-        isPlaying = true;
+        window.__musicPlaying = true;
       }
     });
   </script>
