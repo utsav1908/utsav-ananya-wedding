@@ -1672,6 +1672,7 @@
         const bgMusic = document.getElementById('bg-music');
         const musicBars = document.getElementById('music-bars');
         bgMusic.volume = 0.3;
+        bgMusic.currentTime = 15;
         bgMusic.play().then(() => {
           window.__musicPlaying = true;
           window.__musicStarted = true;
@@ -1728,6 +1729,7 @@
         const bars = document.getElementById('music-bars');
         if (bgm && !window.__musicStarted) {
           bgm.volume = 0.3;
+          bgm.currentTime = 15;
           bgm.play().then(() => {
             window.__musicPlaying = true;
             window.__musicStarted = true;
