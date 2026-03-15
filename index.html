@@ -1,0 +1,2006 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Utsav Weds Ananya | Bhubaneswar 2026</title>
+
+  <meta property="og:title" content="Utsav & Ananya — June 19, 2026">
+  <meta property="og:description" content="You are cordially invited to celebrate the wedding of Utsav & Ananya in Bhubaneswar.">
+  <meta property="og:image" content="https://yourdomain.com/og-card.jpg">
+  <meta property="og:url" content="https://yourdomain.com">
+  <meta property="og:type" content="website">
+  <meta name="description" content="Wedding invitation for Utsav & Ananya — June 19, 2026, Bhubaneswar">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Pinyon+Script&family=Lora:ital,wght@0,400;0,500;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
+
+  <style>
+    :root {
+      --bg: #fdfaf6;
+      --primary: #642424;
+      --gold: #b88645;
+      --gold-light: rgba(184, 134, 69, 0.15);
+      --meenaya-gold: #cda434;
+      --meenaya-blue: #0c1a24;
+      --text-muted: #5c4e46;
+      --sangeet: #8b2f87;
+      --sangeet-light: rgba(139, 47, 135, 0.08);
+      --sangeet-glow: rgba(139, 47, 135, 0.25);
+      --mehendi: #2d7a4f;
+      --mehendi-light: rgba(45, 122, 79, 0.08);
+      --mehendi-glow: rgba(45, 122, 79, 0.25);
+      --haldi: #c48d0c;
+      --haldi-accent: #e6a817;
+      --haldi-light: rgba(230, 168, 23, 0.08);
+      --haldi-glow: rgba(230, 168, 23, 0.3);
+      --wedding: #8b1a1a;
+      --wedding-gold: #b88645;
+      --wedding-light: rgba(184, 134, 69, 0.07);
+      --wedding-glow: rgba(184, 134, 69, 0.3);
+      --reception: #1a3a5c;
+      --reception-light: rgba(26, 58, 92, 0.08);
+      --reception-glow: rgba(26, 58, 92, 0.25);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Lora', serif;
+      background-color: var(--bg);
+      color: var(--primary);
+      overflow-x: hidden;
+    }
+
+    /* ====== GLOBAL NOISE TEXTURE OVERLAY ====== */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 9997;
+      pointer-events: none;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 256px 256px;
+    }
+
+    /* ====== LINEN / PAPER TEXTURE VIA CSS ====== */
+    .textured-bg {
+      position: relative;
+    }
+
+    .textured-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.04;
+      background-image:
+        repeating-linear-gradient(
+          0deg,
+          transparent, transparent 2px,
+          rgba(100, 36, 36, 0.08) 2px, rgba(100, 36, 36, 0.08) 3px
+        ),
+        repeating-linear-gradient(
+          90deg,
+          transparent, transparent 2px,
+          rgba(100, 36, 36, 0.05) 2px, rgba(100, 36, 36, 0.05) 3px
+        );
+      background-size: 4px 4px;
+    }
+
+    /* --- PRELOADER --- */
+    .preloader {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: var(--meenaya-blue);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--meenaya-gold);
+    }
+
+    .preloader-monogram {
+      font-family: 'Pinyon Script', cursive;
+      font-size: 5rem;
+      margin-bottom: 10px;
+      opacity: 0;
+    }
+
+    .preloader-text {
+      font-family: 'Playfair Display';
+      letter-spacing: 4px;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      opacity: 0;
+    }
+
+    .preloader-bar {
+      width: 120px;
+      height: 1px;
+      background: rgba(205, 164, 52, 0.2);
+      margin-top: 20px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 1px;
+    }
+
+    .preloader-bar-fill {
+      position: absolute;
+      top: 0; left: 0;
+      height: 100%;
+      width: 0%;
+      background: var(--meenaya-gold);
+      border-radius: 1px;
+    }
+
+    /* ====== ORNAMENTAL DIVIDER ====== */
+    .ornament {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin: 40px auto;
+      max-width: 340px;
+    }
+
+    .ornament-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .ornament-diamond {
+      width: 8px;
+      height: 8px;
+      background: var(--gold);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+      opacity: 0.8;
+    }
+
+    /* ====== GOLD SHIMMER EFFECT ====== */
+    @keyframes goldShimmer {
+      0% { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+
+    .shimmer-text {
+      background: linear-gradient(
+        90deg,
+        var(--gold) 0%,
+        #d4a94c 25%,
+        #f5deb3 50%,
+        #d4a94c 75%,
+        var(--gold) 100%
+      );
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: goldShimmer 4s ease-in-out infinite;
+    }
+
+    /* --- HERO SECTION --- */
+    .hero {
+      position: relative;
+      width: 100%;
+      background-color: #000;
+    }
+
+    .hero-image-spacer {
+      width: 100%;
+      height: auto;
+      display: block;
+      visibility: hidden;
+    }
+
+    .hero-image-wrapper {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .hero-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      opacity: 0.85;
+      transform-origin: top center;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.8) 0%,
+        rgba(0,0,0,0.1) 15%,
+        rgba(0,0,0,0.05) 50%,
+        rgba(0,0,0,0.1) 85%,
+        rgba(0,0,0,0.85) 100%
+      );
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .hero-vignette {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      z-index: 3;
+      pointer-events: none;
+      box-shadow: inset 0 0 150px rgba(0,0,0,0.5);
+    }
+
+    .top-mantra {
+      position: absolute;
+      top: 4vh;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      z-index: 5;
+      text-align: center;
+      padding: 0 20px;
+    }
+
+    .mantra {
+      font-family: 'Playfair Display';
+      font-size: clamp(1rem, 3vw, 1.4rem);
+      letter-spacing: 4px;
+      color: #fff;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.9);
+      opacity: 0;
+    }
+
+    .sticky-container {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      z-index: 6;
+      pointer-events: none;
+    }
+
+    .names-block {
+      position: sticky;
+      top: 16vh;
+      text-align: center;
+      width: 100%;
+      padding: 0 20px;
+    }
+
+    .hero-names {
+      font-family: 'Playfair Display';
+      text-transform: uppercase;
+      font-size: clamp(3.5rem, 10vw, 5.5rem);
+      font-weight: 700;
+      line-height: 1;
+      color: #ffffff;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.8);
+      overflow: hidden;
+    }
+
+    .hero-names .char {
+      display: inline-block;
+      opacity: 0;
+    }
+
+    .hero-weds {
+      font-family: 'Pinyon Script', cursive;
+      font-size: clamp(2.5rem, 6vw, 3.5rem);
+      color: var(--gold);
+      margin: 10px 0;
+      opacity: 0;
+      text-shadow: 0 2px 15px rgba(0,0,0,0.8);
+    }
+
+    /* ====== BIGGER SAVE THE DATE ====== */
+    .bottom-date {
+      position: absolute;
+      bottom: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      z-index: 5;
+      text-align: center;
+      padding: 0 20px;
+    }
+
+    .save-date-wrapper {
+      display: inline-block;
+      padding: 28px 60px;
+      border: 1px solid rgba(184, 134, 69, 0.5);
+      border-radius: 2px;
+      position: relative;
+      backdrop-filter: blur(4px);
+      background: rgba(0, 0, 0, 0.25);
+    }
+
+    .save-date-wrapper::before,
+    .save-date-wrapper::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-color: var(--gold);
+      border-style: solid;
+    }
+
+    .save-date-wrapper::before {
+      top: -1px; left: -1px;
+      border-width: 2px 0 0 2px;
+    }
+
+    .save-date-wrapper::after {
+      bottom: -1px; right: -1px;
+      border-width: 0 2px 2px 0;
+    }
+
+    .save-date {
+      font-family: 'Playfair Display';
+      text-transform: uppercase;
+      letter-spacing: 8px;
+      font-size: clamp(1rem, 2.5vw, 1.4rem);
+      color: var(--gold);
+      text-shadow: 0 2px 10px rgba(0,0,0,0.9);
+      margin-bottom: 14px;
+      display: block;
+      opacity: 0;
+    }
+
+    .date-separator {
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 0 auto 14px;
+      opacity: 0;
+    }
+
+    .date-footer {
+      font-family: 'Cormorant Garamond', 'Playfair Display', serif;
+      letter-spacing: 5px;
+      color: #fff;
+      font-size: clamp(1.2rem, 3vw, 1.6rem);
+      font-weight: 300;
+      text-shadow: 0 2px 15px rgba(0,0,0,0.9);
+      opacity: 0;
+    }
+
+    .date-venue-line {
+      display: block;
+      font-family: 'Lora', serif;
+      font-size: clamp(0.7rem, 1.5vw, 0.85rem);
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.6);
+      margin-top: 10px;
+      opacity: 0;
+    }
+
+    /* SCROLL INDICATOR */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 3%;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 7;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      opacity: 0;
+    }
+
+    .scroll-indicator span {
+      font-family: 'Playfair Display';
+      font-size: 0.6rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .scroll-arrow {
+      width: 20px;
+      height: 20px;
+      border-right: 1.5px solid rgba(255,255,255,0.4);
+      border-bottom: 1.5px solid rgba(255,255,255,0.4);
+      transform: rotate(45deg);
+      animation: scrollBounce 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollBounce {
+      0%, 100% { transform: rotate(45deg) translateY(0); opacity: 0.4; }
+      50% { transform: rotate(45deg) translateY(6px); opacity: 1; }
+    }
+
+    /* FLOATING PETAL CANVAS */
+    #petal-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 9998;
+      opacity: 0.6;
+    }
+
+    /* SPARKLE CANVAS */
+    #sparkle-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 9996;
+      opacity: 0.7;
+    }
+
+    /* MUSIC TOGGLE */
+    .music-toggle {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 100;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid var(--gold);
+      background: rgba(253, 250, 246, 0.9);
+      backdrop-filter: blur(10px);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .music-toggle:hover { background: var(--gold); transform: scale(1.1); }
+    .music-toggle:hover .bar { background: #fff; }
+
+    .music-bars {
+      display: flex;
+      align-items: flex-end;
+      gap: 2px;
+      height: 16px;
+    }
+
+    .music-bars .bar {
+      width: 2.5px;
+      background: var(--gold);
+      border-radius: 2px;
+      transition: 0.2s;
+    }
+
+    .music-bars.playing .bar {
+      animation: barPulse 0.8s ease-in-out infinite alternate;
+    }
+
+    .music-bars.playing .bar:nth-child(1) { animation-delay: 0s; }
+    .music-bars.playing .bar:nth-child(2) { animation-delay: 0.15s; }
+    .music-bars.playing .bar:nth-child(3) { animation-delay: 0.3s; }
+    .music-bars.playing .bar:nth-child(4) { animation-delay: 0.1s; }
+
+    @keyframes barPulse {
+      0% { height: 4px; }
+      100% { height: 16px; }
+    }
+
+    .music-bars:not(.playing) .bar { height: 4px !important; }
+
+    /* --- STACKED PAGE OVERLAP --- */
+    .page-overlap {
+      position: relative;
+      z-index: 10;
+      margin-top: -60px;
+      border-radius: 60px 60px 0 0;
+      box-shadow: 0 -20px 50px rgba(0,0,0,0.4);
+      background-color: var(--bg);
+    }
+
+    .section {
+      padding: 120px 10%;
+      text-align: center;
+      position: relative;
+      background-image:
+        radial-gradient(ellipse at 20% 50%, rgba(184, 134, 69, 0.04) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 50%, rgba(100, 36, 36, 0.03) 0%, transparent 50%),
+        repeating-linear-gradient(
+          45deg,
+          transparent, transparent 1px,
+          rgba(100, 36, 36, 0.012) 1px, rgba(100, 36, 36, 0.012) 2px
+        );
+      background-color: var(--bg);
+    }
+
+    .label {
+      font-family: 'Playfair Display';
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      font-size: 0.8rem;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      display: block;
+      font-weight: 700;
+    }
+
+    .title {
+      font-family: 'Playfair Display';
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-style: italic;
+      margin-bottom: 2rem;
+    }
+
+    .couple-wrap {
+      display: flex;
+      align-items: center;
+      gap: 60px;
+      max-width: 1100px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .couple-text { flex: 1; min-width: 280px; }
+
+    .couple-images {
+      flex: 1;
+      min-width: 280px;
+      position: relative;
+      height: 520px;
+      padding: 10px;
+    }
+
+    .arch {
+      border-radius: 500px 500px 0 0;
+      object-fit: cover;
+      position: absolute;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.6s ease;
+    }
+
+    .arch:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+    }
+
+    .arch-1 {
+      width: 70%;
+      height: 88%;
+      top: 5%;
+      left: 5%;
+      z-index: 1;
+      border: 6px solid rgba(184, 134, 69, 0.15);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.12), 0 0 0 1px rgba(184,134,69,0.08);
+    }
+    .arch-2 {
+      width: 50%;
+      height: 55%;
+      bottom: 0;
+      right: 0;
+      z-index: 2;
+      border: 8px solid var(--bg);
+      box-shadow: 0 15px 50px rgba(0,0,0,0.15), 0 0 0 1px rgba(184,134,69,0.1);
+    }
+
+    .parallax-container {
+      height: 60vh;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #000;
+    }
+
+    .parallax-img {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 130%;
+      object-fit: cover;
+      object-position: bottom center;
+      filter: brightness(0.4) sepia(0.3);
+    }
+
+    .banner-text {
+      position: relative;
+      z-index: 2;
+      color: white;
+      font-family: 'Pinyon Script';
+      font-size: clamp(3rem, 8vw, 4rem);
+      text-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    .banner-subtext {
+      position: relative;
+      z-index: 2;
+      color: rgba(255,255,255,0.5);
+      font-family: 'Lora', serif;
+      font-size: 0.75rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-top: 12px;
+    }
+
+    /* ============================================
+       ITINERARY SECTION
+    ============================================ */
+    .itinerary-section {
+      padding: 120px 10%;
+      text-align: center;
+      position: relative;
+      background-image:
+        radial-gradient(ellipse at 20% 50%, rgba(184, 134, 69, 0.04) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 50%, rgba(100, 36, 36, 0.03) 0%, transparent 50%);
+      background-color: var(--bg);
+    }
+
+    /* ============================================
+       REFINED BEADED TIMELINE
+    ============================================ */
+    .timeline-container {
+      max-width: 780px;
+      margin: 0 auto;
+      text-align: left;
+      position: relative;
+      padding: 10px 0;
+    }
+
+    /* ---- Individual Connectors Between Events ---- */
+    .timeline-connector {
+      width: 1px;
+      height: 50px;
+      margin-left: 23px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .timeline-connector::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        180deg,
+        var(--gold) 0px,
+        var(--gold) 4px,
+        transparent 4px,
+        transparent 10px
+      );
+      opacity: 0.18;
+    }
+
+    .connector-fill {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 0%;
+      background: repeating-linear-gradient(
+        180deg,
+        var(--gold) 0px,
+        var(--gold) 4px,
+        transparent 4px,
+        transparent 10px
+      );
+      opacity: 0.55;
+    }
+
+    /* ---- Event Row ---- */
+    .event-item {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 28px 28px 28px 60px;
+      border-radius: 14px;
+      transition:
+        transform 0.4s cubic-bezier(.25,.46,.45,.94),
+        box-shadow 0.4s ease,
+        border-color 0.4s ease;
+      border: 1px solid transparent;
+    }
+
+    .event-item:hover {
+      transform: translateX(5px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.04);
+    }
+
+    /* ---- Timeline Node ---- */
+    .timeline-node {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .node-ring {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 1.5px solid rgba(184, 134, 69, 0.3);
+      transition: border-color 0.6s ease, transform 0.6s ease;
+    }
+
+    .node-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      opacity: 0.45;
+      transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.6s ease;
+    }
+
+    .node-glow {
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      background: transparent;
+      transition: box-shadow 0.6s ease;
+    }
+
+    /* Active states — set by ScrollTrigger */
+    .event-item.is-active .node-ring {
+      border-color: var(--event-color, var(--gold));
+      transform: scale(1.25);
+    }
+
+    .event-item.is-active .node-dot {
+      opacity: 1;
+      background: var(--event-color, var(--gold));
+      transform: scale(1.4);
+      box-shadow: 0 0 10px var(--event-glow, rgba(184,134,69,0.4));
+    }
+
+    .event-item.is-active .node-glow {
+      box-shadow: 0 0 25px var(--event-glow, transparent), 0 0 50px var(--event-glow, transparent);
+    }
+
+    /* ---- Event Card (text block) ---- */
+    .event-card {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .event-date {
+      font-family: 'Lora', serif;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+
+    .event-card h3 {
+      font-family: 'Playfair Display';
+      font-size: 1.7rem;
+      line-height: 1.2;
+      transition: letter-spacing 0.4s ease;
+    }
+
+    .event-item:hover .event-card h3 {
+      letter-spacing: 0.5px;
+    }
+
+    .event-card p {
+      color: var(--text-muted);
+      margin-top: 3px;
+      font-size: 0.9rem;
+    }
+
+    .event-card .venue-tag {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 0.6rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 3px 12px;
+      border-radius: 20px;
+      font-family: 'Playfair Display';
+      font-weight: 700;
+    }
+
+    .btn-map {
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      padding: 10px 20px;
+      text-decoration: none;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: 0.4s cubic-bezier(.25,.46,.45,.94);
+      border-radius: 4px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-map::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .btn-map:hover::before { left: 100%; }
+    .btn-map:hover { transform: scale(1.05); }
+
+    .btn-cal {
+      font-size: 0.65rem;
+      padding: 6px 14px;
+      border-color: rgba(184,134,69,0.4);
+      color: var(--gold);
+      background: rgba(184,134,69,0.05);
+    }
+    .btn-cal:hover {
+      background: var(--gold);
+      color: #fff;
+      border-color: var(--gold);
+    }
+
+    /* ============================================
+       PER-EVENT PALETTES
+    ============================================ */
+
+    /* Sangeet — Purple */
+    .event-sangeet {
+      --event-color: var(--sangeet);
+      --event-glow: var(--sangeet-glow);
+      background: var(--sangeet-light);
+    }
+    .event-sangeet:hover { border-color: rgba(139, 47, 135, 0.2); }
+    .event-sangeet h3 { color: var(--sangeet); }
+    .event-sangeet .venue-tag { background: rgba(139,47,135,0.1); color: var(--sangeet); }
+    .event-sangeet .btn-map { border-color: var(--sangeet); color: var(--sangeet); }
+    .event-sangeet .btn-map:hover { background: var(--sangeet); color: #fff; }
+
+    /* Mehendi — Green */
+    .event-mehendi {
+      --event-color: var(--mehendi);
+      --event-glow: var(--mehendi-glow);
+      background: var(--mehendi-light);
+    }
+    .event-mehendi:hover { border-color: rgba(45,122,79,0.2); }
+    .event-mehendi h3 { color: var(--mehendi); }
+    .event-mehendi .venue-tag { background: rgba(45,122,79,0.1); color: var(--mehendi); }
+    .event-mehendi .btn-map { border-color: var(--mehendi); color: var(--mehendi); }
+    .event-mehendi .btn-map:hover { background: var(--mehendi); color: #fff; }
+
+    /* Haldi — Yellow */
+    .event-haldi {
+      --event-color: var(--haldi-accent);
+      --event-glow: var(--haldi-glow);
+      background: var(--haldi-light);
+    }
+    .event-haldi:hover { border-color: rgba(230,168,23,0.2); }
+    .event-haldi h3 { color: var(--haldi); }
+    .event-haldi .venue-tag { background: rgba(230,168,23,0.12); color: var(--haldi); }
+    .event-haldi .btn-map { border-color: var(--haldi); color: var(--haldi); }
+    .event-haldi .btn-map:hover { background: var(--haldi); color: #fff; }
+
+    /* Wedding — Maroon & Gold (hero event) */
+    .event-wedding {
+      --event-color: var(--wedding-gold);
+      --event-glow: var(--wedding-glow);
+      background: var(--wedding-light);
+      border: 1px solid rgba(184,134,69,0.15);
+      box-shadow: 0 4px 20px rgba(184,134,69,0.06);
+    }
+    .event-wedding:hover { border-color: rgba(139,26,26,0.25); }
+    .event-wedding h3 { color: var(--wedding); }
+    .event-wedding .venue-tag {
+      background: rgba(139,26,26,0.08);
+      color: var(--wedding);
+      border: 1px solid rgba(139,26,26,0.12);
+    }
+    .event-wedding .btn-map { border-color: var(--wedding); color: var(--wedding); }
+    .event-wedding .btn-map:hover { background: var(--wedding); color: #fff; }
+
+    /* Reception — Blue */
+    .event-reception {
+      --event-color: var(--reception);
+      --event-glow: var(--reception-glow);
+      background: var(--reception-light);
+    }
+    .event-reception:hover { border-color: rgba(26,58,92,0.2); }
+    .event-reception h3 { color: var(--reception); }
+    .event-reception .venue-tag { background: rgba(26,58,92,0.08); color: var(--reception); }
+    .event-reception .btn-map { border-color: var(--reception); color: var(--reception); }
+    .event-reception .btn-map:hover { background: var(--reception); color: #fff; }
+
+    /* GALLERY SECTION */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(2, 240px);
+      gap: 16px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .gallery-grid .g-item {
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .gallery-grid .g-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.5s ease;
+    }
+
+    .gallery-grid .g-item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(100, 36, 36, 0.4) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .gallery-grid .g-item:hover::after { opacity: 1; }
+    .gallery-grid .g-item:hover img { transform: scale(1.08); filter: brightness(1.05); }
+    .gallery-grid .g-span-2 { grid-column: span 2; }
+    .gallery-grid .g-span-row { grid-row: span 2; }
+
+    /* TRAVEL INFO SECTION */
+    .travel-section-bg {
+      background:
+        radial-gradient(ellipse at 30% 30%, rgba(184, 134, 69, 0.05) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 70%, rgba(100, 36, 36, 0.04) 0%, transparent 50%),
+        repeating-linear-gradient(
+          -45deg,
+          transparent, transparent 1px,
+          rgba(100, 36, 36, 0.012) 1px, rgba(100, 36, 36, 0.012) 2px
+        );
+      background-color: #faf6f0;
+    }
+
+    .travel-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .travel-card {
+      background: rgba(255,255,255,0.6);
+      border: 1px solid rgba(184, 134, 69, 0.15);
+      border-radius: 16px;
+      padding: 36px 30px;
+      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease, border-color 0.4s ease;
+      backdrop-filter: blur(5px);
+    }
+
+    .travel-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+      border-color: rgba(184, 134, 69, 0.3);
+    }
+
+    .travel-card-icon {
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+      transition: transform 0.3s ease;
+    }
+
+    .travel-card:hover .travel-card-icon { transform: scale(1.2); }
+
+    .travel-card h3 {
+      font-family: 'Playfair Display';
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      color: var(--primary);
+    }
+
+    .travel-card p {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+
+    .travel-card a {
+      display: inline-block;
+      margin-top: 12px;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--gold);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s, letter-spacing 0.3s;
+    }
+
+    .travel-card a:hover { border-color: var(--gold); letter-spacing: 1.5px; }
+
+    /* --- MEENAYA EXIT --- */
+    .meenaya-exit {
+      position: relative;
+      padding: 220px 5%;
+      text-align: center;
+      background: linear-gradient(
+        rgba(12, 26, 36, 0.78),
+        rgba(12, 26, 36, 0.85)
+      ), url('venue.jpg') center/cover fixed;
+      overflow: hidden;
+      border-radius: 60px 60px 0 0;
+      margin-top: -60px;
+      box-shadow: 0 -20px 50px rgba(0,0,0,0.5);
+      z-index: 10;
+    }
+
+    .meenaya-exit::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 30% 40%, rgba(205, 164, 52, 0.08) 0%, transparent 50%),
+                  radial-gradient(circle at 70% 60%, rgba(205, 164, 52, 0.06) 0%, transparent 50%);
+      animation: ambientGlow 8s ease-in-out infinite alternate;
+      pointer-events: none;
+    }
+
+    @keyframes ambientGlow {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      100% { transform: translate(3%, 3%) rotate(2deg); }
+    }
+
+    .meenaya-content { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; }
+    .m-heading { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 400; color: var(--meenaya-gold); margin-bottom: 20px; }
+
+    .m-timer-wrap {
+      display: flex;
+      justify-content: center;
+      gap: clamp(20px, 5vw, 50px);
+      margin-bottom: 30px;
+    }
+
+    .m-timer-unit { display: flex; flex-direction: column; align-items: center; }
+
+    .m-timer-num {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 6vw, 3.5rem);
+      color: var(--meenaya-gold);
+      letter-spacing: 2px;
+      line-height: 1;
+      transition: transform 0.3s ease;
+    }
+
+    .m-timer-num.tick {
+      transform: scale(1.15);
+    }
+
+    .m-timer-label {
+      font-family: 'Lora', serif;
+      font-size: 0.65rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #7a6a2e;
+      margin-top: 8px;
+    }
+
+    .m-timer-sep {
+      font-family: 'Playfair Display';
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      color: rgba(205, 164, 52, 0.3);
+      align-self: flex-start;
+      padding-top: 4px;
+      animation: sepPulse 1s ease-in-out infinite;
+    }
+
+    @keyframes sepPulse {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.8; }
+    }
+
+    .m-message { font-family: 'Lora', serif; font-size: 0.95rem; color: #a88b32; line-height: 1.8; margin-bottom: 50px; font-style: italic; }
+
+    .m-btn-rsvp {
+      display: inline-block;
+      background: transparent;
+      color: var(--meenaya-gold);
+      border: 1px solid var(--meenaya-gold);
+      padding: 15px 40px;
+      font-family: 'Playfair Display';
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-decoration: none;
+      transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      margin-bottom: 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .m-btn-rsvp::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(205, 164, 52, 0.15), transparent);
+      animation: btnShine 3s ease-in-out infinite;
+    }
+
+    @keyframes btnShine {
+      0% { left: -100%; }
+      50%, 100% { left: 100%; }
+    }
+
+    .m-btn-rsvp:hover { background: var(--meenaya-gold); color: var(--meenaya-blue); transform: scale(1.05); }
+
+    .m-footer { font-family: 'Lora', serif; font-size: 0.75rem; color: #5d5029; letter-spacing: 1px; }
+
+    /* SECTION NAV DOTS */
+    .section-nav {
+      position: fixed;
+      right: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .section-nav a {
+      display: block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(100, 36, 36, 0.2);
+      transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      position: relative;
+    }
+
+    .section-nav a.active {
+      background: var(--gold);
+      box-shadow: 0 0 8px rgba(184, 134, 69, 0.4);
+      transform: scale(1.4);
+    }
+
+    .section-nav a .nav-tooltip {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%) translateX(5px);
+      background: var(--primary);
+      color: #fff;
+      font-family: 'Playfair Display';
+      font-size: 0.65rem;
+      letter-spacing: 1px;
+      padding: 4px 10px;
+      border-radius: 4px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s, transform 0.3s;
+    }
+
+    .section-nav a:hover .nav-tooltip { opacity: 1; transform: translateY(-50%) translateX(0); }
+
+    /* ====== MAGNETIC CURSOR GLOW ====== */
+    .cursor-glow {
+      position: fixed;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(184, 134, 69, 0.06) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 9995;
+      transform: translate(-50%, -50%);
+      transition: opacity 0.3s;
+      opacity: 0;
+    }
+
+    body:hover .cursor-glow { opacity: 1; }
+
+    /* ====== RESPONSIVE ====== */
+    @media (max-width: 900px) {
+      .names-block { top: 12vh; }
+      .couple-wrap { flex-direction: column; text-align: center; }
+      .couple-images { width: 100%; height: 420px; margin-top: 40px; padding: 0; }
+      .arch-1 { left: 10%; }
+      .arch-2 { width: 48%; height: 50%; }
+
+      .event-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        padding: 24px 20px 24px 50px;
+      }
+      .event-item > div[style*=\"flex-direction\"] {
+        flex-direction: row !important;
+        align-items: center !important;
+      }
+
+      .timeline-node { left: 8px; }
+      .timeline-connector { margin-left: 17px; height: 36px; }
+
+      .meenaya-exit {
+        background-attachment: scroll;
+        background: linear-gradient(
+          rgba(12, 26, 36, 0.80),
+          rgba(12, 26, 36, 0.88)
+        ), url('venue.jpg') center/cover scroll;
+        padding: 160px 5%;
+        border-radius: 40px 40px 0 0;
+        margin-top: -40px;
+      }
+
+      .page-overlap { border-radius: 40px 40px 0 0; margin-top: -40px; }
+
+      .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3, 200px); }
+      .gallery-grid .g-span-2 { grid-column: span 1; }
+      .gallery-grid .g-span-row { grid-row: span 1; }
+
+      .section-nav { display: none; }
+      #petal-canvas { opacity: 0.35; }
+      .itinerary-section { padding: 100px 6%; }
+      .save-date-wrapper { padding: 20px 30px; }
+      .cursor-glow { display: none; }
+    }
+
+    @media (max-width: 500px) {
+      .gallery-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+      .gallery-grid .g-item { height: 220px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- CURSOR GLOW -->
+  <div class="cursor-glow" id="cursor-glow"></div>
+
+  <div class="preloader" id="preloader">
+    <div class="preloader-monogram">U & A</div>
+    <div class="preloader-text">Beginning the journey</div>
+    <div class="preloader-bar"><div class="preloader-bar-fill" id="preloader-fill"></div></div>
+  </div>
+
+  <!-- FLOATING PETALS -->
+  <canvas id="petal-canvas" aria-hidden="true"></canvas>
+
+  <!-- SPARKLE OVERLAY -->
+  <canvas id="sparkle-canvas" aria-hidden="true"></canvas>
+
+  <!-- MUSIC TOGGLE -->
+  <button class="music-toggle" id="music-btn" aria-label="Toggle background music">
+    <div class="music-bars" id="music-bars">
+      <div class="bar" style="height:4px"></div>
+      <div class="bar" style="height:4px"></div>
+      <div class="bar" style="height:4px"></div>
+      <div class="bar" style="height:4px"></div>
+    </div>
+  </button>
+  <audio id="bg-music" loop preload="auto">
+    <source src="shehnai.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- SECTION NAV DOTS -->
+  <nav class="section-nav" id="section-nav" aria-label="Page sections">
+    <a href="#hero" data-section="hero"><span class="nav-tooltip">Top</span></a>
+    <a href="#story" data-section="story"><span class="nav-tooltip">Our Story</span></a>
+    <a href="#events" data-section="events"><span class="nav-tooltip">Events</span></a>
+    <a href="#gallery" data-section="gallery"><span class="nav-tooltip">Gallery</span></a>
+    <a href="#travel" data-section="travel"><span class="nav-tooltip">Travel</span></a>
+    <a href="#rsvp" data-section="rsvp"><span class="nav-tooltip">RSVP</span></a>
+  </nav>
+
+  <!-- ======================== HERO ======================== -->
+  <section class="hero" id="hero">
+    <img src="hero.jpg" class="hero-image-spacer" alt="">
+    <div class="hero-image-wrapper">
+      <img src="hero.jpg" class="hero-image" alt="Jagannath Temple, Bhubaneswar" loading="eager">
+      <div class="hero-overlay"></div>
+      <div class="hero-vignette"></div>
+    </div>
+
+    <div class="top-mantra">
+      <div class="mantra">॥ श्री जगन्नाथ स्वामी नयन पथ गामी भवतु मे ॥</div>
+    </div>
+
+    <div class="sticky-container">
+      <div class="names-block">
+        <div class="hero-names" data-split>Utsav</div>
+        <div class="hero-weds shimmer-text" style="-webkit-text-fill-color: unset; background: none; color: var(--gold);">weds</div>
+        <div class="hero-names" data-split>Ananya</div>
+      </div>
+    </div>
+
+    <div class="bottom-date">
+      <div class="save-date-wrapper">
+        <span class="save-date shimmer-text">Save the Date</span>
+        <div class="date-separator"></div>
+        <div class="date-footer">JUNE 19, 2026</div>
+        <span class="date-venue-line">Bhubaneswar, Odisha</span>
+      </div>
+    </div>
+
+    <div class="scroll-indicator" id="scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- ======================== OUR STORY ======================== -->
+  <section class="section page-overlap textured-bg" id="story">
+    <div class="couple-wrap">
+      <div class="couple-text gs-reveal">
+        <span class="label">Our Journey</span>
+        <h2 class="title" style="text-align: left;">A Sacred Union</h2>
+        <div class="ornament" style="margin: 20px 0 30px;">
+          <div class="ornament-line"></div>
+          <div class="ornament-diamond"></div>
+          <div class="ornament-line"></div>
+        </div>
+        <p style="line-height: 1.8; color: var(--text-muted); margin-bottom: 20px;">
+          In the Temple City of Bhubaneswar, surrounded by the echoes of ancient stones and the love of our families, we begin our forever.
+        </p>
+        <p style="line-height: 1.8; color: var(--text-muted);">
+          With the blessings of Lord Jagannath, we invite you to celebrate our union and witness the start of this beautiful chapter.
+        </p>
+      </div>
+      <div class="couple-images gs-reveal">
+        <img src="story2.jpg" class="arch arch-1" alt="Utsav and Ananya together" loading="lazy">
+        <img src="story1.jpg" class="arch arch-2" alt="Temple ceremony details" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== PARALLAX BANNER ======================== -->
+  <div class="parallax-container">
+    <img src="parallax.jpg" class="parallax-img" id="parallax-target" alt="Bhubaneswar Skyline" loading="lazy">
+    <div style="text-align: center; position: relative; z-index: 2;">
+      <div class="banner-text">Sacred Beginnings</div>
+      <div class="banner-subtext">In the land of temples</div>
+    </div>
+  </div>
+
+  <!-- ======================== ITINERARY ======================== -->
+  <section class="itinerary-section" id="events">
+    <span class="label">Itinerary</span>
+    <h2 class="title">The Celebration</h2>
+    <div class="ornament">
+      <div class="ornament-line"></div>
+      <div class="ornament-diamond"></div>
+      <div class="ornament-line"></div>
+    </div>
+
+    <div class="timeline-container">
+
+      <!-- SANGEET -->
+      <div class="event-item event-sangeet gs-reveal">
+        <div class="timeline-node">
+          <div class="node-ring"></div>
+          <div class="node-dot"></div>
+        </div>
+        <div class="event-card">
+          <div class="event-date">17th June, Evening</div>
+          <h3>Sangeet</h3>
+          <p>Grand Lumbini, Bhubaneswar</p>
+          <span class="venue-tag">Grand Lumbini</span>
+        </div>
+        <div style="display:flex; gap:8px; flex-direction:column; align-items:flex-end; flex-shrink:0;">
+          <a href="#" class="btn-map">Location →</a>
+          <a href="#" class="btn-map btn-cal" onclick="saveEventDate(event,'Sangeet — Utsav & Ananya Wedding','2026-06-17T18:00:00','2026-06-17T23:00:00','Grand Lumbini, Bhubaneswar')">Save Date</a>
+        </div>
+      </div>
+
+      <div class="timeline-connector"><div class="connector-fill"></div></div>
+
+      <!-- MEHENDI -->
+      <div class="event-item event-mehendi gs-reveal">
+        <div class="timeline-node">
+          <div class="node-ring"></div>
+          <div class="node-dot"></div>
+        </div>
+        <div class="event-card">
+          <div class="event-date">18th June, Afternoon</div>
+          <h3>Mehendi</h3>
+          <p>Chand & Co., Bhubaneswar</p>
+          <span class="venue-tag">Bride's Residency</span>
+        </div>
+        <div style="display:flex; gap:8px; flex-direction:column; align-items:flex-end; flex-shrink:0;">
+          <a href="#" class="btn-map">Location →</a>
+          <a href="#" class="btn-map btn-cal" onclick="saveEventDate(event,'Mehendi — Utsav & Ananya Wedding','2026-06-18T14:00:00','2026-06-18T18:00:00','Chand %26 Co., Bhubaneswar')">Save Date</a>
+        </div>
+      </div>
+
+      <div class="timeline-connector"><div class="connector-fill"></div></div>
+
+      <!-- HALDI -->
+      <div class="event-item event-haldi gs-reveal">
+        <div class="timeline-node">
+          <div class="node-ring"></div>
+          <div class="node-dot"></div>
+        </div>
+        <div class="event-card">
+          <div class="event-date">19th June, Morning</div>
+          <h3>Haldi</h3>
+          <p>Chand & Co., Bhubaneswar</p>
+          <span class="venue-tag">Bride's Residency</span>
+        </div>
+        <div style="display:flex; gap:8px; flex-direction:column; align-items:flex-end; flex-shrink:0;">
+          <a href="#" class="btn-map">Location →</a>
+          <a href="#" class="btn-map btn-cal" onclick="saveEventDate(event,'Haldi — Utsav & Ananya Wedding','2026-06-19T09:00:00','2026-06-19T12:00:00','Chand %26 Co., Bhubaneswar')">Save Date</a>
+        </div>
+      </div>
+
+      <div class="timeline-connector"><div class="connector-fill"></div></div>
+
+      <!-- WEDDING -->
+      <div class="event-item event-wedding gs-reveal">
+        <div class="timeline-node">
+          <div class="node-ring"></div>
+          <div class="node-dot"></div>
+          <div class="node-glow"></div>
+        </div>
+        <div class="event-card">
+          <div class="event-date">19th June, Evening</div>
+          <h3>The Wedding</h3>
+          <p>Kokila Resort, Bhubaneswar</p>
+          <span class="venue-tag">✦ Kokila Resort</span>
+        </div>
+        <div style="display:flex; gap:8px; flex-direction:column; align-items:flex-end; flex-shrink:0;">
+          <a href="#" class="btn-map">Location →</a>
+          <a href="#" class="btn-map btn-cal" onclick="saveEventDate(event,'Wedding — Utsav & Ananya','2026-06-19T18:00:00','2026-06-19T23:00:00','Kokila Resort, Bhubaneswar')">Save Date</a>
+        </div>
+      </div>
+
+      <div class="timeline-connector"><div class="connector-fill"></div></div>
+
+      <!-- RECEPTION -->
+      <div class="event-item event-reception gs-reveal">
+        <div class="timeline-node">
+          <div class="node-ring"></div>
+          <div class="node-dot"></div>
+        </div>
+        <div class="event-card">
+          <div class="event-date">21st June, Evening</div>
+          <h3>Reception</h3>
+          <p>Grand Lumbini, Bhubaneswar</p>
+          <span class="venue-tag">Grand Lumbini</span>
+        </div>
+        <div style="display:flex; gap:8px; flex-direction:column; align-items:flex-end; flex-shrink:0;">
+          <a href="#" class="btn-map">Location →</a>
+          <a href="#" class="btn-map btn-cal" onclick="saveEventDate(event,'Reception — Utsav & Ananya Wedding','2026-06-21T18:00:00','2026-06-21T23:00:00','Grand Lumbini, Bhubaneswar')">Save Date</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======================== GALLERY ======================== -->
+  <section class="section page-overlap textured-bg" id="gallery">
+    <span class="label">Moments</span>
+    <h2 class="title">Our Gallery</h2>
+    <div class="ornament">
+      <div class="ornament-line"></div>
+      <div class="ornament-diamond"></div>
+      <div class="ornament-line"></div>
+    </div>
+    <div class="gallery-coming-soon gs-reveal" style="max-width: 600px; margin: 0 auto; padding: 80px 30px; text-align: center; border: 1px solid rgba(184,134,69,0.2); border-radius: 20px; background: rgba(255,255,255,0.4); backdrop-filter: blur(5px);">
+      <div style="font-size: 3rem; margin-bottom: 20px;">📸</div>
+      <h3 style="font-family: 'Playfair Display'; font-size: 1.6rem; color: var(--primary); margin-bottom: 12px;">Coming Soon</h3>
+      <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.8; max-width: 400px; margin: 0 auto;">We're saving the best moments for after the celebrations. Stay tuned for our wedding gallery!</p>
+      <div class="ornament" style="margin: 30px auto 0;">
+        <div class="ornament-line"></div>
+        <div class="ornament-diamond"></div>
+        <div class="ornament-line"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== TRAVEL ======================== -->
+  <section class="section travel-section-bg" id="travel">
+    <span class="label">Good to Know</span>
+    <h2 class="title">Plan Your Visit</h2>
+    <div class="ornament">
+      <div class="ornament-line"></div>
+      <div class="ornament-diamond"></div>
+      <div class="ornament-line"></div>
+    </div>
+    <div class="travel-grid">
+      <div class="travel-card gs-reveal">
+        <div class="travel-card-icon" style="font-size:1.4rem; letter-spacing:2px; color:var(--gold);">✦</div>
+        <h3>By Air</h3>
+        <p>Biju Patnaik International Airport (BBI) is the nearest airport, approximately <strong>15 minutes</strong> from all venues.</p>
+        <a href="https://maps.google.com/?q=Biju+Patnaik+International+Airport" target="_blank" rel="noopener">Airport Directions →</a>
+      </div>
+      <div class="travel-card gs-reveal">
+        <div class="travel-card-icon" style="font-size:1.4rem; letter-spacing:2px; color:var(--gold);">✦</div>
+        <h3>Weather Forecast</h3>
+        <p>Bhubaneswar in mid-June is warm and humid with temperatures around <strong>34–38°C</strong> during the day and <strong>26–28°C</strong> at night. Light cotton and breathable fabrics are recommended. Brief evening showers are possible — carry a light umbrella just in case.</p>
+        <a href="https://weather.com/weather/tenday/l/Bhubaneswar+Odisha+India" target="_blank" rel="noopener">Live Forecast →</a>
+      </div>
+      <div class="travel-card gs-reveal">
+        <div class="travel-card-icon" style="font-size:1.4rem; letter-spacing:2px; color:var(--gold);">✦</div>
+        <h3>Dress Code</h3>
+        <p><strong>Sangeet:</strong> Cocktail / Indo-Western<br><strong>Mehendi & Haldi:</strong> Bright casuals<br><strong>Wedding:</strong> Traditional Indian attire<br><strong>Reception:</strong> Semi-formal / Elegant</p>
+        <a href="#events">View Events →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== RSVP / COUNTDOWN ======================== -->
+  <section class="meenaya-exit" id="rsvp">
+    <div class="meenaya-content gs-reveal">
+      <h2 class="m-heading">Save the Date</h2>
+      <div class="m-timer-wrap" id="meenaya-timer">
+        <div class="m-timer-unit">
+          <span class="m-timer-num" id="t-days">00</span>
+          <span class="m-timer-label">Days</span>
+        </div>
+        <span class="m-timer-sep">:</span>
+        <div class="m-timer-unit">
+          <span class="m-timer-num" id="t-hours">00</span>
+          <span class="m-timer-label">Hours</span>
+        </div>
+        <span class="m-timer-sep">:</span>
+        <div class="m-timer-unit">
+          <span class="m-timer-num" id="t-mins">00</span>
+          <span class="m-timer-label">Minutes</span>
+        </div>
+        <span class="m-timer-sep">:</span>
+        <div class="m-timer-unit">
+          <span class="m-timer-num" id="t-secs">00</span>
+          <span class="m-timer-label">Seconds</span>
+        </div>
+      </div>
+      <p class="m-message">We can't wait to celebrate with you! Save all the events to your calendar so you don't miss a single moment of the festivities.</p>
+      <a href="#" class="m-btn-rsvp" id="save-all-dates" onclick="saveAllDates(event)">Save All Dates to Calendar</a>
+      <div class="m-footer">With love — Utsav & Ananya, 2026</div>
+    </div>
+  </section>
+
+  <script>
+    // --- SMOOTH SCROLL ---
+    const lenis = new Lenis();
+    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    // --- CURSOR GLOW ---
+    const cursorGlow = document.getElementById('cursor-glow');
+    if (window.matchMedia('(pointer: fine)').matches) {
+      document.addEventListener('mousemove', (e) => {
+        cursorGlow.style.left = e.clientX + 'px';
+        cursorGlow.style.top = e.clientY + 'px';
+      });
+    }
+
+    // SPLIT TEXT UTILITY
+    document.querySelectorAll('[data-split]').forEach(el => {
+      const text = el.textContent;
+      el.innerHTML = '';
+      text.split('').forEach(char => {
+        const span = document.createElement('span');
+        span.classList.add('char');
+        span.textContent = char === ' ' ? '\u00A0' : char;
+        el.appendChild(span);
+      });
+    });
+
+    // --- PRELOADER ---
+    window.addEventListener('load', () => {
+      const tl = gsap.timeline();
+      tl.to(".preloader-monogram", { opacity: 1, duration: 0.6, ease: "power2.out" })
+        .to(".preloader-text", { opacity: 1, duration: 0.4, ease: "power2.out" }, "-=0.3")
+        .to("#preloader-fill", { width: "100%", duration: 1, ease: "power2.inOut" }, "-=0.2")
+        .to("#preloader", {
+          yPercent: -100,
+          duration: 1.5,
+          ease: "expo.inOut",
+          delay: 0.2
+        })
+        .to(".mantra", { opacity: 1, duration: 1.5, ease: "power2.out" }, "-=0.5")
+        .fromTo(".hero-names .char",
+          { y: 80, opacity: 0, rotateX: -90 },
+          { y: 0, opacity: 1, rotateX: 0, duration: 1, stagger: 0.04, ease: "back.out(1.7)" }, "-=1"
+        )
+        .fromTo(".hero-weds",
+          { scale: 0, opacity: 0, rotate: 15 },
+          { scale: 1, opacity: 1, rotate: 0, duration: 1.5, ease: "elastic.out(1, 0.5)" }, "-=0.6"
+        )
+        .fromTo(".save-date",
+          { y: 30, opacity: 0 },
+          { y: 0, opacity: 1, duration: 1, ease: "power3.out" }, "-=0.6"
+        )
+        .fromTo(".date-separator",
+          { scaleX: 0, opacity: 0 },
+          { scaleX: 1, opacity: 1, duration: 0.8, ease: "power2.out" }, "-=0.5"
+        )
+        .fromTo(".date-footer",
+          { y: 20, opacity: 0, letterSpacing: "0px" },
+          { y: 0, opacity: 1, letterSpacing: "5px", duration: 1.2, ease: "power3.out" }, "-=0.5"
+        )
+        .fromTo(".date-venue-line",
+          { y: 10, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.8, ease: "power2.out" }, "-=0.6"
+        )
+        .to("#scroll-hint", { opacity: 1, duration: 1, ease: "power2.out" }, "-=0.5");
+    });
+
+    // Preloader failsafe
+    setTimeout(() => {
+      const pre = document.getElementById('preloader');
+      if (pre && pre.style.transform !== 'translateY(-100%)') {
+        gsap.to(pre, { yPercent: -100, duration: 1, ease: "expo.inOut" });
+      }
+    }, 5000);
+
+    // --- PARALLAX & SCROLL ANIMATIONS ---
+    gsap.to(".hero-image", {
+      scale: 1.25, ease: "none",
+      scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true }
+    });
+
+    gsap.to(".names-block", {
+      opacity: 0, y: -50, ease: "none",
+      scrollTrigger: { trigger: ".bottom-date", start: "top 85%", end: "top 20%", scrub: true }
+    });
+
+    // Fade out scroll indicator
+    ScrollTrigger.create({
+      trigger: ".hero",
+      start: "top top",
+      end: "20% top",
+      scrub: true,
+      onUpdate: (self) => {
+        gsap.set("#scroll-hint", { opacity: 1 - self.progress * 3 });
+      }
+    });
+
+    // --- GALLERY COMING SOON REVEAL (handled after calendar functions) ---
+
+    // --- CONNECTOR FILL (each segment individually) ---
+    document.querySelectorAll('.timeline-connector').forEach(conn => {
+      gsap.to(conn.querySelector('.connector-fill'), {
+        height: '100%',
+        ease: 'none',
+        scrollTrigger: {
+          trigger: conn,
+          start: 'top 65%',
+          end: 'bottom 50%',
+          scrub: 0.6
+        }
+      });
+    });
+
+    // --- NODE ACTIVATION (per event card) ---
+    document.querySelectorAll('.event-item').forEach(item => {
+      ScrollTrigger.create({
+        trigger: item,
+        start: 'top 65%',
+        onEnter: () => item.classList.add('is-active'),
+        onLeaveBack: () => item.classList.remove('is-active')
+      });
+    });
+
+    // --- ORNAMENT ANIMATIONS ---
+    gsap.utils.toArray('.ornament').forEach(orn => {
+      gsap.fromTo(orn,
+        { scaleX: 0, opacity: 0 },
+        {
+          scaleX: 1, opacity: 1, duration: 1.2, ease: "power3.out",
+          scrollTrigger: { trigger: orn, start: "top 85%" }
+        }
+      );
+    });
+
+    // --- TRAVEL CARD STAGGER ---
+    gsap.fromTo(".travel-card",
+      { y: 50, opacity: 0, rotateY: 5 },
+      {
+        y: 0, opacity: 1, rotateY: 0, duration: 1, stagger: 0.2,
+        ease: "power3.out",
+        scrollTrigger: { trigger: ".travel-grid", start: "top 80%" }
+      }
+    );
+
+    // SECTION NAV ACTIVE STATE
+    const navLinks = document.querySelectorAll('.section-nav a');
+    const sectionIds = Array.from(navLinks).map(a => a.getAttribute('data-section'));
+
+    sectionIds.forEach((id, i) => {
+      const section = document.getElementById(id);
+      if (!section) return;
+      ScrollTrigger.create({
+        trigger: section,
+        start: "top center",
+        end: "bottom center",
+        onEnter: () => setActiveNav(i),
+        onEnterBack: () => setActiveNav(i)
+      });
+    });
+
+    function setActiveNav(index) {
+      navLinks.forEach(a => a.classList.remove('active'));
+      if (navLinks[index]) navLinks[index].classList.add('active');
+    }
+
+    navLinks.forEach(a => {
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.getElementById(a.getAttribute('data-section'));
+        if (target) lenis.scrollTo(target, { offset: -50 });
+      });
+    });
+
+    // --- COUNTDOWN ---
+    const weddingDate = new Date("June 19, 2026 18:00:00").getTime();
+    let prevSecs = '';
+
+    function updateTimer() {
+      const now = new Date().getTime();
+      const diff = weddingDate - now;
+      if (diff > 0) {
+        const d = Math.floor(diff / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
+        const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
+        const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+        const s = Math.floor((diff % (1000 * 60)) / 1000).toString().padStart(2, '0');
+
+        document.getElementById('t-days').textContent = d;
+        document.getElementById('t-hours').textContent = h;
+        document.getElementById('t-mins').textContent = m;
+        const secsEl = document.getElementById('t-secs');
+        secsEl.textContent = s;
+
+        if (s !== prevSecs) {
+          secsEl.classList.add('tick');
+          setTimeout(() => secsEl.classList.remove('tick'), 200);
+          prevSecs = s;
+        }
+      } else {
+        document.querySelector('.m-heading').textContent = 'We are married!';
+        document.querySelector('.m-timer-wrap').style.display = 'none';
+      }
+    }
+
+    updateTimer();
+    setInterval(updateTimer, 1000);
+
+    // --- FLOATING PETALS ---
+    (function initPetals() {
+      const canvas = document.getElementById('petal-canvas');
+      const ctx = canvas.getContext('2d');
+      let petals = [];
+      const PETAL_COUNT = 18;
+
+      function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      class Petal {
+        constructor() { this.reset(true); }
+        reset(init = false) {
+          this.x = Math.random() * canvas.width;
+          this.y = init ? Math.random() * canvas.height : -20;
+          this.size = Math.random() * 8 + 5;
+          this.speedY = Math.random() * 0.6 + 0.3;
+          this.speedX = Math.random() * 0.4 - 0.2;
+          this.rotation = Math.random() * Math.PI * 2;
+          this.rotationSpeed = (Math.random() - 0.5) * 0.02;
+          this.opacity = Math.random() * 0.4 + 0.2;
+          const hues = [15, 25, 35, 345, 355];
+          this.hue = hues[Math.floor(Math.random() * hues.length)];
+        }
+        update() {
+          this.y += this.speedY;
+          this.x += this.speedX + Math.sin(this.y * 0.01) * 0.3;
+          this.rotation += this.rotationSpeed;
+          if (this.y > canvas.height + 20) this.reset();
+        }
+        draw() {
+          ctx.save();
+          ctx.translate(this.x, this.y);
+          ctx.rotate(this.rotation);
+          ctx.globalAlpha = this.opacity;
+          ctx.fillStyle = `hsl(${this.hue}, 70%, 60%)`;
+          ctx.beginPath();
+          ctx.ellipse(0, 0, this.size * 0.5, this.size, 0, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
+        }
+      }
+
+      for (let i = 0; i < PETAL_COUNT; i++) petals.push(new Petal());
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        petals.forEach(p => { p.update(); p.draw(); });
+        requestAnimationFrame(animate);
+      }
+      animate();
+    })();
+
+    // --- SPARKLE PARTICLES ---
+    (function initSparkles() {
+      const canvas = document.getElementById('sparkle-canvas');
+      const ctx = canvas.getContext('2d');
+      let sparkles = [];
+      const SPARKLE_COUNT = 25;
+
+      function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      class Sparkle {
+        constructor() { this.reset(true); }
+        reset(init = false) {
+          this.x = Math.random() * canvas.width;
+          this.y = Math.random() * canvas.height;
+          this.size = Math.random() * 2 + 0.5;
+          this.life = 0;
+          this.maxLife = Math.random() * 180 + 60;
+          this.opacity = 0;
+        }
+        update() {
+          this.life++;
+          const progress = this.life / this.maxLife;
+          if (progress < 0.2) {
+            this.opacity = progress / 0.2;
+          } else if (progress > 0.8) {
+            this.opacity = (1 - progress) / 0.2;
+          } else {
+            this.opacity = 1;
+          }
+          this.opacity *= 0.4;
+          if (this.life >= this.maxLife) this.reset();
+        }
+        draw() {
+          ctx.save();
+          ctx.globalAlpha = this.opacity;
+          ctx.fillStyle = '#d4a94c';
+          ctx.shadowColor = '#d4a94c';
+          ctx.shadowBlur = 6;
+
+          ctx.beginPath();
+          ctx.moveTo(this.x, this.y - this.size * 2);
+          ctx.lineTo(this.x + this.size * 0.5, this.y);
+          ctx.lineTo(this.x, this.y + this.size * 2);
+          ctx.lineTo(this.x - this.size * 0.5, this.y);
+          ctx.closePath();
+          ctx.fill();
+
+          ctx.beginPath();
+          ctx.moveTo(this.x - this.size * 2, this.y);
+          ctx.lineTo(this.x, this.y + this.size * 0.5);
+          ctx.lineTo(this.x + this.size * 2, this.y);
+          ctx.lineTo(this.x, this.y - this.size * 0.5);
+          ctx.closePath();
+          ctx.fill();
+
+          ctx.restore();
+        }
+      }
+
+      for (let i = 0; i < SPARKLE_COUNT; i++) {
+        const s = new Sparkle();
+        s.life = Math.floor(Math.random() * s.maxLife);
+        sparkles.push(s);
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        sparkles.forEach(s => { s.update(); s.draw(); });
+        requestAnimationFrame(animate);
+      }
+      animate();
+    })();
+
+    // --- SAVE THE DATE (ICS CALENDAR) ---
+    function generateICS(title, start, end, location, description) {
+      const fmt = (d) => new Date(d).toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
+      return [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'PRODID:-//UtsavAnanyaWedding//EN',
+        'BEGIN:VEVENT',
+        'DTSTART:' + fmt(start),
+        'DTEND:' + fmt(end),
+        'SUMMARY:' + title,
+        'LOCATION:' + decodeURIComponent(location),
+        'DESCRIPTION:' + (description || 'Utsav & Ananya Wedding Celebration'),
+        'STATUS:CONFIRMED',
+        'END:VEVENT',
+        'END:VCALENDAR'
+      ].join('\r\n');
+    }
+
+    function downloadICS(filename, icsContent) {
+      const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    function saveEventDate(e, title, start, end, location) {
+      e.preventDefault();
+      const ics = generateICS(title, start, end, location);
+      const safeName = title.replace(/[^a-zA-Z0-9]/g, '_').toLowerCase();
+      downloadICS(safeName + '.ics', ics);
+    }
+
+    function saveAllDates(e) {
+      e.preventDefault();
+      const events = [
+        { title: 'Sangeet — Utsav & Ananya Wedding', start: '2026-06-17T18:00:00', end: '2026-06-17T23:00:00', loc: 'Grand Lumbini, Bhubaneswar' },
+        { title: 'Mehendi — Utsav & Ananya Wedding', start: '2026-06-18T14:00:00', end: '2026-06-18T18:00:00', loc: 'Chand & Co., Bhubaneswar' },
+        { title: 'Haldi — Utsav & Ananya Wedding', start: '2026-06-19T09:00:00', end: '2026-06-19T12:00:00', loc: 'Chand & Co., Bhubaneswar' },
+        { title: 'Wedding — Utsav & Ananya', start: '2026-06-19T18:00:00', end: '2026-06-19T23:00:00', loc: 'Kokila Resort, Bhubaneswar' },
+        { title: 'Reception — Utsav & Ananya Wedding', start: '2026-06-21T18:00:00', end: '2026-06-21T23:00:00', loc: 'Grand Lumbini, Bhubaneswar' }
+      ];
+      const fmt = (d) => new Date(d).toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
+      let ics = 'BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//UtsavAnanyaWedding//EN\r\n';
+      events.forEach(ev => {
+        ics += 'BEGIN:VEVENT\r\n';
+        ics += 'DTSTART:' + fmt(ev.start) + '\r\n';
+        ics += 'DTEND:' + fmt(ev.end) + '\r\n';
+        ics += 'SUMMARY:' + ev.title + '\r\n';
+        ics += 'LOCATION:' + ev.loc + '\r\n';
+        ics += 'DESCRIPTION:Utsav & Ananya Wedding Celebration\r\n';
+        ics += 'STATUS:CONFIRMED\r\n';
+        ics += 'END:VEVENT\r\n';
+      });
+      ics += 'END:VCALENDAR';
+      downloadICS('utsav_ananya_wedding_all_events.ics', ics);
+    }
+
+    // --- GALLERY COMING SOON ANIMATION ---
+    gsap.fromTo(".gallery-coming-soon",
+      { y: 40, opacity: 0, scale: 0.96 },
+      {
+        y: 0, opacity: 1, scale: 1, duration: 1.2,
+        ease: "power3.out",
+        scrollTrigger: { trigger: ".gallery-coming-soon", start: "top 80%" }
+      }
+    );
+
+    // --- MUSIC TOGGLE ---
+    const musicBtn = document.getElementById('music-btn');
+    const bgMusic = document.getElementById('bg-music');
+    const musicBars = document.getElementById('music-bars');
+    let isPlaying = false;
+
+    bgMusic.volume = 0.3;
+
+    musicBtn.addEventListener('click', () => {
+      if (isPlaying) {
+        bgMusic.pause();
+        musicBars.classList.remove('playing');
+      } else {
+        bgMusic.play().catch(() => {});
+        musicBars.classList.add('playing');
+      }
+      isPlaying = !isPlaying;
+    });
+  </script>
+
+</body>
+</html>
