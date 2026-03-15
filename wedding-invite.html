@@ -1313,7 +1313,7 @@
     </div>
   </button>
   <audio id="bg-music" loop preload="auto">
-    <source src="shehnai.mp3" type="audio/mpeg">
+    <source src="Khat.mp3" type="audio/mpeg">
   </audio>
 
   <!-- SECTION NAV DOTS -->
@@ -2023,23 +2023,56 @@
       }
     );
 
-    // --- MUSIC TOGGLE ---
+    // --- MUSIC TOGGLE (autoplay on first interaction) ---
     const musicBtn = document.getElementById('music-btn');
     const bgMusic = document.getElementById('bg-music');
     const musicBars = document.getElementById('music-bars');
     let isPlaying = false;
+    let hasStarted = false;
 
     bgMusic.volume = 0.3;
 
-    musicBtn.addEventListener('click', () => {
+    // Try to autoplay immediately
+    function startMusic() {
+      if (hasStarted) return;
+      bgMusic.play().then(() => {
+        isPlaying = true;
+        hasStarted = true;
+        musicBars.classList.add('playing');
+        // Remove interaction listeners once music starts
+        document.removeEventListener('click', startMusic);
+        document.removeEventListener('touchstart', startMusic);
+        document.removeEventListener('scroll', startMusic);
+        document.removeEventListener('keydown', startMusic);
+      }).catch(() => {});
+    }
+
+    // Attempt autoplay right away (works if browser allows)
+    startMusic();
+
+    // Fallback: start on first user interaction (browsers require it)
+    document.addEventListener('click', startMusic, { once: false });
+    document.addEventListener('touchstart', startMusic, { once: false });
+    document.addEventListener('scroll', startMusic, { once: false });
+    document.addEventListener('keydown', startMusic, { once: false });
+
+    // Toggle button: pause/resume
+    musicBtn.addEventListener('click', (e) => {
+      e.stopPropagation(); // Don't trigger startMusic
+      if (!hasStarted) {
+        // First click starts music
+        startMusic();
+        return;
+      }
       if (isPlaying) {
         bgMusic.pause();
         musicBars.classList.remove('playing');
+        isPlaying = false;
       } else {
         bgMusic.play().catch(() => {});
         musicBars.classList.add('playing');
+        isPlaying = true;
       }
-      isPlaying = !isPlaying;
     });
   </script>
 
