@@ -1399,14 +1399,14 @@
           <div class="node-dot"></div>
         </div>
         <div class="event-card">
-          <div class="event-date">17th June, Evening</div>
+          <div class="event-date">17th June, 6 PM Onwards</div>
           <h3>Sangeet</h3>
           <p>Grand Lumbini, Bhubaneswar</p>
           <span class="venue-tag">Grand Lumbini</span>
         </div>
         <div style="display:flex; gap:8px; flex-direction:row; align-items:center; flex-shrink:0;">
           <a href="#" class="btn-map">Location →</a>
-          <a href="#" class="btn-map btn-cal" onclick="saveEventDate(event,'Sangeet — Utsav & Ananya Wedding','2026-06-17T18:00:00','2026-06-17T23:00:00','Grand Lumbini, Bhubaneswar')">Save Date</a>
+          <a href="#" class="btn-map btn-cal" onclick="saveEventDate(event,'Sangeet — Utsav & Ananya Wedding','2026-06-17T18:00:00','2026-06-17T23:59:00','Grand Lumbini, Bhubaneswar')">Save Date</a>
         </div>
       </div>
 
@@ -1419,14 +1419,14 @@
           <div class="node-dot"></div>
         </div>
         <div class="event-card">
-          <div class="event-date">18th June, Afternoon</div>
+          <div class="event-date">18th June, 10 AM</div>
           <h3>Mehendi</h3>
           <p>Chand & Co., Bhubaneswar</p>
           <span class="venue-tag">Bride's Residence</span>
         </div>
         <div style="display:flex; gap:8px; flex-direction:row; align-items:center; flex-shrink:0;">
           <a href="#" class="btn-map">Location →</a>
-          <a href="#" class="btn-map btn-cal" onclick="saveEventDate(event,'Mehendi — Utsav & Ananya Wedding','2026-06-18T14:00:00','2026-06-18T18:00:00','Chand %26 Co., Bhubaneswar')">Save Date</a>
+          <a href="#" class="btn-map btn-cal" onclick="saveEventDate(event,'Mehendi — Utsav & Ananya Wedding','2026-06-18T10:00:00','2026-06-18T14:00:00','Chand %26 Co., Bhubaneswar')">Save Date</a>
         </div>
       </div>
 
@@ -1439,14 +1439,14 @@
           <div class="node-dot"></div>
         </div>
         <div class="event-card">
-          <div class="event-date">19th June, Morning</div>
+          <div class="event-date">19th June, 10 AM</div>
           <h3>Haldi</h3>
           <p>Chand & Co., Bhubaneswar</p>
           <span class="venue-tag">Bride's Residence</span>
         </div>
         <div style="display:flex; gap:8px; flex-direction:row; align-items:center; flex-shrink:0;">
           <a href="#" class="btn-map">Location →</a>
-          <a href="#" class="btn-map btn-cal" onclick="saveEventDate(event,'Haldi — Utsav & Ananya Wedding','2026-06-19T09:00:00','2026-06-19T12:00:00','Chand %26 Co., Bhubaneswar')">Save Date</a>
+          <a href="#" class="btn-map btn-cal" onclick="saveEventDate(event,'Haldi — Utsav & Ananya Wedding','2026-06-19T10:00:00','2026-06-19T14:00:00','Chand %26 Co., Bhubaneswar')">Save Date</a>
         </div>
       </div>
 
@@ -1467,7 +1467,7 @@
         </div>
         <div style="display:flex; gap:8px; flex-direction:row; align-items:center; flex-shrink:0;">
           <a href="#" class="btn-map">Location →</a>
-          <a href="#" class="btn-map btn-cal" onclick="saveEventDate(event,'Wedding — Utsav & Ananya','2026-06-19T18:00:00','2026-06-19T23:00:00','Kokila Resort, Bhubaneswar')">Save Date</a>
+          <a href="#" class="btn-map btn-cal" onclick="saveEventDate(event,'Wedding — Utsav & Ananya','2026-06-19T20:00:00','2026-06-19T23:59:00','Kokila Resort, Bhubaneswar')">Save Date</a>
         </div>
       </div>
 
@@ -1480,14 +1480,14 @@
           <div class="node-dot"></div>
         </div>
         <div class="event-card">
-          <div class="event-date">21st June, Evening</div>
+          <div class="event-date">21st June, 8 PM</div>
           <h3>Reception</h3>
           <p>Grand Lumbini, Bhubaneswar</p>
           <span class="venue-tag">Grand Lumbini</span>
         </div>
         <div style="display:flex; gap:8px; flex-direction:row; align-items:center; flex-shrink:0;">
           <a href="#" class="btn-map">Location →</a>
-          <a href="#" class="btn-map btn-cal" onclick="saveEventDate(event,'Reception — Utsav & Ananya Wedding','2026-06-21T18:00:00','2026-06-21T23:00:00','Grand Lumbini, Bhubaneswar')">Save Date</a>
+          <a href="#" class="btn-map btn-cal" onclick="saveEventDate(event,'Reception — Utsav & Ananya Wedding','2026-06-21T20:00:00','2026-06-21T23:59:00','Grand Lumbini, Bhubaneswar')">Save Date</a>
         </div>
       </div>
 
@@ -1959,11 +1959,11 @@
     function saveAllDates(e) {
       e.preventDefault();
       const events = [
-        { title: 'Sangeet — Utsav & Ananya Wedding', start: '2026-06-17T18:00:00', end: '2026-06-17T23:00:00', loc: 'Grand Lumbini, Bhubaneswar' },
-        { title: 'Mehendi — Utsav & Ananya Wedding', start: '2026-06-18T14:00:00', end: '2026-06-18T18:00:00', loc: 'Chand & Co., Bhubaneswar' },
-        { title: 'Haldi — Utsav & Ananya Wedding', start: '2026-06-19T09:00:00', end: '2026-06-19T12:00:00', loc: 'Chand & Co., Bhubaneswar' },
-        { title: 'Wedding — Utsav & Ananya', start: '2026-06-19T18:00:00', end: '2026-06-19T23:00:00', loc: 'Kokila Resort, Bhubaneswar' },
-        { title: 'Reception — Utsav & Ananya Wedding', start: '2026-06-21T18:00:00', end: '2026-06-21T23:00:00', loc: 'Grand Lumbini, Bhubaneswar' }
+        { title: 'Sangeet — Utsav & Ananya Wedding', start: '2026-06-17T18:00:00', end: '2026-06-17T23:59:00', loc: 'Grand Lumbini, Bhubaneswar' },
+        { title: 'Mehendi — Utsav & Ananya Wedding', start: '2026-06-18T10:00:00', end: '2026-06-18T14:00:00', loc: 'Chand & Co., Bhubaneswar' },
+        { title: 'Haldi — Utsav & Ananya Wedding', start: '2026-06-19T10:00:00', end: '2026-06-19T14:00:00', loc: 'Chand & Co., Bhubaneswar' },
+        { title: 'Wedding — Utsav & Ananya', start: '2026-06-19T20:00:00', end: '2026-06-19T23:59:00', loc: 'Kokila Resort, Bhubaneswar' },
+        { title: 'Reception — Utsav & Ananya Wedding', start: '2026-06-21T20:00:00', end: '2026-06-21T23:59:00', loc: 'Grand Lumbini, Bhubaneswar' }
       ];
       const fmt = (d) => new Date(d).toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
       let ics = 'BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//UtsavAnanyaWedding//EN\r\n';
