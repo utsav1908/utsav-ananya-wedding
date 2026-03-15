@@ -217,6 +217,17 @@
       transform-origin: top center;
     }
 
+    @media (max-width: 900px) {
+      .hero-image-spacer,
+      .hero-image {
+        width: 100%;
+        height: 100vh;
+        min-height: 100vh;
+        object-fit: cover;
+        object-position: center top;
+      }
+    }
+
     .hero-overlay {
       position: absolute;
       top: 0; left: 0; width: 100%; height: 100%;
@@ -833,8 +844,6 @@
     .btn-map:hover { transform: scale(1.05); }
 
     .btn-cal {
-      font-size: 0.65rem;
-      padding: 6px 14px;
       border-color: rgba(184,134,69,0.4);
       color: var(--gold);
       background: rgba(184,134,69,0.05);
@@ -1413,7 +1422,7 @@
           <div class="event-date">18th June, Afternoon</div>
           <h3>Mehendi</h3>
           <p>Chand & Co., Bhubaneswar</p>
-          <span class="venue-tag">Bride's Residency</span>
+          <span class="venue-tag">Bride's Residence</span>
         </div>
         <div style="display:flex; gap:8px; flex-direction:row; align-items:center; flex-shrink:0;">
           <a href="#" class="btn-map">Location →</a>
@@ -1433,7 +1442,7 @@
           <div class="event-date">19th June, Morning</div>
           <h3>Haldi</h3>
           <p>Chand & Co., Bhubaneswar</p>
-          <span class="venue-tag">Bride's Residency</span>
+          <span class="venue-tag">Bride's Residence</span>
         </div>
         <div style="display:flex; gap:8px; flex-direction:row; align-items:center; flex-shrink:0;">
           <a href="#" class="btn-map">Location →</a>
@@ -1531,7 +1540,7 @@
       <div class="travel-card gs-reveal">
         <div class="travel-card-icon" style="font-size:1.4rem; letter-spacing:2px; color:var(--gold);">✦</div>
         <h3>Dress Code</h3>
-        <p><strong>Sangeet:</strong> Cocktail / Indo-Western<br><strong>Mehendi & Haldi:</strong> Bright casuals<br><strong>Wedding:</strong> Traditional Indian attire<br><strong>Reception:</strong> Semi-formal / Elegant</p>
+        <p><strong>Sangeet — Glow & Glam:</strong> Metallic, sequins, or anything with a little shine and shimmer<br><strong>Mehendi — Boho Vibes:</strong> Rainbow / multi-colour outfits or boho prints<br><strong>Haldi — Pastel Dream:</strong> Soft pastels and florals<br><strong>Wedding:</strong> Traditional Indian attire<br><strong>Reception:</strong> Semi-formal / Elegant</p>
         <a href="#events">View Events →</a>
       </div>
     </div>
