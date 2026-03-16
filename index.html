@@ -1067,9 +1067,9 @@
       width: 280px;
       transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease;
     }
-    .gallery-grid .g-item:nth-child(1) { transform: rotate(-2.5deg); }
-    .gallery-grid .g-item:nth-child(2) { transform: rotate(1.8deg); }
-    .gallery-grid .g-item:nth-child(3) { transform: rotate(-1.2deg); }
+    .gallery-grid .g-item:nth-child(1) { /* rotation set by GSAP */ }
+    .gallery-grid .g-item:nth-child(2) { /* rotation set by GSAP */ }
+    .gallery-grid .g-item:nth-child(3) { /* rotation set by GSAP */ }
     .gallery-grid .g-item:hover {
       transform: rotate(0deg) scale(1.04) !important;
       box-shadow: 0 12px 48px rgba(0,0,0,0.25), 0 2px 8px rgba(0,0,0,0.12);
@@ -1078,8 +1078,8 @@
 
     .gallery-grid .g-item img {
       width: 100%;
-      height: auto;
-      object-fit: contain;
+      height: 300px;
+      object-fit: cover;
       display: block;
       border-radius: 2px;
       transition: filter 0.5s ease;
@@ -1104,7 +1104,7 @@
     .gallery-grid .g-item:nth-child(3)::before { transform: translateX(-50%) rotate(-0.5deg); }
 
     .gallery-grid .g-item::after {
-      content: 'U & A';
+      content: 'U & A  ·  June 2026';
       position: absolute;
       bottom: 10px;
       left: 0;
@@ -1115,6 +1115,48 @@
       color: rgba(100, 36, 36, 0.35);
       pointer-events: none;
     }
+
+    /* LIGHTBOX */
+    .gallery-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0,0,0,0.92);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+      cursor: zoom-out;
+    }
+    .gallery-lightbox.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .gallery-lightbox img {
+      max-width: 92vw;
+      max-height: 90vh;
+      border-radius: 6px;
+      box-shadow: 0 20px 80px rgba(0,0,0,0.6);
+      transform: scale(0.85);
+      transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .gallery-lightbox.active img {
+      transform: scale(1);
+    }
+    .gallery-lightbox .lb-close {
+      position: absolute;
+      top: 24px;
+      right: 28px;
+      font-size: 2rem;
+      color: rgba(255,255,255,0.7);
+      cursor: pointer;
+      transition: color 0.3s;
+      font-family: sans-serif;
+      line-height: 1;
+    }
+    .gallery-lightbox .lb-close:hover { color: #fff; }
     .gallery-grid .g-span-2 { grid-column: span 2; }
     .gallery-grid .g-span-row { grid-row: span 2; }
 
@@ -1415,7 +1457,7 @@
 
       .gallery-grid { gap: 24px; }
       .gallery-grid .g-item { width: 240px; padding: 10px 10px 40px 10px; }
-      .gallery-grid .g-item img { height: auto; }
+      .gallery-grid .g-item img { height: 250px; }
       .gallery-grid .g-span-2 { grid-column: span 1; }
       .gallery-grid .g-span-row { grid-row: span 1; }
 
@@ -1429,7 +1471,7 @@
     @media (max-width: 500px) {
       .gallery-grid { flex-direction: column; align-items: center; gap: 28px; }
       .gallery-grid .g-item { width: 85%; max-width: 320px; }
-      .gallery-grid .g-item img { height: auto; }
+      .gallery-grid .g-item img { height: 260px; }
       .gallery-grid .g-item:first-child { grid-column: auto; }
     }
   </style>
@@ -1697,6 +1739,12 @@
       <div class="g-item gs-reveal"><img src="https://drive.google.com/thumbnail?id=1yWKDvsltvMX00XAk9DTG68mRtGtC-Fpn&sz=w1200" alt="Utsav & Ananya" loading="lazy"></div>
     </div>
   </section>
+
+  <!-- LIGHTBOX -->
+  <div class="gallery-lightbox" id="galleryLightbox">
+    <span class="lb-close">&times;</span>
+    <img src="" alt="Gallery">
+  </div>
 
   <!-- ======================== TRAVEL ======================== -->
   <section class="section travel-section-bg" id="travel">
@@ -1966,7 +2014,45 @@
       }
     });
 
-    // --- GALLERY COMING SOON REVEAL (handled after calendar functions) ---
+    // --- GALLERY: STAGGERED REVEAL + PARALLAX + LIGHTBOX ---
+    const gItems = gsap.utils.toArray('.gallery-grid .g-item');
+    gItems.forEach((item, i) => {
+      const baseRotation = ['-2.5deg', '1.8deg', '-1.2deg'][i] || '0deg';
+      gsap.fromTo(item,
+        { y: 60, opacity: 0, rotate: 0 },
+        {
+          y: 0, opacity: 1, rotate: parseFloat(baseRotation), duration: 0.9,
+          delay: i * 0.18,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: '.gallery-grid', start: 'top 82%' }
+        }
+      );
+      // Subtle parallax drift
+      gsap.to(item, {
+        y: (i % 2 === 0) ? -18 : 18,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.gallery-grid',
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1.2
+        }
+      });
+    });
+
+    // Lightbox
+    const lightbox = document.getElementById('galleryLightbox');
+    const lbImg = lightbox.querySelector('img');
+    document.querySelectorAll('.gallery-grid .g-item img').forEach(img => {
+      img.addEventListener('click', () => {
+        lbImg.src = img.src;
+        lightbox.classList.add('active');
+      });
+    });
+    lightbox.addEventListener('click', () => lightbox.classList.remove('active'));
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') lightbox.classList.remove('active');
+    });
 
     // --- CONNECTOR FILL (each segment individually) ---
     document.querySelectorAll('.timeline-connector').forEach(conn => {
