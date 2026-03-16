@@ -2228,12 +2228,29 @@
         { title: 'Reception — Utsav & Ananya Wedding', start: '2026-06-21T20:00:00', end: '2026-06-21T23:59:00', loc: 'Grand Lumbini, Bhubaneswar' }
       ];
       if (isAndroid) {
-        /* Open each event in Google Calendar with a small delay between tabs */
-        events.forEach((ev, i) => {
-          setTimeout(() => {
-            window.open(buildGoogleCalUrl(ev.title, ev.start, ev.end, ev.loc), '_blank');
-          }, i * 600);
+        /* Single multi-event ICS via data URI — Android intercepts the calendar
+           MIME type and opens it with the default Calendar app, no popup blocker issues */
+        let ics = 'BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//UtsavAnanyaWedding//EN\r\n';
+        events.forEach(ev => {
+          ics += 'BEGIN:VEVENT\r\n';
+          ics += 'DTSTART:' + fmtICS(ev.start) + '\r\n';
+          ics += 'DTEND:' + fmtICS(ev.end) + '\r\n';
+          ics += 'SUMMARY:' + ev.title + '\r\n';
+          ics += 'LOCATION:' + ev.loc + '\r\n';
+          ics += 'DESCRIPTION:Utsav & Ananya Wedding Celebration\r\n';
+          ics += 'STATUS:CONFIRMED\r\n';
+          ics += 'END:VEVENT\r\n';
         });
+        ics += 'END:VCALENDAR';
+        /* Try <a download> with data URI first, fall back to location navigation */
+        const dataUri = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(ics);
+        const a = document.createElement('a');
+        a.href = dataUri;
+        a.download = 'utsav_ananya_wedding_all_events.ics';
+        a.style.display = 'none';
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(() => document.body.removeChild(a), 500);
       } else {
         let ics = 'BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//UtsavAnanyaWedding//EN\r\n';
         events.forEach(ev => {
