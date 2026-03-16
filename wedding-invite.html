@@ -2027,17 +2027,6 @@
           scrollTrigger: { trigger: '.gallery-grid', start: 'top 82%' }
         }
       );
-      // Subtle parallax drift
-      gsap.to(item, {
-        y: (i % 2 === 0) ? -18 : 18,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: '.gallery-grid',
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: 1.2
-        }
-      });
     });
 
     // Lightbox
