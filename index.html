@@ -168,6 +168,35 @@
       letter-spacing: 6px;
     }
 
+    .preloader-lang {
+      display: flex;
+      gap: 12px;
+      margin-top: 36px;
+      opacity: 0;
+    }
+    .preloader-lang-btn {
+      background: transparent;
+      border: 1px solid rgba(205, 164, 52, 0.35);
+      color: var(--meenaya-gold);
+      font-family: 'Lora', serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      padding: 8px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .preloader-lang-btn:hover {
+      background: rgba(205, 164, 52, 0.15);
+      border-color: var(--meenaya-gold);
+    }
+    .preloader-lang-btn.active {
+      background: var(--meenaya-gold);
+      color: var(--meenaya-blue);
+      border-color: var(--meenaya-gold);
+    }
+
     /* ====== ORNAMENTAL DIVIDER ====== */
     .ornament {
       display: flex;
@@ -1363,6 +1392,12 @@
     <div class="preloader-text" data-i18n="preloader_text">Beginning the journey</div>
     <div class="preloader-bar"><div class="preloader-bar-fill" id="preloader-fill"></div></div>
     <button class="preloader-enter" id="preloader-enter" data-i18n="preloader_enter">Enter the Celebration</button>
+    <div class="preloader-lang" id="preloader-lang">
+      <button class="preloader-lang-btn active" data-lang="en">English</button>
+      <button class="preloader-lang-btn" data-lang="hi">हिन्दी</button>
+      <button class="preloader-lang-btn" data-lang="bn">বাংলা</button>
+      <button class="preloader-lang-btn" data-lang="or">ଓଡ଼ିଆ</button>
+    </div>
   </div>
 
   <!-- FLOATING PETALS -->
@@ -1720,7 +1755,18 @@
       tl.to(".preloader-monogram", { opacity: 1, duration: 0.6, ease: "power2.out" })
         .to(".preloader-text", { opacity: 1, duration: 0.4, ease: "power2.out" }, "-=0.3")
         .to("#preloader-fill", { width: "100%", duration: 1, ease: "power2.inOut" }, "-=0.2")
-        .to(".preloader-enter", { opacity: 1, duration: 0.6, ease: "power2.out" });
+        .to(".preloader-enter", { opacity: 1, duration: 0.6, ease: "power2.out" })
+        .to(".preloader-lang", { opacity: 1, duration: 0.5, ease: "power2.out" }, "-=0.3");
+
+      // Preloader language buttons
+      document.querySelectorAll('.preloader-lang-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const lang = btn.dataset.lang;
+          document.querySelectorAll('.preloader-lang-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          applyLanguage(lang);
+        });
+      });
 
       // Wait for user tap to dismiss preloader & start music
       function enterSite() {
@@ -2312,7 +2358,31 @@
     const langOptions = document.getElementById('lang-options');
     const langSwitcher = document.getElementById('lang-switcher');
 
-    const langLabels = { en: 'EN', hi: 'हिं', bn: 'বাং', or: 'ଓଡ଼ି' };
+    const langLabels = { en: 'EN', hi: 'हिं', bn: 'বাং', or: 'ଓଡ଼ি' };
+
+    function applyLanguage(lang) {
+      if (lang === currentLang) return;
+      currentLang = lang;
+
+      // Apply translations to all data-i18n elements
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (translations[lang] && translations[lang][key]) {
+          el.innerHTML = translations[lang][key];
+        }
+      });
+
+      // Sync floating switcher state
+      langToggle.textContent = langLabels[lang];
+      langOptions.querySelectorAll('.lang-btn').forEach(b => {
+        b.classList.toggle('active', b.dataset.lang === lang);
+      });
+
+      // Sync preloader buttons (if still visible)
+      document.querySelectorAll('.preloader-lang-btn').forEach(b => {
+        b.classList.toggle('active', b.dataset.lang === lang);
+      });
+    }
 
     langToggle.addEventListener('click', () => {
       langSwitcher.classList.toggle('open');
@@ -2327,23 +2397,7 @@
 
     langOptions.querySelectorAll('.lang-btn').forEach(btn => {
       btn.addEventListener('click', () => {
-        const lang = btn.dataset.lang;
-        if (lang === currentLang) return;
-        currentLang = lang;
-
-        // Update active state
-        langOptions.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        langToggle.textContent = langLabels[lang];
-
-        // Apply translations
-        document.querySelectorAll('[data-i18n]').forEach(el => {
-          const key = el.dataset.i18n;
-          if (translations[lang] && translations[lang][key]) {
-            el.innerHTML = translations[lang][key];
-          }
-        });
-
+        applyLanguage(btn.dataset.lang);
         langSwitcher.classList.remove('open');
       });
     });
