@@ -1078,8 +1078,8 @@
 
     .gallery-grid .g-item img {
       width: 100%;
-      height: 260px;
-      object-fit: cover;
+      height: auto;
+      object-fit: contain;
       display: block;
       border-radius: 2px;
       transition: filter 0.5s ease;
@@ -1415,7 +1415,7 @@
 
       .gallery-grid { gap: 24px; }
       .gallery-grid .g-item { width: 240px; padding: 10px 10px 40px 10px; }
-      .gallery-grid .g-item img { height: 220px; }
+      .gallery-grid .g-item img { height: auto; }
       .gallery-grid .g-span-2 { grid-column: span 1; }
       .gallery-grid .g-span-row { grid-row: span 1; }
 
@@ -1429,7 +1429,7 @@
     @media (max-width: 500px) {
       .gallery-grid { flex-direction: column; align-items: center; gap: 28px; }
       .gallery-grid .g-item { width: 85%; max-width: 320px; }
-      .gallery-grid .g-item img { height: 240px; }
+      .gallery-grid .g-item img { height: auto; }
       .gallery-grid .g-item:first-child { grid-column: auto; }
     }
   </style>
@@ -1693,7 +1693,7 @@
     </div>
     <div class="gallery-grid" style="margin-top: 40px; padding: 0 5%;">
       <div class="g-item gs-reveal"><img src="https://drive.google.com/thumbnail?id=12FcxqAYNA4ybAaiFAWLlx_PdldUUypxG&sz=w1200" alt="Utsav & Ananya" loading="lazy"></div>
-      <div class="g-item gs-reveal"><img src="https://drive.google.com/thumbnail?id=1iowk_1Hk31Z9EttP9R22De-O8YG75IWw&sz=w1200" alt="Utsav & Ananya" loading="lazy" style="object-position: center 70%; height: auto;"></div>
+      <div class="g-item gs-reveal"><img src="https://drive.google.com/thumbnail?id=1iowk_1Hk31Z9EttP9R22De-O8YG75IWw&sz=w1200" alt="Utsav & Ananya" loading="lazy"></div>
       <div class="g-item gs-reveal"><img src="https://drive.google.com/thumbnail?id=1yWKDvsltvMX00XAk9DTG68mRtGtC-Fpn&sz=w1200" alt="Utsav & Ananya" loading="lazy"></div>
     </div>
   </section>
