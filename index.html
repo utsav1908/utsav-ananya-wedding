@@ -2158,15 +2158,21 @@
     })();
 
     // --- SAVE THE DATE (ICS CALENDAR) ---
+    /* --- Calendar helpers --- */
+    const isAndroid = /Android/i.test(navigator.userAgent);
+
+    function fmtICS(d) {
+      return new Date(d).toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
+    }
+
     function generateICS(title, start, end, location, description) {
-      const fmt = (d) => new Date(d).toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
       return [
         'BEGIN:VCALENDAR',
         'VERSION:2.0',
         'PRODID:-//UtsavAnanyaWedding//EN',
         'BEGIN:VEVENT',
-        'DTSTART:' + fmt(start),
-        'DTEND:' + fmt(end),
+        'DTSTART:' + fmtICS(start),
+        'DTEND:' + fmtICS(end),
         'SUMMARY:' + title,
         'LOCATION:' + decodeURIComponent(location),
         'DESCRIPTION:' + (description || 'Utsav & Ananya Wedding Celebration'),
@@ -2176,21 +2182,40 @@
       ].join('\r\n');
     }
 
+    function buildGoogleCalUrl(title, start, end, location, description) {
+      const params = new URLSearchParams({
+        action: 'TEMPLATE',
+        text: title,
+        dates: fmtICS(start) + '/' + fmtICS(end),
+        location: decodeURIComponent(location),
+        details: description || 'Utsav & Ananya Wedding Celebration'
+      });
+      return 'https://calendar.google.com/calendar/render?' + params.toString();
+    }
+
     function downloadICS(filename, icsContent) {
+      /* Blob + <a download> — reliable on iOS & desktop Chrome/Safari/Firefox */
       const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
       const link = document.createElement('a');
-      link.href = URL.createObjectURL(blob);
+      link.href = url;
       link.download = filename;
+      link.style.display = 'none';
       document.body.appendChild(link);
       link.click();
-      document.body.removeChild(link);
+      setTimeout(() => { document.body.removeChild(link); URL.revokeObjectURL(url); }, 500);
     }
 
     function saveEventDate(e, title, start, end, location) {
       e.preventDefault();
-      const ics = generateICS(title, start, end, location);
-      const safeName = title.replace(/[^a-zA-Z0-9]/g, '_').toLowerCase();
-      downloadICS(safeName + '.ics', ics);
+      if (isAndroid) {
+        /* Google Calendar intent — works on all Android browsers */
+        window.open(buildGoogleCalUrl(title, start, end, location), '_blank');
+      } else {
+        const ics = generateICS(title, start, end, location);
+        const safeName = title.replace(/[^a-zA-Z0-9]/g, '_').toLowerCase();
+        downloadICS(safeName + '.ics', ics);
+      }
     }
 
     function saveAllDates(e) {
@@ -2202,20 +2227,28 @@
         { title: 'Wedding — Utsav & Ananya', start: '2026-06-19T20:00:00', end: '2026-06-19T23:59:00', loc: 'Kokila Resort, Bhubaneswar' },
         { title: 'Reception — Utsav & Ananya Wedding', start: '2026-06-21T20:00:00', end: '2026-06-21T23:59:00', loc: 'Grand Lumbini, Bhubaneswar' }
       ];
-      const fmt = (d) => new Date(d).toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
-      let ics = 'BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//UtsavAnanyaWedding//EN\r\n';
-      events.forEach(ev => {
-        ics += 'BEGIN:VEVENT\r\n';
-        ics += 'DTSTART:' + fmt(ev.start) + '\r\n';
-        ics += 'DTEND:' + fmt(ev.end) + '\r\n';
-        ics += 'SUMMARY:' + ev.title + '\r\n';
-        ics += 'LOCATION:' + ev.loc + '\r\n';
-        ics += 'DESCRIPTION:Utsav & Ananya Wedding Celebration\r\n';
-        ics += 'STATUS:CONFIRMED\r\n';
-        ics += 'END:VEVENT\r\n';
-      });
-      ics += 'END:VCALENDAR';
-      downloadICS('utsav_ananya_wedding_all_events.ics', ics);
+      if (isAndroid) {
+        /* Open each event in Google Calendar with a small delay between tabs */
+        events.forEach((ev, i) => {
+          setTimeout(() => {
+            window.open(buildGoogleCalUrl(ev.title, ev.start, ev.end, ev.loc), '_blank');
+          }, i * 600);
+        });
+      } else {
+        let ics = 'BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//UtsavAnanyaWedding//EN\r\n';
+        events.forEach(ev => {
+          ics += 'BEGIN:VEVENT\r\n';
+          ics += 'DTSTART:' + fmtICS(ev.start) + '\r\n';
+          ics += 'DTEND:' + fmtICS(ev.end) + '\r\n';
+          ics += 'SUMMARY:' + ev.title + '\r\n';
+          ics += 'LOCATION:' + ev.loc + '\r\n';
+          ics += 'DESCRIPTION:Utsav & Ananya Wedding Celebration\r\n';
+          ics += 'STATUS:CONFIRMED\r\n';
+          ics += 'END:VEVENT\r\n';
+        });
+        ics += 'END:VCALENDAR';
+        downloadICS('utsav_ananya_wedding_all_events.ics', ics);
+      }
     }
 
     // --- GALLERY COMING SOON ANIMATION ---
