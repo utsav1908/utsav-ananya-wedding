@@ -1774,6 +1774,9 @@
         enterBtn.removeEventListener('click', enterSite);
         enterBtn.removeEventListener('touchend', enterSite);
 
+        // Mark as dismissed so failsafe doesn't fire again
+        document.getElementById('preloader').classList.add('dismissed');
+
         // Start music on this user gesture
         const bgMusic = document.getElementById('bg-music');
         const musicBars = document.getElementById('music-bars');
@@ -1822,15 +1825,53 @@
 
       enterBtn.addEventListener('click', enterSite);
       enterBtn.addEventListener('touchend', enterSite);
+
+      // Also allow entering by clicking anywhere on the preloader (in case button is missed)
+      document.getElementById('preloader').addEventListener('click', (e) => {
+        if (e.target.classList.contains('preloader-lang-btn')) return; // don't dismiss when choosing language
+        enterSite();
+      });
     });
 
-    // Preloader failsafe
+    // Preloader failsafe — if user never taps, auto-enter after 10s
     setTimeout(() => {
       const pre = document.getElementById('preloader');
       if (pre && getComputedStyle(pre).display !== 'none' && !pre.classList.contains('dismissed')) {
         pre.classList.add('dismissed');
-        gsap.to(pre, { yPercent: -100, duration: 1, ease: "expo.inOut" });
-        // Also try to start music
+        // Run the full hero entry animations
+        const tl2 = gsap.timeline();
+        tl2.to("#preloader", {
+          yPercent: -100,
+          duration: 1.5,
+          ease: "expo.inOut"
+        })
+        .to(".mantra", { opacity: 1, duration: 1.5, ease: "power2.out" }, "-=0.5")
+        .fromTo(".hero-names .char",
+          { y: 80, opacity: 0, rotateX: -90 },
+          { y: 0, opacity: 1, rotateX: 0, duration: 1, stagger: 0.04, ease: "back.out(1.7)" }, "-=1"
+        )
+        .fromTo(".hero-weds",
+          { scale: 0, opacity: 0, rotate: 15 },
+          { scale: 1, opacity: 1, rotate: 0, duration: 1.5, ease: "elastic.out(1, 0.5)" }, "-=0.6"
+        )
+        .fromTo(".save-date",
+          { y: 30, opacity: 0 },
+          { y: 0, opacity: 1, duration: 1, ease: "power3.out" }, "-=0.6"
+        )
+        .fromTo(".date-separator",
+          { scaleX: 0, opacity: 0 },
+          { scaleX: 1, opacity: 1, duration: 0.8, ease: "power2.out" }, "-=0.5"
+        )
+        .fromTo(".date-footer",
+          { y: 20, opacity: 0, letterSpacing: "0px" },
+          { y: 0, opacity: 1, letterSpacing: "5px", duration: 1.2, ease: "power3.out" }, "-=0.5"
+        )
+        .fromTo(".date-venue-line",
+          { y: 10, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.8, ease: "power2.out" }, "-=0.6"
+        )
+        .to("#scroll-hint", { opacity: 1, duration: 1, ease: "power2.out" }, "-=0.5");
+        // Try to start music (may fail without user gesture)
         const bgm = document.getElementById('bg-music');
         const bars = document.getElementById('music-bars');
         if (bgm && !window.__musicStarted) {
@@ -1843,7 +1884,7 @@
           }).catch(() => {});
         }
       }
-    }, 8000);
+    }, 10000);
 
     // --- PARALLAX & SCROLL ANIMATIONS ---
     gsap.to(".hero-image", {
