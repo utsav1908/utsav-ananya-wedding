@@ -2194,8 +2194,25 @@
     }
 
     function downloadICS(filename, icsContent) {
-      /* Blob + <a download> — reliable on iOS & desktop Chrome/Safari/Firefox */
       const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+
+      if (isAndroid) {
+        /* Android: try multiple strategies since browsers vary widely */
+        /* Strategy 1: Blob URL with <a download> */
+        try {
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement('a');
+          link.href = url;
+          link.download = filename;
+          link.style.display = 'none';
+          document.body.appendChild(link);
+          link.click();
+          setTimeout(() => { document.body.removeChild(link); URL.revokeObjectURL(url); }, 1000);
+          return;
+        } catch(e) { /* fall through */ }
+      }
+
+      /* iOS / Desktop / fallback */
       const url = URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = url;
@@ -2206,16 +2223,36 @@
       setTimeout(() => { document.body.removeChild(link); URL.revokeObjectURL(url); }, 500);
     }
 
+    function openGoogleCalendar(title, start, end, location) {
+      window.location.href = buildGoogleCalUrl(title, start, end, location);
+    }
+
     function saveEventDate(e, title, start, end, location) {
       e.preventDefault();
       if (isAndroid) {
-        /* Google Calendar intent — works on all Android browsers */
-        window.open(buildGoogleCalUrl(title, start, end, location), '_blank');
+        /* Use Google Calendar via location.href (not window.open) to avoid popup blockers */
+        openGoogleCalendar(title, start, end, location);
       } else {
         const ics = generateICS(title, start, end, location);
         const safeName = title.replace(/[^a-zA-Z0-9]/g, '_').toLowerCase();
         downloadICS(safeName + '.ics', ics);
       }
+    }
+
+    function buildMultiEventICS(events) {
+      let ics = 'BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//UtsavAnanyaWedding//EN\r\n';
+      events.forEach(ev => {
+        ics += 'BEGIN:VEVENT\r\n';
+        ics += 'DTSTART:' + fmtICS(ev.start) + '\r\n';
+        ics += 'DTEND:' + fmtICS(ev.end) + '\r\n';
+        ics += 'SUMMARY:' + ev.title + '\r\n';
+        ics += 'LOCATION:' + ev.loc + '\r\n';
+        ics += 'DESCRIPTION:Utsav & Ananya Wedding Celebration\r\n';
+        ics += 'STATUS:CONFIRMED\r\n';
+        ics += 'END:VEVENT\r\n';
+      });
+      ics += 'END:VCALENDAR';
+      return ics;
     }
 
     function saveAllDates(e) {
@@ -2227,30 +2264,15 @@
         { title: 'Wedding — Utsav & Ananya', start: '2026-06-19T20:00:00', end: '2026-06-19T23:59:00', loc: 'Kokila Resort, Bhubaneswar' },
         { title: 'Reception — Utsav & Ananya Wedding', start: '2026-06-21T20:00:00', end: '2026-06-21T23:59:00', loc: 'Grand Lumbini, Bhubaneswar' }
       ];
+      const icsContent = buildMultiEventICS(events);
       if (isAndroid) {
-        /* Single multi-event ICS via data URI — Android intercepts the calendar
-           MIME type and opens it with the default Calendar app, no popup blocker issues */
-        let ics = 'BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//UtsavAnanyaWedding//EN\r\n';
-        events.forEach(ev => {
-          ics += 'BEGIN:VEVENT\r\n';
-          ics += 'DTSTART:' + fmtICS(ev.start) + '\r\n';
-          ics += 'DTEND:' + fmtICS(ev.end) + '\r\n';
-          ics += 'SUMMARY:' + ev.title + '\r\n';
-          ics += 'LOCATION:' + ev.loc + '\r\n';
-          ics += 'DESCRIPTION:Utsav & Ananya Wedding Celebration\r\n';
-          ics += 'STATUS:CONFIRMED\r\n';
-          ics += 'END:VEVENT\r\n';
-        });
-        ics += 'END:VCALENDAR';
-        /* Try <a download> with data URI first, fall back to location navigation */
-        const dataUri = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(ics);
-        const a = document.createElement('a');
-        a.href = dataUri;
-        a.download = 'utsav_ananya_wedding_all_events.ics';
-        a.style.display = 'none';
-        document.body.appendChild(a);
-        a.click();
-        setTimeout(() => document.body.removeChild(a), 500);
+        /* Strategy 1: Blob download (works on most Android Chrome) */
+        try {
+          downloadICS('utsav_ananya_wedding_all_events.ics', icsContent);
+        } catch(err) {
+          /* Strategy 2: data URI navigation (some WebViews) */
+          window.location.href = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(icsContent);
+        }
       } else {
         let ics = 'BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//UtsavAnanyaWedding//EN\r\n';
         events.forEach(ev => {
