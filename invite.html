@@ -1412,48 +1412,12 @@
     animation: frameGlow 3s ease-in-out infinite;
     box-shadow: inset 0 0 20px rgba(212,175,55,0.08);
   }
-  
-  .ornate-frame::before,
-  .ornate-frame::after {
-    content: '';
-    position: absolute;
-    width: 20px; height: 20px;
-    border: 2px solid var(--gold);
-    opacity: 0.8;
-    box-shadow: 0 0 8px rgba(212,175,55,0.6);
-  }
-  
-  .ornate-frame::before {
-    top: -5px; left: -5px;
-    border-right: none; border-bottom: none;
-    border-radius: 8px 0 0 0;
-  }
-  
-  .ornate-frame::after {
-    bottom: -5px; right: -5px;
-    border-left: none; border-top: none;
-    border-radius: 0 0 0 8px;
-  }
 
   @media (max-width: 600px) {
     .ornate-frame {
       border: 2px solid rgba(212,175,55,0.5);
       border-radius: 6px;
       padding: 18px;
-    }
-    .ornate-frame::before,
-    .ornate-frame::after {
-      width: 16px; height: 16px;
-      border-width: 1.5px;
-      box-shadow: 0 0 4px rgba(212,175,55,0.4);
-    }
-    .ornate-frame::before {
-      top: -4px; left: -4px;
-      border-radius: 6px 0 0 0;
-    }
-    .ornate-frame::after {
-      bottom: -4px; right: -4px;
-      border-radius: 0 0 0 6px;
     }
   }
 
