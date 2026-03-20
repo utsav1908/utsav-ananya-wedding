@@ -419,9 +419,25 @@
   }
 
   .countdown-section {
-    padding: 40px 24px;
+    padding: 60px 24px;
     text-align: center;
-    background: linear-gradient(180deg, var(--cream-dark) 0%, var(--cream) 100%);
+    position: relative;
+    background: url('lumbini.jpg') center center / cover no-repeat;
+    overflow: hidden;
+  }
+  .countdown-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    z-index: 0;
+  }
+  .countdown-section > * {
+    position: relative;
+    z-index: 1;
+  }
+  .countdown-section .section-heading {
+    color: var(--gold-light);
   }
 
   .countdown-grid {
@@ -435,23 +451,24 @@
   .countdown-item {
     min-width: 72px;
     padding: 16px 10px;
-    border: 1px solid rgba(212,175,55,0.25);
+    border: 1px solid rgba(212,175,55,0.35);
     border-radius: 12px;
-    background: linear-gradient(180deg, var(--white) 0%, rgba(245,236,216,0.4) 100%);
-    box-shadow: 0 4px 12px rgba(139,0,0,0.04);
+    background: rgba(0,0,0,0.3);
+    backdrop-filter: blur(6px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   }
 
   .countdown-number {
     font-family: 'Playfair Display', serif;
     font-size: 38px;
     font-weight: 700;
-    color: var(--maroon);
+    color: #fff;
     line-height: 1;
   }
 
   .countdown-unit {
     font-size: 10px;
-    color: var(--maroon-light);
+    color: var(--gold-light);
     text-transform: uppercase;
     letter-spacing: 3px;
     margin-top: 6px;
