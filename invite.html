@@ -418,23 +418,26 @@
     margin-right: 4px;
   }
 
-  .countdown-section {
-    padding: 60px 24px;
-    text-align: center;
+  .footer-bg {
     position: relative;
-    background: url('lumbini.jpg') center center / cover no-repeat;
+    background: url('lumbini.jpg') center center / cover no-repeat fixed;
     overflow: hidden;
   }
-  .countdown-section::before {
+  .footer-bg::before {
     content: '';
     position: absolute;
     inset: 0;
     background: rgba(0,0,0,0.55);
     z-index: 0;
   }
-  .countdown-section > * {
+  .footer-bg > * {
     position: relative;
     z-index: 1;
+  }
+
+  .countdown-section {
+    padding: 60px 24px;
+    text-align: center;
   }
   .countdown-section .section-heading {
     color: var(--gold-light);
@@ -479,29 +482,29 @@
   .blessing-section {
     padding: 50px 24px 60px;
     text-align: center;
-    background: var(--cream);
   }
 
   .blessing-text {
     font-size: 22px;
     font-style: italic;
-    color: var(--maroon);
+    color: rgba(255,255,255,0.9);
     max-width: 360px;
     margin: 0 auto;
     line-height: 1.7;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.5);
   }
 
   .lotus-graphic {
     margin: 20px auto 0;
-    opacity: 0.4;
+    opacity: 0.5;
   }
 
   .footer-note {
     font-size: 13px;
-    color: var(--gold);
+    color: var(--gold-light);
     margin-top: 28px;
     letter-spacing: 2px;
-    opacity: 0.6;
+    opacity: 0.7;
   }
 
   /* ===================== DECORATIVE ELEMENTS ===================== */
@@ -1199,6 +1202,9 @@
   <div class="gallery-quote reveal">— Every love story is beautiful, but ours is my favourite —</div>
 </section>
 
+<!-- ==================== FOOTER WITH LUMBINI BG ==================== -->
+<div class="footer-bg">
+
 <!-- ==================== COUNTDOWN ==================== -->
 <section class="countdown-section">
   <div class="section-heading reveal">Counting Down To</div>
@@ -1242,6 +1248,8 @@
     <div class="footer-note">With Love &amp; Blessings</div>
   </div>
 </section>
+
+</div><!-- end footer-bg -->
 
 <!-- MUSIC -->
 <audio id="bgMusic" loop preload="auto">
