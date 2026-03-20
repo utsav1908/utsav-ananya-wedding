@@ -20,14 +20,14 @@
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
   :root {
-    --maroon: #1B4D7E;
-    --maroon-light: #3A7BB5;
-    --maroon-deep: #0F2F52;
+    --maroon: #6D2E46;
+    --maroon-light: #A64253;
+    --maroon-deep: #4A1D3F;
     --gold: #D4AF37;
     --gold-light: #F0D68A;
     --gold-dark: #AA8C2C;
-    --cream: #F0F7FC;
-    --cream-dark: #E8F2F9;
+    --cream: #FBF8F3;
+    --cream-dark: #F5F1E8;
     --white: #FFFFFF;
   }
 
@@ -239,7 +239,7 @@
   /* ===================== EVENT CARDS ===================== */
   .events-section {
     padding: 60px 20px;
-    background: linear-gradient(180deg, var(--cream) 0%, #E8F2F9 50%, var(--cream) 100%);
+    background: linear-gradient(180deg, var(--cream) 0%, var(--cream-dark) 50%, var(--cream) 100%);
     background-attachment: fixed;
     position: relative;
     overflow: hidden;
@@ -320,14 +320,14 @@
   }
 
   .event-card.wedding {
-    background: linear-gradient(180deg, #E8F2F9 0%, rgba(232,242,249,0.5) 100%);
+    background: linear-gradient(180deg, var(--cream-dark) 0%, rgba(245,241,232,0.5) 100%);
     border: 1.5px solid rgba(212, 175, 55, 0.4);
     box-shadow: 0 8px 32px rgba(27, 77, 126, 0.08), inset 0 0 20px rgba(212,175,55,0.04);
     border-top: 3px solid var(--gold);
   }
 
   .event-card.reception {
-    background: linear-gradient(135deg, var(--maroon) 0%, #0F2F52 50%, var(--maroon) 100%);
+    background: linear-gradient(135deg, var(--maroon) 0%, var(--maroon-deep) 50%, var(--maroon) 100%);
     box-shadow: 0 12px 40px rgba(27, 77, 126, 0.25), inset 0 0 30px rgba(0,0,0,0.1);
     border: 1px solid rgba(212,175,55,0.3);
   }
@@ -442,7 +442,7 @@
 
   .footer-bg {
     position: relative;
-    background: linear-gradient(135deg, #0F2F52 0%, #1B4D7E 20%, #2A5F92 40%, #1B4D7E 60%, #0F2F52 80%, #1B4D7E 100%);
+    background: linear-gradient(135deg, var(--maroon-deep) 0%, var(--maroon) 20%, #8B5A7C 40%, var(--maroon) 60%, var(--maroon-deep) 80%, var(--maroon) 100%);
     background-attachment: fixed;
     overflow: hidden;
   }
@@ -678,7 +678,7 @@
   .photo-splash {
     position: relative;
     width: 100%;
-    background-color: #F0F7FC;
+    background-color: var(--cream);
   }
   .hero-image-spacer {
     width: 100%;
@@ -939,7 +939,7 @@
   /* ===================== GALLERY ===================== */
   .gallery-section {
     padding: 60px 20px 70px;
-    background: linear-gradient(180deg, #F0F7FC 0%, #E8F2F9 30%, #E8F2F9 70%, #F0F7FC 100%);
+    background: linear-gradient(180deg, var(--cream) 0%, var(--cream-dark) 30%, var(--cream-dark) 70%, var(--cream) 100%);
     background-attachment: fixed;
     text-align: center;
     position: relative;
@@ -983,7 +983,7 @@
   .polaroid-grid::-webkit-scrollbar { display: none; }
 
   .polaroid {
-    background: #E8F2F9;
+    background: var(--cream-dark);
     padding: 8px 8px 36px;
     box-shadow: 0 6px 24px rgba(0,0,0,0.1), 0 2px 6px rgba(0,0,0,0.06);
     position: relative;
@@ -1162,13 +1162,13 @@
     overflow: hidden;
   }
   .entrance-half.top {
-    background: linear-gradient(180deg, #0F2F52 0%, var(--maroon) 100%);
+    background: linear-gradient(180deg, var(--maroon-deep) 0%, var(--maroon) 100%);
     border-bottom: 2px solid var(--gold);
     align-items: flex-end;
     padding-bottom: 30px;
   }
   .entrance-half.bottom {
-    background: linear-gradient(0deg, #0F2F52 0%, var(--maroon) 100%);
+    background: linear-gradient(0deg, var(--maroon-deep) 0%, var(--maroon) 100%);
     border-top: 2px solid var(--gold);
     align-items: flex-start;
     padding-top: 30px;
