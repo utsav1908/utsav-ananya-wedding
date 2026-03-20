@@ -476,6 +476,78 @@
   }
   .music-btn:hover { background: var(--gold); color: var(--white); }
   .music-btn.playing { background: var(--gold); color: var(--white); }
+  .music-btn .bars {
+    display: flex; align-items: flex-end; gap: 2px; height: 16px;
+  }
+  .music-btn .bars span {
+    width: 3px; background: currentColor; border-radius: 1px;
+    animation: none;
+  }
+  .music-btn.playing .bars span {
+    animation: barBounce 0.8s ease-in-out infinite alternate;
+  }
+  .music-btn.playing .bars span:nth-child(1) { height: 6px; animation-delay: 0s; }
+  .music-btn.playing .bars span:nth-child(2) { height: 12px; animation-delay: 0.15s; }
+  .music-btn.playing .bars span:nth-child(3) { height: 8px; animation-delay: 0.3s; }
+  .music-btn.playing .bars span:nth-child(4) { height: 14px; animation-delay: 0.1s; }
+  .music-btn .bars span { height: 8px; }
+  @keyframes barBounce {
+    0% { height: 4px; }
+    100% { height: 16px; }
+  }
+
+  /* ===================== HERO IMAGE ===================== */
+  .hero-photo {
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--gold-light);
+    box-shadow: 0 4px 20px rgba(139, 0, 0, 0.15);
+    margin: 20px auto 0;
+    display: block;
+    animation: photoGlow 4s ease-in-out infinite;
+  }
+  @keyframes photoGlow {
+    0%, 100% { box-shadow: 0 4px 20px rgba(139, 0, 0, 0.15); }
+    50% { box-shadow: 0 4px 30px rgba(201, 168, 76, 0.3); }
+  }
+
+  /* ===================== GALLERY ===================== */
+  .gallery-section {
+    padding: 50px 20px;
+    background: var(--cream);
+    text-align: center;
+  }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    max-width: 420px;
+    margin: 20px auto 0;
+  }
+  .gallery-item {
+    border-radius: 12px;
+    overflow: hidden;
+    aspect-ratio: 3 / 4;
+    box-shadow: 0 4px 16px rgba(139, 0, 0, 0.08);
+    position: relative;
+  }
+  .gallery-item img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+  .gallery-item:hover img {
+    transform: scale(1.05);
+  }
+  .gallery-item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 1px solid rgba(201, 168, 76, 0.2);
+    border-radius: 12px;
+    pointer-events: none;
+  }
 
   /* ===================== RESPONSIVE ===================== */
   @media (max-width: 400px) {
@@ -527,6 +599,7 @@
       cordially invite your presence with family<br>
       on the auspicious occasion of the wedding of their nephew
     </div>
+    <img src="hero.jpg" class="hero-photo reveal reveal-delay-3" alt="Utsav & Ananya">
   </div>
 
   <div class="scroll-hint">
@@ -594,6 +667,17 @@
   </div>
 </section>
 
+<!-- ==================== GALLERY ==================== -->
+<section class="gallery-section">
+  <div class="section-heading reveal">Our Moments</div>
+  <div class="gallery-grid">
+    <div class="gallery-item reveal"><img src="https://drive.google.com/thumbnail?id=12FcxqAYNA4ybAaiFAWLlx_PdldUUypxG&sz=w800" alt="Utsav & Ananya" loading="lazy"></div>
+    <div class="gallery-item reveal reveal-delay-1"><img src="https://drive.google.com/thumbnail?id=1iowk_1Hk31Z9EttP9R22De-O8YG75IWw&sz=w800" alt="Utsav & Ananya" loading="lazy" style="object-position: center 70%;"></div>
+    <div class="gallery-item reveal reveal-delay-2"><img src="https://drive.google.com/thumbnail?id=1h_X-GmWSJ7vdCpAyfEfz2CYygn1PQww0&sz=w800" alt="Utsav & Ananya" loading="lazy"></div>
+    <div class="gallery-item reveal reveal-delay-3"><img src="https://drive.google.com/thumbnail?id=1lGZrXIQmnn_QxDkfCq7XiF4u-Tg-6cJm&sz=w800" alt="Utsav & Ananya" loading="lazy"></div>
+  </div>
+</section>
+
 <!-- ==================== COUNTDOWN ==================== -->
 <section class="countdown-section">
   <div class="section-heading reveal">Counting Down To</div>
@@ -637,6 +721,14 @@
     <div class="footer-note">With Love &amp; Blessings</div>
   </div>
 </section>
+
+<!-- MUSIC -->
+<audio id="bgMusic" loop preload="auto">
+  <source src="Midival%20Punditz%20-%20Purvayi%20(feat.%20Papon).mp3" type="audio/mpeg">
+</audio>
+<button class="music-btn" id="musicBtn" aria-label="Toggle music">
+  <div class="bars"><span></span><span></span><span></span><span></span></div>
+</button>
 
 <script>
 // ===================== FLOATING PETALS =====================
@@ -705,6 +797,38 @@
       window.removeEventListener('scroll', once);
     }
   });
+})();
+
+// ===================== MUSIC PLAYER =====================
+(function() {
+  const audio = document.getElementById('bgMusic');
+  const btn = document.getElementById('musicBtn');
+  if (!audio || !btn) return;
+
+  audio.volume = 0.4;
+
+  function play() {
+    audio.play().then(() => btn.classList.add('playing')).catch(() => {});
+  }
+  function pause() {
+    audio.pause();
+    btn.classList.remove('playing');
+  }
+
+  btn.addEventListener('click', () => {
+    if (audio.paused) play(); else pause();
+  });
+
+  // Auto-play on first user interaction
+  function autoStart() {
+    play();
+    document.removeEventListener('click', autoStart);
+    document.removeEventListener('touchstart', autoStart);
+    document.removeEventListener('scroll', autoStart);
+  }
+  document.addEventListener('click', autoStart, { once: true });
+  document.addEventListener('touchstart', autoStart, { once: true });
+  document.addEventListener('scroll', autoStart, { once: true });
 })();
 </script>
 
