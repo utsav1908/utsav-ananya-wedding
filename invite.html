@@ -666,6 +666,54 @@
     margin: 10px 0;
     text-shadow: 0 2px 15px rgba(0,0,0,0.8);
   }
+
+  /* ===================== STICKY HEADER ===================== */
+  .sticky-header {
+    position: fixed;
+    top: 30px;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 20px;
+    background: transparent;
+    pointer-events: none;
+    opacity: 1;
+    animation: stickyHeaderFloat 4s ease-in-out infinite;
+  }
+  @keyframes stickyHeaderFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(8px); }
+  }
+  .sticky-header-names {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  .sticky-header-name {
+    font-family: 'Playfair Display', serif;
+    text-transform: uppercase;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 700;
+    line-height: 1;
+    color: #ffffff;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.9);
+  }
+  .sticky-header-weds {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    color: var(--gold-light);
+    text-shadow: 0 2px 12px rgba(0,0,0,0.9);
+  }
+
+  /* Hide original centered names in photo-splash */
+  .photo-splash .names-block {
+    display: none;
+  }
+
   .bottom-date {
     position: absolute;
     bottom: 10%;
@@ -816,6 +864,11 @@
     scroll-snap-align: center;
     transition: transform 0.5s ease;
   }
+
+  .polaroid:nth-child(1) { transform: rotate(-3deg); }
+  .polaroid:nth-child(2) { transform: rotate(4deg); }
+  .polaroid:nth-child(3) { transform: rotate(-5deg); }
+  .polaroid:nth-child(4) { transform: rotate(3deg); }
 
   .polaroid .photo-wrap {
     width: 100%;
@@ -1044,6 +1097,15 @@
 
 <!-- FLOATING ROSE PETALS -->
 <div class="petals-container" id="petals"></div>
+
+<!-- ==================== STICKY HEADER ==================== -->
+<div class="sticky-header" id="stickyHeader">
+  <div class="sticky-header-names">
+    <div class="sticky-header-name">Utsav</div>
+    <div class="sticky-header-weds">Weds</div>
+    <div class="sticky-header-name">Ananya</div>
+  </div>
+</div>
 
 <!-- ==================== HERO IMAGE (index.html style) ==================== -->
 <section class="photo-splash" id="photoSplash">
@@ -1346,6 +1408,18 @@
         trigger: '.photo-splash',
         start: '20% top',
         end: '50% top',
+        scrub: true
+      }
+    });
+
+    // Sticky header fade out towards end of photo-splash
+    gsap.to('#stickyHeader', {
+      opacity: 0,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '.photo-splash',
+        start: '60% top',
+        end: '100% top',
         scrub: true
       }
     });
