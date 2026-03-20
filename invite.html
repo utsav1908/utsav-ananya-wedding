@@ -236,6 +236,20 @@
     padding-top: 0.1em;
     animation: royalShimmer 6s ease-in-out infinite;
     filter: drop-shadow(0 2px 4px rgba(27,77,126,0.15));
+    word-spacing: 9999px;
+    overflow-wrap: break-word;
+  }
+
+  @media (max-width: 600px) {
+    .groom-name, .bride-name {
+      font-size: clamp(42px, 11vw, 72px);
+    }
+  }
+
+  @media (max-width: 400px) {
+    .groom-name, .bride-name {
+      font-size: clamp(36px, 10vw, 56px);
+    }
   }
   @keyframes royalShimmer {
     0%, 100% { background-position: 0% 50%; }
@@ -1171,13 +1185,19 @@
   /* ===================== RESPONSIVE ===================== */
   @media (max-width: 600px) {
     .hero { 
-      padding: 40px 24px 35px;
+      padding: 40px 28px 35px;
     }
   }
 
   @media (max-width: 400px) {
     .hero { 
-      padding: 36px 18px 28px;
+      padding: 36px 22px 28px;
+    }
+    .names-block {
+      max-width: 100%;
+      width: calc(100% - 8px);
+      margin-left: 4px;
+      margin-right: 4px;
     }
     .event-card { margin: 0 auto 20px; padding: 24px 18px; }
     .countdown-grid { gap: 10px; }
