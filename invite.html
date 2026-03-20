@@ -83,14 +83,13 @@
 
   /* ===================== HERO SECTION ===================== */
   .hero {
-    min-height: 100vh; min-height: 100dvh;
     display: flex; flex-direction: column;
     align-items: center; justify-content: center;
     text-align: center;
-    padding: 40px 24px;
+    padding: 60px 24px 50px;
     position: relative;
     background:
-      linear-gradient(180deg, rgba(255,251,240,0.88) 0%, rgba(245,236,216,0.92) 50%, rgba(255,251,240,0.88) 100%),
+      linear-gradient(180deg, rgba(255,251,240,0.92) 0%, rgba(245,236,216,0.95) 50%, rgba(255,251,240,0.92) 100%),
       url('hero.jpg') center center / cover no-repeat;
   }
 
@@ -176,12 +175,9 @@
     line-height: 1.6;
   }
 
-  /* ===================== NAMES SECTION ===================== */
-  .names-section {
-    padding: 70px 24px;
-    text-align: center;
-    background: linear-gradient(180deg, var(--white) 0%, rgba(212,175,55,0.03) 50%, var(--white) 100%);
-    position: relative;
+  /* ===================== NAMES (inside hero) ===================== */
+  .names-block {
+    margin-top: 28px;
   }
 
   .groom-name, .bride-name {
@@ -219,21 +215,15 @@
 
   .ampersand {
     font-family: 'Great Vibes', cursive;
-    font-size: 48px;
+    font-size: 42px;
     color: var(--gold);
-    margin: 20px 0;
+    margin: 10px 0;
     display: block;
     text-shadow: 0 0 15px rgba(212,175,55,0.3);
     filter: drop-shadow(0 2px 3px rgba(212,175,55,0.2));
   }
 
-  .heart-divider {
-    color: var(--gold);
-    font-size: 24px;
-    margin: 24px 0;
-    letter-spacing: 12px;
-    opacity: 0.6;
-  }
+  .heart-divider { display: none; }
 
   /* ===================== EVENT CARDS ===================== */
   .events-section {
@@ -259,6 +249,38 @@
     border-radius: 50%;
     border: 1px solid rgba(212,175,55,0.08);
     pointer-events: none;
+  }
+
+  .section-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 12px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: #AA8C2C;
+    margin-bottom: 14px;
+  }
+
+  .map-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 14px 36px;
+    border: 1.5px solid var(--gold);
+    border-radius: 50px;
+    color: var(--white);
+    text-decoration: none;
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    background: linear-gradient(135deg, var(--gold), #AA8C2C);
+    box-shadow: 0 2px 8px rgba(212,175,55,0.2);
+  }
+  .map-btn:hover, .map-btn:active {
+    background: linear-gradient(135deg, var(--maroon), #5C0015);
+    border-color: var(--maroon);
+    box-shadow: 0 4px 16px rgba(139,0,0,0.3);
   }
 
   .events-section .section-heading {
@@ -361,69 +383,10 @@
     opacity: 0.6;
   }
 
-  /* ===================== VENUE SECTION ===================== */
-  .venue-section {
-    padding: 50px 24px;
-    text-align: center;
-    background: var(--white);
-  }
-
-  .section-heading {
-    font-family: 'Playfair Display', serif;
-    font-size: 12px;
-    letter-spacing: 6px;
-    text-transform: uppercase;
-    color: #AA8C2C;
-    margin-bottom: 14px;
-  }
-
-  .venue-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 24px;
-    font-weight: 700;
-    color: var(--maroon);
-    margin-bottom: 6px;
-  }
-
-  .venue-address {
-    font-size: 16px;
-    color: var(--maroon-light);
-    line-height: 1.6;
-    max-width: 320px;
-    margin: 0 auto;
-  }
-
-  .map-btn {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 14px 36px;
-    border: 1.5px solid var(--gold);
-    border-radius: 50px;
-    color: var(--maroon);
-    text-decoration: none;
-    font-family: 'Playfair Display', serif;
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    transition: all 0.3s ease;
-    background: linear-gradient(135deg, transparent 0%, rgba(212,175,55,0.06) 100%);
-    box-shadow: 0 2px 8px rgba(212,175,55,0.15);
-  }
-  .map-btn:hover, .map-btn:active {
-    background: linear-gradient(135deg, var(--gold), #AA8C2C);
-    color: var(--white);
-    border-color: #AA8C2C;
-    box-shadow: 0 4px 16px rgba(212,175,55,0.3);
-  }
+  /* ===================== VENUE SECTION (removed) ===================== */
 
   /* ===================== COUNTDOWN ===================== */
-  /* ===================== SAVE THE DATE ===================== */
-  .save-date-section {
-    text-align: center;
-    padding: 32px 20px 40px;
-    background: linear-gradient(180deg, var(--white) 0%, var(--cream-dark) 100%);
-  }
+  /* ===================== SAVE THE DATE (inside countdown) ===================== */
   .save-date-btn {
     display: inline-flex;
     align-items: center;
@@ -459,6 +422,10 @@
     width: 18px; height: 18px;
     fill: var(--gold-light);
     flex-shrink: 0;
+  }
+
+  .countdown-section .save-date-btn {
+    margin-top: 24px;
   }
 
   .countdown-section {
@@ -552,29 +519,6 @@
   @keyframes divaFlicker {
     0% { opacity: 0.6; transform: scale(1); }
     100% { opacity: 1; transform: scale(1.05); }
-  }
-
-  /* ===================== SCROLL INDICATOR ===================== */
-  .scroll-hint {
-    position: absolute;
-    bottom: 28px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    animation: scrollBounce 2s ease-in-out infinite;
-    opacity: 0.5;
-  }
-  .scroll-hint span {
-    font-size: 11px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--maroon-light);
-  }
-  .scroll-hint svg {
-    width: 20px; height: 20px;
   }
 
   @keyframes scrollBounce {
@@ -708,29 +652,9 @@
     stroke: var(--gold-light);
   }
 
-  /* Morph target: the circle in the hero section */
-  .hero-photo-container {
-    width: 170px; height: 170px;
-    margin: 20px auto 0;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 3px solid var(--gold);
-    box-shadow: 0 4px 20px rgba(139, 0, 0, 0.15), 0 0 0 6px rgba(212,175,55,0.1);
-    animation: photoGlow 4s ease-in-out infinite;
-  }
-  .hero-photo-container img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    object-position: center 30%;
-  }
-  @keyframes photoGlow {
-    0%, 100% { box-shadow: 0 4px 20px rgba(139, 0, 0, 0.15), 0 0 0 6px rgba(212,175,55,0.1); }
-    50% { box-shadow: 0 4px 40px rgba(212, 175, 55, 0.35), 0 0 0 8px rgba(212,175,55,0.15); }
-  }
-
   /* ===================== GALLERY ===================== */
   .gallery-section {
-    padding: 60px 0 70px;
+    padding: 60px 20px 70px;
     background: linear-gradient(180deg, var(--white) 0%, var(--cream) 30%, var(--cream) 70%, var(--white) 100%);
     text-align: center;
     position: relative;
@@ -740,108 +664,92 @@
     font-size: 13px;
     letter-spacing: 7px;
     margin-bottom: 6px;
-    padding: 0 20px;
   }
   .gallery-subtitle {
     font-family: 'Great Vibes', cursive;
     font-size: 32px;
     color: var(--maroon);
-    margin-bottom: 24px;
+    margin-bottom: 32px;
     opacity: 0.85;
-    padding: 0 20px;
   }
 
-  /* Horizontal scroll track */
-  .gallery-scroll {
+  /* Polaroid grid */
+  .polaroid-grid {
     display: flex;
-    gap: 16px;
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    padding: 8px 24px 20px;
-    scrollbar-width: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    max-width: 380px;
+    margin: 0 auto;
   }
-  .gallery-scroll::-webkit-scrollbar { display: none; }
 
-  .gallery-scroll .g-card {
-    flex: 0 0 72vw;
-    max-width: 300px;
-    aspect-ratio: 3 / 4;
-    border-radius: 16px;
+  .polaroid {
+    background: var(--white);
+    padding: 10px 10px 44px;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.1), 0 2px 6px rgba(0,0,0,0.06);
+    position: relative;
+    width: 85%;
+    max-width: 320px;
+    transition: transform 0.5s ease;
+  }
+  .polaroid:nth-child(1) { transform: rotate(-2.5deg); }
+  .polaroid:nth-child(2) { transform: rotate(1.8deg); }
+  .polaroid:nth-child(3) { transform: rotate(-1.2deg); }
+  .polaroid:nth-child(4) { transform: rotate(2.5deg); }
+
+  .polaroid .photo-wrap {
+    width: 100%;
+    aspect-ratio: 4 / 5;
     overflow: hidden;
     position: relative;
-    scroll-snap-align: center;
-    box-shadow: 0 10px 32px rgba(139,0,0,0.12), 0 2px 8px rgba(212,175,55,0.08);
-    border: 2px solid rgba(212,175,55,0.25);
-    transition: transform 0.4s ease;
+    background: #f0ece3;
   }
-  .gallery-scroll .g-card:hover {
-    transform: translateY(-4px);
-  }
-  .gallery-scroll .g-card img {
+  .polaroid .photo-wrap img {
     width: 100%; height: 100%;
     object-fit: cover;
     display: block;
+    transition: transform 0.8s ease;
   }
-  /* Inner gold frame */
-  .gallery-scroll .g-card::before {
-    content: '';
-    position: absolute;
-    inset: 6px;
-    border: 1px solid rgba(212,175,55,0.2);
-    border-radius: 12px;
-    pointer-events: none;
-    z-index: 2;
-  }
-  /* Bottom gradient overlay for depth */
-  .gallery-scroll .g-card::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 40%;
-    background: linear-gradient(0deg, rgba(0,0,0,0.2) 0%, transparent 100%);
-    pointer-events: none;
-    border-radius: 0 0 14px 14px;
-    z-index: 1;
+  .polaroid:hover img {
+    transform: scale(1.04);
   }
 
-  /* Scroll indicator dots */
-  .gallery-dots {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 16px;
-  }
-  .gallery-dots span {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--gold);
-    opacity: 0.25;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-  }
-  .gallery-dots span.active {
-    opacity: 0.8;
-    transform: scale(1.4);
-  }
-
-  .gallery-swipe-hint {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 13px;
+  .polaroid .caption {
+    font-family: 'Great Vibes', cursive;
+    font-size: 20px;
     color: var(--maroon-light);
-    opacity: 0.4;
-    margin-top: 10px;
-    letter-spacing: 2px;
+    position: absolute;
+    bottom: 10px;
+    left: 0; right: 0;
+    text-align: center;
+    line-height: 1.3;
+    opacity: 0.8;
   }
+
+  /* Tape decoration */
+  .polaroid .tape {
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-2deg);
+    width: 60px;
+    height: 18px;
+    background: rgba(212,175,55,0.2);
+    border-radius: 2px;
+    z-index: 3;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .polaroid:nth-child(2) .tape { transform: translateX(-50%) rotate(3deg); }
+  .polaroid:nth-child(3) .tape { transform: translateX(-60%) rotate(-1deg); }
+  .polaroid:nth-child(4) .tape { transform: translateX(-40%) rotate(2deg); }
 
   .gallery-quote {
     font-family: 'Great Vibes', cursive;
     font-size: 22px;
     color: var(--maroon-light);
-    margin-top: 24px;
+    margin-top: 32px;
     opacity: 0.6;
     line-height: 1.4;
-    padding: 0 20px;
   }
 
   /* ===================== RESPONSIVE ===================== */
@@ -1030,7 +938,7 @@
   </div>
 </section>
 
-<!-- ==================== HERO ==================== -->
+<!-- ==================== INVITE CARD ==================== -->
 <section class="hero">
   <div class="hero-border"></div>
 
@@ -1066,42 +974,23 @@
       cordially invite your presence with family<br>
       on the auspicious occasion of the wedding of their nephew
     </div>
-    <div class="hero-photo-container reveal reveal-delay-3">
-      <img src="hero.jpg" alt="Utsav & Ananya">
+  </div>
+
+  <!-- Names -->
+  <div class="names-block">
+    <div class="reveal reveal-delay-3">
+      <div class="groom-name">Utsav</div>
+      <div class="nickname">(Sipu)</div>
+      <div class="parent-line">Son of Smt. Uma Gan &amp; Sri Sanjaya Gan</div>
     </div>
-  </div>
 
-  <div class="scroll-hint">
-    <span>Scroll</span>
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-  </div>
-</section>
+    <div class="ampersand reveal reveal-delay-3">&amp;</div>
 
-<!-- ==================== NAMES ==================== -->
-<section class="names-section">
-  <div class="reveal">
-    <div class="groom-name">Utsav</div>
-    <div class="nickname">(Sipu)</div>
-    <div class="parent-line">Son of Smt. Uma Gan &amp; Sri Sanjaya Gan</div>
-  </div>
-
-  <div class="ampersand reveal reveal-delay-1">&amp;</div>
-
-  <div class="reveal reveal-delay-2">
-    <div class="bride-name">Ananya</div>
-    <div class="nickname">(Komal)</div>
-    <div class="parent-line">Daughter of Smt. Sujaya Chand &amp; Sri Satyaranjan Chand</div>
-  </div>
-
-  <div class="ornate-divider reveal reveal-delay-3">
-    <svg width="200" height="16" viewBox="0 0 200 16" fill="none">
-      <path d="M0,8 H72" stroke="#D4AF37" stroke-width="0.5" opacity="0.4"/>
-      <path d="M76,8 L82,3 L88,8 L82,13Z" stroke="#D4AF37" stroke-width="0.7" fill="none"/>
-      <circle cx="100" cy="8" r="3.5" stroke="#D4AF37" stroke-width="0.7" fill="none"/>
-      <circle cx="100" cy="8" r="1.2" fill="#D4AF37" opacity="0.5"/>
-      <path d="M112,8 L118,3 L124,8 L118,13Z" stroke="#D4AF37" stroke-width="0.7" fill="none"/>
-      <path d="M128,8 H200" stroke="#D4AF37" stroke-width="0.5" opacity="0.4"/>
-    </svg>
+    <div class="reveal reveal-delay-4">
+      <div class="bride-name">Ananya</div>
+      <div class="nickname">(Komal)</div>
+      <div class="parent-line">Daughter of Smt. Sujaya Chand &amp; Sri Satyaranjan Chand</div>
+    </div>
   </div>
 </section>
 
@@ -1155,28 +1044,32 @@
 <section class="gallery-section">
   <div class="section-heading reveal">Our Moments</div>
   <div class="gallery-subtitle reveal reveal-delay-1">Together is a beautiful place</div>
-  <div class="gallery-scroll" id="galleryScroll">
-    <div class="g-card reveal"><img src="https://drive.google.com/thumbnail?id=12FcxqAYNA4ybAaiFAWLlx_PdldUUypxG&sz=w800" alt="Utsav & Ananya" loading="lazy"></div>
-    <div class="g-card reveal reveal-delay-1"><img src="https://drive.google.com/thumbnail?id=1iowk_1Hk31Z9EttP9R22De-O8YG75IWw&sz=w800" alt="Utsav & Ananya" loading="lazy" style="object-position: center 70%;"></div>
-    <div class="g-card reveal reveal-delay-2"><img src="https://drive.google.com/thumbnail?id=1h_X-GmWSJ7vdCpAyfEfz2CYygn1PQww0&sz=w800" alt="Utsav & Ananya" loading="lazy"></div>
-    <div class="g-card reveal reveal-delay-3"><img src="https://drive.google.com/thumbnail?id=1lGZrXIQmnn_QxDkfCq7XiF4u-Tg-6cJm&sz=w800" alt="Utsav & Ananya" loading="lazy"></div>
+  <div class="polaroid-grid">
+    <div class="polaroid reveal">
+      <div class="tape"></div>
+      <div class="photo-wrap"><img src="https://drive.google.com/thumbnail?id=12FcxqAYNA4ybAaiFAWLlx_PdldUUypxG&sz=w800" alt="Utsav & Ananya" loading="lazy"></div>
+      <div class="caption">Us</div>
+    </div>
+    <div class="polaroid reveal reveal-delay-1">
+      <div class="tape"></div>
+      <div class="photo-wrap"><img src="https://drive.google.com/thumbnail?id=1iowk_1Hk31Z9EttP9R22De-O8YG75IWw&sz=w800" alt="Utsav & Ananya" loading="lazy" style="object-position: center 70%;"></div>
+      <div class="caption">Always &amp; Forever</div>
+    </div>
+    <div class="polaroid reveal reveal-delay-2">
+      <div class="tape"></div>
+      <div class="photo-wrap"><img src="https://drive.google.com/thumbnail?id=1h_X-GmWSJ7vdCpAyfEfz2CYygn1PQww0&sz=w800" alt="Utsav & Ananya" loading="lazy"></div>
+      <div class="caption">My Favourite Person</div>
+    </div>
+    <div class="polaroid reveal reveal-delay-3">
+      <div class="tape"></div>
+      <div class="photo-wrap"><img src="https://drive.google.com/thumbnail?id=1lGZrXIQmnn_QxDkfCq7XiF4u-Tg-6cJm&sz=w800" alt="Utsav & Ananya" loading="lazy"></div>
+      <div class="caption">U &amp; A</div>
+    </div>
   </div>
-  <div class="gallery-dots" id="galleryDots">
-    <span class="active"></span><span></span><span></span><span></span>
-  </div>
-  <div class="gallery-swipe-hint reveal">swipe to explore →</div>
   <div class="gallery-quote reveal">— Every love story is beautiful, but ours is my favourite —</div>
 </section>
 
-<!-- ==================== SAVE THE DATE ==================== -->
-<section class="save-date-section">
-  <a class="save-date-btn reveal" id="saveTheDate" href="#" onclick="return false;">
-    <svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/><path d="M9.5 12h-2v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2z"/></svg>
-    Save the Date
-  </a>
-</section>
-
-<!-- ==================== COUNTDOWN ==================== -->
+<!-- ==================== COUNTDOWN + SAVE THE DATE ==================== -->
 <section class="countdown-section">
   <div class="section-heading reveal">Counting Down To</div>
   <div class="countdown-grid reveal reveal-delay-1">
@@ -1197,6 +1090,10 @@
       <div class="countdown-unit">Secs</div>
     </div>
   </div>
+  <a class="save-date-btn reveal reveal-delay-2" id="saveTheDate" href="#" onclick="return false;">
+    <svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/><path d="M9.5 12h-2v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2z"/></svg>
+    Save the Date
+  </a>
 </section>
 
 <!-- ==================== BLESSING ==================== -->
@@ -1313,19 +1210,6 @@
   }, { passive: true });
 })();
 
-// ===================== HIDE SCROLL HINT =====================
-(function() {
-  const hint = document.querySelector('.scroll-hint');
-  if (!hint) return;
-  window.addEventListener('scroll', function once() {
-    if (window.scrollY > 80) {
-      hint.style.transition = 'opacity 0.5s';
-      hint.style.opacity = '0';
-      window.removeEventListener('scroll', once);
-    }
-  });
-})();
-
 // ===================== ENTRANCE OVERLAY =====================
 (function() {
   var overlay = document.getElementById('entranceOverlay');
@@ -1357,25 +1241,6 @@
     setTimeout(function() { s.remove(); }, 5000);
   }
   setInterval(spark, 600);
-})();
-
-// ===================== GALLERY SCROLL DOTS =====================
-(function() {
-  var scroll = document.getElementById('galleryScroll');
-  var dots = document.getElementById('galleryDots');
-  if (!scroll || !dots) return;
-  var spans = dots.querySelectorAll('span');
-  scroll.addEventListener('scroll', function() {
-    var cards = scroll.querySelectorAll('.g-card');
-    var scrollLeft = scroll.scrollLeft;
-    var scrollW = scroll.scrollWidth - scroll.clientWidth;
-    if (scrollW <= 0) return;
-    var ratio = scrollLeft / scrollW;
-    var idx = Math.round(ratio * (cards.length - 1));
-    for (var i = 0; i < spans.length; i++) {
-      spans[i].classList.toggle('active', i === idx);
-    }
-  }, { passive: true });
 })();
 
 // ===================== SAVE THE DATE =====================
