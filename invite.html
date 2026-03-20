@@ -1295,11 +1295,157 @@
     position: absolute;
     width: 24px; height: 24px;
     opacity: 0.3;
+    transition: all 0.3s ease;
   }
   .event-corner.tl { top: 10px; left: 10px; }
   .event-corner.tr { top: 10px; right: 10px; transform: scaleX(-1); }
   .event-corner.bl { bottom: 10px; left: 10px; transform: scaleY(-1); }
   .event-corner.br { bottom: 10px; right: 10px; transform: scale(-1); }
+
+  /* ===================== ANIMATED MANDALAS ===================== */
+  @keyframes mandalaRotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  @keyframes mandalaRotateReverse {
+    0% { transform: rotate(360deg); }
+    100% { transform: rotate(0deg); }
+  }
+  @keyframes mandalaPulse {
+    0%, 100% { opacity: 0.15; }
+    50% { opacity: 0.25; }
+  }
+  
+  .mandala {
+    position: absolute;
+    pointer-events: none;
+  }
+  
+  .mandala.tl {
+    top: -20px; left: -20px;
+    animation: mandalaRotate 45s linear infinite;
+  }
+  
+  .mandala.tr {
+    top: -20px; right: -20px;
+    animation: mandalaRotateReverse 45s linear infinite;
+  }
+  
+  .mandala.bl {
+    bottom: -20px; left: -20px;
+    animation: mandalaRotateReverse 40s linear infinite;
+  }
+  
+  .mandala.br {
+    bottom: -20px; right: -20px;
+    animation: mandalaRotate 40s linear infinite;
+  }
+  
+  .mandala.center {
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    animation: mandalaPulse 4s ease-in-out infinite;
+  }
+
+  /* ===================== ORNATE FRAME ===================== */
+  @keyframes frameGlow {
+    0%, 100% { filter: drop-shadow(0 0 8px rgba(212,175,55,0.3)); }
+    50% { filter: drop-shadow(0 0 16px rgba(212,175,55,0.5)); }
+  }
+  
+  .ornate-frame {
+    position: relative;
+    border: 2px solid rgba(212,175,55,0.4);
+    border-radius: 8px;
+    padding: 24px;
+    animation: frameGlow 3s ease-in-out infinite;
+  }
+  
+  .ornate-frame::before,
+  .ornate-frame::after {
+    content: '';
+    position: absolute;
+    width: 16px; height: 16px;
+    border: 1.5px solid var(--gold);
+    opacity: 0.6;
+  }
+  
+  .ornate-frame::before {
+    top: -8px; left: -8px;
+    border-right: none; border-bottom: none;
+    border-radius: 8px 0 0 0;
+  }
+  
+  .ornate-frame::after {
+    bottom: -8px; right: -8px;
+    border-left: none; border-top: none;
+    border-radius: 0 0 0 8px;
+  }
+
+  /* ===================== PEACOCK MOTIF ===================== */
+  @keyframes peacockSway {
+    0%, 100% { transform: translateX(0) rotate(0deg); }
+    50% { transform: translateX(8px) rotate(1deg); }
+  }
+  
+  .peacock-motif {
+    position: absolute;
+    opacity: 0.08;
+    pointer-events: none;
+    animation: peacockSway 6s ease-in-out infinite;
+  }
+  
+  /* ===================== ANIMATED EVENT CARD BORDERS ===================== */
+  @keyframes borderGlow {
+    0%, 100% { box-shadow: 0 0 12px rgba(212,175,55,0.2), inset 0 0 8px rgba(212,175,55,0.05); }
+    50% { box-shadow: 0 0 24px rgba(212,175,55,0.4), inset 0 0 16px rgba(212,175,55,0.1); }
+  }
+  
+  .event-card {
+    animation: borderGlow 3s ease-in-out infinite;
+  }
+
+  /* ===================== LOTUS FOUNTAIN DIVIDER ===================== */
+  @keyframes fountainBubble {
+    0%, 100% { transform: translateY(0) scale(1); opacity: 0; }
+    50% { transform: translateY(-20px) scale(1.2); opacity: 0.6; }
+  }
+  
+  .lotus-fountain {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 32px 0;
+    height: 60px;
+    position: relative;
+  }
+  
+  .fountain-bubble {
+    position: absolute;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #D4AF37, #AA8C2C);
+    animation: fountainBubble 2s ease-in-out infinite;
+  }
+  
+  .fountain-bubble:nth-child(1) { left: 40%; animation-delay: 0s; }
+  .fountain-bubble:nth-child(2) { left: 45%; animation-delay: 0.3s; }
+  .fountain-bubble:nth-child(3) { left: 50%; animation-delay: 0.6s; }
+  .fountain-bubble:nth-child(4) { left: 55%; animation-delay: 0.3s; }
+  .fountain-bubble:nth-child(5) { left: 60%; animation-delay: 0s; }
+
+  /* ===================== GOLDEN STAR DECORATIONS ===================== */
+  @keyframes starTwinkle {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 0.6; }
+  }
+  
+  .gold-star {
+    position: absolute;
+    opacity: 0.3;
+    animation: starTwinkle 3s ease-in-out infinite;
+    fill: var(--gold);
+  }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
@@ -1349,6 +1495,26 @@
       <div class="hero-names">Utsav</div>
       <div class="hero-weds">Weds</div>
       <div class="hero-names">Ananya</div>
+      
+      <!-- MANDALAS ON HERO -->
+      <svg class="mandala tl" width="80" height="80" viewBox="0 0 80 80">
+        <defs><radialGradient id="mandalaGrad" cx="50%" cy="50%" r="50%"><stop offset="0%" style="stop-color:#D4AF37;stop-opacity:0.4" /><stop offset="100%" style="stop-color:#D4AF37;stop-opacity:0.1" /></radialGradient></defs>
+        <circle cx="40" cy="40" r="38" fill="url(#mandalaGrad)" />
+        <circle cx="40" cy="40" r="32" fill="none" stroke="#D4AF37" stroke-width="0.8" opacity="0.5"/>
+        <circle cx="40" cy="40" r="26" fill="none" stroke="#D4AF37" stroke-width="0.6" opacity="0.4"/>
+        <circle cx="40" cy="40" r="20" fill="none" stroke="#D4AF37" stroke-width="0.5" opacity="0.3"/>
+        <circle cx="40" cy="40" r="14" fill="none" stroke="#D4AF37" stroke-width="0.4" opacity="0.4"/>
+        <g opacity="0.5"><line x1="40" y1="8" x2="40" y2="16" stroke="#D4AF37" stroke-width="0.6"/><line x1="72" y1="40" x2="64" y2="40" stroke="#D4AF37" stroke-width="0.6"/><line x1="40" y1="72" x2="40" y2="64" stroke="#D4AF37" stroke-width="0.6"/><line x1="8" y1="40" x2="16" y2="40" stroke="#D4AF37" stroke-width="0.6"/></g>
+      </svg>
+      <svg class="mandala tr" width="80" height="80" viewBox="0 0 80 80">
+        <defs><radialGradient id="mandalaGrad2" cx="50%" cy="50%" r="50%"><stop offset="0%" style="stop-color:#D4AF37;stop-opacity:0.4" /><stop offset="100%" style="stop-color:#D4AF37;stop-opacity:0.1" /></radialGradient></defs>
+        <circle cx="40" cy="40" r="38" fill="url(#mandalaGrad2)" />
+        <circle cx="40" cy="40" r="32" fill="none" stroke="#D4AF37" stroke-width="0.8" opacity="0.5"/>
+        <circle cx="40" cy="40" r="26" fill="none" stroke="#D4AF37" stroke-width="0.6" opacity="0.4"/>
+        <circle cx="40" cy="40" r="20" fill="none" stroke="#D4AF37" stroke-width="0.5" opacity="0.3"/>
+        <circle cx="40" cy="40" r="14" fill="none" stroke="#D4AF37" stroke-width="0.4" opacity="0.4"/>
+        <g opacity="0.5"><line x1="40" y1="8" x2="40" y2="16" stroke="#D4AF37" stroke-width="0.6"/><line x1="72" y1="40" x2="64" y2="40" stroke="#D4AF37" stroke-width="0.6"/><line x1="40" y1="72" x2="40" y2="64" stroke="#D4AF37" stroke-width="0.6"/><line x1="8" y1="40" x2="16" y2="40" stroke="#D4AF37" stroke-width="0.6"/></g>
+      </svg>
     </div>
   </div>
 
@@ -1384,20 +1550,21 @@
 
   <div class="hero-divider reveal reveal-delay-1"></div>
 
-  <div class="reveal reveal-delay-1">
-    <div class="subha-vivah">शुभ विवाह</div>
-  </div>
-
-  <div class="reveal reveal-delay-2">
-    <div class="hero-hosts">Smt. Shrabani Gan &amp; Sri Sandip Gan</div>
-    <div class="hero-invite-line">
-      cordially invite your presence with family<br>
-      on the auspicious occasion of the wedding of their nephew
+  <div class="ornate-frame reveal reveal-delay-1">
+    <div class="reveal reveal-delay-1">
+      <div class="subha-vivah">शुभ विवाह</div>
     </div>
-  </div>
 
-  <!-- Names -->
-  <div class="names-block">
+    <div class="reveal reveal-delay-2">
+      <div class="hero-hosts">Smt. Shrabani Gan &amp; Sri Sandip Gan</div>
+      <div class="hero-invite-line">
+        cordially invite your presence with family<br>
+        on the auspicious occasion of the wedding of their nephew
+      </div>
+    </div>
+
+    <!-- Names -->
+    <div class="names-block">
     <div class="reveal reveal-delay-3">
       <div class="groom-name">Utsav</div>
       <div class="nickname">(Sipu)</div>
@@ -1412,7 +1579,17 @@
       <div class="parent-line">Daughter of <strong>Smt. Sujaya Chand &amp; Sri Satyaranjan Chand</strong></div>
     </div>
   </div>
+  </div>
 </section>
+
+<!-- LOTUS FOUNTAIN DIVIDER -->
+<div class="lotus-fountain">
+  <div class="fountain-bubble"></div>
+  <div class="fountain-bubble"></div>
+  <div class="fountain-bubble"></div>
+  <div class="fountain-bubble"></div>
+  <div class="fountain-bubble"></div>
+</div>
 
 <!-- ==================== EVENTS ==================== -->
 <section class="events-section" id="eventsSection">
@@ -1468,6 +1645,16 @@
   <div class="section-heading reveal">Our Moments</div>
   <div class="gallery-subtitle reveal reveal-delay-1">Memories</div>
   <div class="gallery-description reveal reveal-delay-1">A glimpse into our journey together.</div>
+  
+  <!-- PEACOCK MOTIF ON GALLERY BACKGROUND -->
+  <svg class="peacock-motif lg" style="top: -60px; right: -80px;" viewBox="0 0 200 200">
+    <defs><radialGradient id="peacockGrad"><stop offset="0%" style="stop-color:#D4AF37;stop-opacity:0.6" /><stop offset="100%" style="stop-color:#D4AF37;stop-opacity:0" /></radialGradient></defs>
+    <circle cx="100" cy="100" r="80" fill="url(#peacockGrad)" />
+    <circle cx="100" cy="100" r="60" fill="none" stroke="#D4AF37" stroke-width="2" opacity="0.4"/>
+    <circle cx="100" cy="100" r="40" fill="none" stroke="#D4AF37" stroke-width="1.5" opacity="0.3"/>
+    <g opacity="0.5"><circle cx="80" cy="80" r="8" fill="#D4AF37"/><circle cx="120" cy="80" r="8" fill="#D4AF37"/><circle cx="100" cy="120" r="8" fill="#D4AF37"/><circle cx="70" cy="100" r="6" fill="#D4AF37"/><circle cx="130" cy="100" r="6" fill="#D4AF37"/></g>
+  </svg>
+  
   <div class="polaroid-grid" role="region" aria-label="Photo gallery of couple's moments">
     <div class="polaroid reveal" role="button" tabindex="0" aria-label="Gallery image 1 - click to view full size">
       <div class="tape"></div>
@@ -1504,6 +1691,12 @@
 
 <!-- ==================== COUNTDOWN ==================== -->
 <section class="countdown-section" id="countdownSection">
+  <!-- GOLD STARS DECORATION -->
+  <svg class="gold-star" style="top: 20px; left: 20px; width: 24px; height: 24px;" viewBox="0 0 24 24"><polygon points="12,2 15.09,10.26 24,10.26 17.55,15.74 20.64,24 12,19.52 3.36,24 6.45,15.74 0,10.26 8.91,10.26"/></svg>
+  <svg class="gold-star" style="top: 30px; right: 30px; width: 20px; height: 20px;" viewBox="0 0 24 24"><polygon points="12,2 15.09,10.26 24,10.26 17.55,15.74 20.64,24 12,19.52 3.36,24 6.45,15.74 0,10.26 8.91,10.26"/></svg>
+  <svg class="gold-star" style="bottom: 30px; left: 40px; width: 18px; height: 18px;" viewBox="0 0 24 24"><polygon points="12,2 15.09,10.26 24,10.26 17.55,15.74 20.64,24 12,19.52 3.36,24 6.45,15.74 0,10.26 8.91,10.26"/></svg>
+  <svg class="gold-star" style="bottom: 40px; right: 50px; width: 22px; height: 22px;" viewBox="0 0 24 24"><polygon points="12,2 15.09,10.26 24,10.26 17.55,15.74 20.64,24 12,19.52 3.36,24 6.45,15.74 0,10.26 8.91,10.26"/></svg>
+  
   <div class="section-heading reveal">Counting Down To</div>
   <div class="countdown-grid reveal reveal-delay-1">
     <div class="countdown-item">
@@ -1523,11 +1716,37 @@
       <div class="countdown-unit">Secs</div>
     </div>
   </div>
+  <!-- MANDALAS ON COUNTDOWN -->
+  <svg class="mandala bl" width="60" height="60" viewBox="0 0 80 80" style="position: fixed; pointer-events: none;">
+    <defs><radialGradient id="mandalaGrad3" cx="50%" cy="50%" r="50%"><stop offset="0%" style="stop-color:#D4AF37;stop-opacity:0.3" /><stop offset="100%" style="stop-color:#D4AF37;stop-opacity:0.05" /></radialGradient></defs>
+    <circle cx="40" cy="40" r="38" fill="url(#mandalaGrad3)" />
+    <circle cx="40" cy="40" r="32" fill="none" stroke="#D4AF37" stroke-width="0.8" opacity="0.4"/>
+    <circle cx="40" cy="40" r="26" fill="none" stroke="#D4AF37" stroke-width="0.6" opacity="0.3"/>
+    <circle cx="40" cy="40" r="20" fill="none" stroke="#D4AF37" stroke-width="0.5" opacity="0.25"/>
+    <g opacity="0.4"><line x1="40" y1="8" x2="40" y2="16" stroke="#D4AF37" stroke-width="0.6"/><line x1="72" y1="40" x2="64" y2="40" stroke="#D4AF37" stroke-width="0.6"/><line x1="40" y1="72" x2="40" y2="64" stroke="#D4AF37" stroke-width="0.6"/><line x1="8" y1="40" x2="16" y2="40" stroke="#D4AF37" stroke-width="0.6"/></g>
+  </svg>
+  <svg class="mandala br" width="60" height="60" viewBox="0 0 80 80" style="position: fixed; pointer-events: none;">
+    <defs><radialGradient id="mandalaGrad4" cx="50%" cy="50%" r="50%"><stop offset="0%" style="stop-color:#D4AF37;stop-opacity:0.3" /><stop offset="100%" style="stop-color:#D4AF37;stop-opacity:0.05" /></radialGradient></defs>
+    <circle cx="40" cy="40" r="38" fill="url(#mandalaGrad4)" />
+    <circle cx="40" cy="40" r="32" fill="none" stroke="#D4AF37" stroke-width="0.8" opacity="0.4"/>
+    <circle cx="40" cy="40" r="26" fill="none" stroke="#D4AF37" stroke-width="0.6" opacity="0.3"/>
+    <circle cx="40" cy="40" r="20" fill="none" stroke="#D4AF37" stroke-width="0.5" opacity="0.25"/>
+    <g opacity="0.4"><line x1="40" y1="8" x2="40" y2="16" stroke="#D4AF37" stroke-width="0.6"/><line x1="72" y1="40" x2="64" y2="40" stroke="#D4AF37" stroke-width="0.6"/><line x1="40" y1="72" x2="40" y2="64" stroke="#D4AF37" stroke-width="0.6"/><line x1="8" y1="40" x2="16" y2="40" stroke="#D4AF37" stroke-width="0.6"/></g>
+  </svg>
 </section>
 
 <!-- ==================== BLESSING ==================== -->
 <section class="blessing-section">
-  <div class="reveal">
+  <div class="ornate-frame reveal">
+    <!-- PEACOCK MOTIF ON BLESSING BACKGROUND -->
+    <svg class="peacock-motif md" style="top: 20px; left: -40px;" viewBox="0 0 200 200">
+      <defs><radialGradient id="peacockGrad2"><stop offset="0%" style="stop-color:#D4AF37;stop-opacity:0.5" /><stop offset="100%" style="stop-color:#D4AF37;stop-opacity:0" /></radialGradient></defs>
+      <circle cx="100" cy="100" r="80" fill="url(#peacockGrad2)" />
+      <circle cx="100" cy="100" r="60" fill="none" stroke="#D4AF37" stroke-width="2" opacity="0.3"/>
+      <circle cx="100" cy="100" r="40" fill="none" stroke="#D4AF37" stroke-width="1.5" opacity="0.25"/>
+      <g opacity="0.4"><circle cx="80" cy="80" r="8" fill="#D4AF37"/><circle cx="120" cy="80" r="8" fill="#D4AF37"/><circle cx="100" cy="120" r="8" fill="#D4AF37"/></g>
+    </svg>
+    
     <div class="floating-diya">
       <svg width="30" height="30" viewBox="0 0 50 50"><ellipse cx="25" cy="38" rx="12" ry="6" fill="#C9A84C" opacity="0.4"/><path d="M18,38 Q18,22 25,10 Q32,22 32,38Z" fill="#C9A84C" opacity="0.25"/><ellipse cx="25" cy="10" rx="4" ry="7" fill="#C9A84C" opacity="0.5"/><ellipse cx="25" cy="8" rx="2" ry="4" fill="#C9A84C" opacity="0.7"/></svg>
       <svg width="30" height="30" viewBox="0 0 50 50"><ellipse cx="25" cy="38" rx="12" ry="6" fill="#C9A84C" opacity="0.4"/><path d="M18,38 Q18,22 25,10 Q32,22 32,38Z" fill="#C9A84C" opacity="0.25"/><ellipse cx="25" cy="10" rx="4" ry="7" fill="#C9A84C" opacity="0.5"/><ellipse cx="25" cy="8" rx="2" ry="4" fill="#C9A84C" opacity="0.7"/></svg>
@@ -1864,12 +2083,17 @@
   function spark() {
     var s = document.createElement('div');
     s.className = 'gold-sparkle';
-    var sz = 2 + Math.random() * 3;
+    var sz = 1.5 + Math.random() * 4.5; // larger range
     s.style.cssText = 'left:' + (Math.random()*100) + '%;top:' + (20+Math.random()*60) + '%;width:' + sz + 'px;height:' + sz + 'px;animation-duration:' + (2.5+Math.random()*2) + 's;';
     c.appendChild(s);
     setTimeout(function() { s.remove(); }, 5000);
   }
-  setInterval(spark, 600);
+  // Increased frequency: more sparkles, more premium feel
+  setInterval(spark, 350); // reduced from 600ms
+  // Extra sparkles burst on page load
+  for(var i = 0; i < 12; i++) {
+    setTimeout(spark, i * 100);
+  }
 })();
 
 // ===================== SAVE THE DATE (ICS / Google Calendar) =====================
