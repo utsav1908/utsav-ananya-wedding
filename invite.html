@@ -1319,65 +1319,75 @@
   .mandala {
     position: absolute;
     pointer-events: none;
+    opacity: 0.35;
+    filter: drop-shadow(0 0 6px rgba(212,175,55,0.4));
   }
   
   .mandala.tl {
-    top: -20px; left: -20px;
+    top: 10px; left: 10px;
     animation: mandalaRotate 45s linear infinite;
+    z-index: 2;
   }
   
   .mandala.tr {
-    top: -20px; right: -20px;
+    top: 10px; right: 10px;
     animation: mandalaRotateReverse 45s linear infinite;
+    z-index: 2;
   }
   
   .mandala.bl {
-    bottom: -20px; left: -20px;
+    bottom: 10px; left: 10px;
     animation: mandalaRotateReverse 40s linear infinite;
+    z-index: 2;
   }
   
   .mandala.br {
-    bottom: -20px; right: -20px;
+    bottom: 10px; right: 10px;
     animation: mandalaRotate 40s linear infinite;
+    z-index: 2;
   }
   
   .mandala.center {
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
     animation: mandalaPulse 4s ease-in-out infinite;
+    z-index: 2;
   }
 
   /* ===================== ORNATE FRAME ===================== */
   @keyframes frameGlow {
-    0%, 100% { filter: drop-shadow(0 0 8px rgba(212,175,55,0.3)); }
-    50% { filter: drop-shadow(0 0 16px rgba(212,175,55,0.5)); }
+    0%, 100% { filter: drop-shadow(0 0 12px rgba(212,175,55,0.5)) drop-shadow(0 0 24px rgba(212,175,55,0.2)); }
+    50% { filter: drop-shadow(0 0 20px rgba(212,175,55,0.7)) drop-shadow(0 0 40px rgba(212,175,55,0.35)); }
   }
   
   .ornate-frame {
     position: relative;
-    border: 2px solid rgba(212,175,55,0.4);
+    border: 3px solid rgba(212,175,55,0.6);
     border-radius: 8px;
     padding: 24px;
+    background: linear-gradient(135deg, rgba(212,175,55,0.02) 0%, transparent 100%);
     animation: frameGlow 3s ease-in-out infinite;
+    box-shadow: inset 0 0 20px rgba(212,175,55,0.08);
   }
   
   .ornate-frame::before,
   .ornate-frame::after {
     content: '';
     position: absolute;
-    width: 16px; height: 16px;
-    border: 1.5px solid var(--gold);
-    opacity: 0.6;
+    width: 20px; height: 20px;
+    border: 2px solid var(--gold);
+    opacity: 0.8;
+    box-shadow: 0 0 8px rgba(212,175,55,0.6);
   }
   
   .ornate-frame::before {
-    top: -8px; left: -8px;
+    top: -5px; left: -5px;
     border-right: none; border-bottom: none;
     border-radius: 8px 0 0 0;
   }
   
   .ornate-frame::after {
-    bottom: -8px; right: -8px;
+    bottom: -5px; right: -5px;
     border-left: none; border-top: none;
     border-radius: 0 0 0 8px;
   }
@@ -1442,9 +1452,10 @@
   
   .gold-star {
     position: absolute;
-    opacity: 0.3;
+    opacity: 0.5;
     animation: starTwinkle 3s ease-in-out infinite;
     fill: var(--gold);
+    filter: drop-shadow(0 0 3px rgba(212,175,55,0.6));
   }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
@@ -2083,16 +2094,16 @@
   function spark() {
     var s = document.createElement('div');
     s.className = 'gold-sparkle';
-    var sz = 1.5 + Math.random() * 4.5; // larger range
-    s.style.cssText = 'left:' + (Math.random()*100) + '%;top:' + (20+Math.random()*60) + '%;width:' + sz + 'px;height:' + sz + 'px;animation-duration:' + (2.5+Math.random()*2) + 's;';
+    var sz = 2 + Math.random() * 6; // even larger for visibility
+    s.style.cssText = 'left:' + (Math.random()*100) + '%;top:' + (15+Math.random()*70) + '%;width:' + sz + 'px;height:' + sz + 'px;animation-duration:' + (2+Math.random()*2.5) + 's;box-shadow: 0 0 ' + (sz*2) + 'px rgba(212,175,55,0.8);';
     c.appendChild(s);
     setTimeout(function() { s.remove(); }, 5000);
   }
-  // Increased frequency: more sparkles, more premium feel
-  setInterval(spark, 350); // reduced from 600ms
-  // Extra sparkles burst on page load
-  for(var i = 0; i < 12; i++) {
-    setTimeout(spark, i * 100);
+  // Extra frequent sparkles for dramatic effect
+  setInterval(spark, 250); // even faster
+  // Large burst on page load
+  for(var i = 0; i < 20; i++) {
+    setTimeout(spark, i * 80);
   }
 })();
 
