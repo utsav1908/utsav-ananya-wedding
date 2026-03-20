@@ -189,6 +189,8 @@
   /* ===================== NAMES (inside hero) ===================== */
   .names-block {
     margin-top: 28px;
+    position: relative;
+    width: 100%;
   }
 
   .groom-name, .bride-name {
@@ -1319,18 +1321,18 @@
   .mandala {
     position: absolute;
     pointer-events: none;
-    opacity: 0.35;
-    filter: drop-shadow(0 0 6px rgba(212,175,55,0.4));
+    opacity: 0.45;
+    filter: drop-shadow(0 0 8px rgba(212,175,55,0.5));
   }
   
   .mandala.tl {
-    top: 10px; left: 10px;
+    top: -20px; left: -20px;
     animation: mandalaRotate 45s linear infinite;
     z-index: 2;
   }
   
   .mandala.tr {
-    top: 10px; right: 10px;
+    top: -20px; right: -20px;
     animation: mandalaRotateReverse 45s linear infinite;
     z-index: 2;
   }
@@ -1508,23 +1510,23 @@
       <div class="hero-names">Ananya</div>
       
       <!-- MANDALAS ON HERO -->
-      <svg class="mandala tl" width="80" height="80" viewBox="0 0 80 80">
-        <defs><radialGradient id="mandalaGrad" cx="50%" cy="50%" r="50%"><stop offset="0%" style="stop-color:#D4AF37;stop-opacity:0.4" /><stop offset="100%" style="stop-color:#D4AF37;stop-opacity:0.1" /></radialGradient></defs>
+      <svg class="mandala tl" width="120" height="120" viewBox="0 0 80 80">
+        <defs><radialGradient id="mandalaGrad" cx="50%" cy="50%" r="50%"><stop offset="0%" style="stop-color:#D4AF37;stop-opacity:0.6" /><stop offset="100%" style="stop-color:#D4AF37;stop-opacity:0.2" /></radialGradient></defs>
         <circle cx="40" cy="40" r="38" fill="url(#mandalaGrad)" />
-        <circle cx="40" cy="40" r="32" fill="none" stroke="#D4AF37" stroke-width="0.8" opacity="0.5"/>
-        <circle cx="40" cy="40" r="26" fill="none" stroke="#D4AF37" stroke-width="0.6" opacity="0.4"/>
-        <circle cx="40" cy="40" r="20" fill="none" stroke="#D4AF37" stroke-width="0.5" opacity="0.3"/>
-        <circle cx="40" cy="40" r="14" fill="none" stroke="#D4AF37" stroke-width="0.4" opacity="0.4"/>
-        <g opacity="0.5"><line x1="40" y1="8" x2="40" y2="16" stroke="#D4AF37" stroke-width="0.6"/><line x1="72" y1="40" x2="64" y2="40" stroke="#D4AF37" stroke-width="0.6"/><line x1="40" y1="72" x2="40" y2="64" stroke="#D4AF37" stroke-width="0.6"/><line x1="8" y1="40" x2="16" y2="40" stroke="#D4AF37" stroke-width="0.6"/></g>
+        <circle cx="40" cy="40" r="32" fill="none" stroke="#D4AF37" stroke-width="1.2" opacity="0.7"/>
+        <circle cx="40" cy="40" r="26" fill="none" stroke="#D4AF37" stroke-width="0.8" opacity="0.6"/>
+        <circle cx="40" cy="40" r="20" fill="none" stroke="#D4AF37" stroke-width="0.6" opacity="0.5"/>
+        <circle cx="40" cy="40" r="14" fill="none" stroke="#D4AF37" stroke-width="0.6" opacity="0.6"/>
+        <g opacity="0.7"><line x1="40" y1="8" x2="40" y2="16" stroke="#D4AF37" stroke-width="0.8"/><line x1="72" y1="40" x2="64" y2="40" stroke="#D4AF37" stroke-width="0.8"/><line x1="40" y1="72" x2="40" y2="64" stroke="#D4AF37" stroke-width="0.8"/><line x1="8" y1="40" x2="16" y2="40" stroke="#D4AF37" stroke-width="0.8"/></g>
       </svg>
-      <svg class="mandala tr" width="80" height="80" viewBox="0 0 80 80">
-        <defs><radialGradient id="mandalaGrad2" cx="50%" cy="50%" r="50%"><stop offset="0%" style="stop-color:#D4AF37;stop-opacity:0.4" /><stop offset="100%" style="stop-color:#D4AF37;stop-opacity:0.1" /></radialGradient></defs>
+      <svg class="mandala tr" width="120" height="120" viewBox="0 0 80 80">
+        <defs><radialGradient id="mandalaGrad2" cx="50%" cy="50%" r="50%"><stop offset="0%" style="stop-color:#D4AF37;stop-opacity:0.6" /><stop offset="100%" style="stop-color:#D4AF37;stop-opacity:0.2" /></radialGradient></defs>
         <circle cx="40" cy="40" r="38" fill="url(#mandalaGrad2)" />
-        <circle cx="40" cy="40" r="32" fill="none" stroke="#D4AF37" stroke-width="0.8" opacity="0.5"/>
-        <circle cx="40" cy="40" r="26" fill="none" stroke="#D4AF37" stroke-width="0.6" opacity="0.4"/>
-        <circle cx="40" cy="40" r="20" fill="none" stroke="#D4AF37" stroke-width="0.5" opacity="0.3"/>
-        <circle cx="40" cy="40" r="14" fill="none" stroke="#D4AF37" stroke-width="0.4" opacity="0.4"/>
-        <g opacity="0.5"><line x1="40" y1="8" x2="40" y2="16" stroke="#D4AF37" stroke-width="0.6"/><line x1="72" y1="40" x2="64" y2="40" stroke="#D4AF37" stroke-width="0.6"/><line x1="40" y1="72" x2="40" y2="64" stroke="#D4AF37" stroke-width="0.6"/><line x1="8" y1="40" x2="16" y2="40" stroke="#D4AF37" stroke-width="0.6"/></g>
+        <circle cx="40" cy="40" r="32" fill="none" stroke="#D4AF37" stroke-width="1.2" opacity="0.7"/>
+        <circle cx="40" cy="40" r="26" fill="none" stroke="#D4AF37" stroke-width="0.8" opacity="0.6"/>
+        <circle cx="40" cy="40" r="20" fill="none" stroke="#D4AF37" stroke-width="0.6" opacity="0.5"/>
+        <circle cx="40" cy="40" r="14" fill="none" stroke="#D4AF37" stroke-width="0.6" opacity="0.6"/>
+        <g opacity="0.7"><line x1="40" y1="8" x2="40" y2="16" stroke="#D4AF37" stroke-width="0.8"/><line x1="72" y1="40" x2="64" y2="40" stroke="#D4AF37" stroke-width="0.8"/><line x1="40" y1="72" x2="40" y2="64" stroke="#D4AF37" stroke-width="0.8"/><line x1="8" y1="40" x2="16" y2="40" stroke="#D4AF37" stroke-width="0.8"/></g>
       </svg>
     </div>
   </div>
