@@ -267,10 +267,11 @@
   }
 
   .event-card {
-    max-width: 440px;
+    max-width: 92%;
+    width: 100%;
     margin: 0 auto 24px;
     border-radius: 16px;
-    padding: 36px 28px;
+    padding: 42px 32px;
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -417,6 +418,49 @@
   }
 
   /* ===================== COUNTDOWN ===================== */
+  /* ===================== SAVE THE DATE ===================== */
+  .save-date-section {
+    text-align: center;
+    padding: 32px 20px 40px;
+    background: linear-gradient(180deg, var(--white) 0%, var(--cream-dark) 100%);
+  }
+  .save-date-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--white);
+    background: linear-gradient(135deg, var(--maroon) 0%, #5C0015 50%, var(--maroon) 100%);
+    border: 1.5px solid var(--gold);
+    border-radius: 50px;
+    padding: 16px 36px;
+    text-decoration: none;
+    box-shadow: 0 6px 24px rgba(139,0,0,0.2), inset 0 1px 0 rgba(212,175,55,0.15);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .save-date-btn::before {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    border: 1px solid rgba(212,175,55,0.2);
+    border-radius: 50px;
+    pointer-events: none;
+  }
+  .save-date-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 32px rgba(139,0,0,0.3);
+  }
+  .save-date-btn svg {
+    width: 18px; height: 18px;
+    fill: var(--gold-light);
+    flex-shrink: 0;
+  }
+
   .countdown-section {
     padding: 40px 24px;
     text-align: center;
@@ -599,6 +643,12 @@
     object-fit: cover;
     object-position: center 30%;
     z-index: 0;
+    animation: kenBurns 18s ease-in-out infinite alternate;
+    will-change: transform;
+  }
+  @keyframes kenBurns {
+    0% { transform: scale(1) translate(0, 0); }
+    100% { transform: scale(1.12) translate(-1.5%, -1%); }
   }
   .photo-splash-overlay {
     position: absolute;
@@ -615,6 +665,11 @@
     z-index: 2;
     text-align: center;
     color: var(--white);
+    animation: splashTextIn 1.8s ease-out 0.3s both;
+  }
+  @keyframes splashTextIn {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
   }
   .splash-names {
     font-family: 'Great Vibes', cursive;
@@ -675,7 +730,7 @@
 
   /* ===================== GALLERY ===================== */
   .gallery-section {
-    padding: 60px 20px 70px;
+    padding: 60px 0 70px;
     background: linear-gradient(180deg, var(--white) 0%, var(--cream) 30%, var(--cream) 70%, var(--white) 100%);
     text-align: center;
     position: relative;
@@ -685,83 +740,108 @@
     font-size: 13px;
     letter-spacing: 7px;
     margin-bottom: 6px;
+    padding: 0 20px;
   }
   .gallery-subtitle {
     font-family: 'Great Vibes', cursive;
     font-size: 32px;
     color: var(--maroon);
-    margin-bottom: 28px;
+    margin-bottom: 24px;
     opacity: 0.85;
+    padding: 0 20px;
   }
-  .gallery-masonry {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto;
-    gap: 10px;
-    max-width: 440px;
-    margin: 0 auto;
+
+  /* Horizontal scroll track */
+  .gallery-scroll {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding: 8px 24px 20px;
+    scrollbar-width: none;
   }
-  .gallery-masonry .g-item {
-    position: relative;
-    border-radius: 14px;
+  .gallery-scroll::-webkit-scrollbar { display: none; }
+
+  .gallery-scroll .g-card {
+    flex: 0 0 72vw;
+    max-width: 300px;
+    aspect-ratio: 3 / 4;
+    border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 8px 28px rgba(139,0,0,0.1);
-    border: 2px solid rgba(212,175,55,0.2);
+    position: relative;
+    scroll-snap-align: center;
+    box-shadow: 0 10px 32px rgba(139,0,0,0.12), 0 2px 8px rgba(212,175,55,0.08);
+    border: 2px solid rgba(212,175,55,0.25);
+    transition: transform 0.4s ease;
   }
-  .gallery-masonry .g-item img {
+  .gallery-scroll .g-card:hover {
+    transform: translateY(-4px);
+  }
+  .gallery-scroll .g-card img {
     width: 100%; height: 100%;
     object-fit: cover;
     display: block;
-    transition: transform 0.8s ease;
-  }
-  .gallery-masonry .g-item:hover img {
-    transform: scale(1.06);
-  }
-  /* Overlay shimmer on hover */
-  .gallery-masonry .g-item::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(212,175,55,0.08) 0%, transparent 40%, transparent 60%, rgba(212,175,55,0.06) 100%);
-    pointer-events: none;
-    border-radius: 12px;
-    opacity: 0;
-    transition: opacity 0.4s ease;
-  }
-  .gallery-masonry .g-item:hover::after {
-    opacity: 1;
   }
   /* Inner gold frame */
-  .gallery-masonry .g-item::before {
+  .gallery-scroll .g-card::before {
     content: '';
     position: absolute;
-    inset: 5px;
-    border: 1px solid rgba(212,175,55,0.15);
-    border-radius: 10px;
+    inset: 6px;
+    border: 1px solid rgba(212,175,55,0.2);
+    border-radius: 12px;
     pointer-events: none;
+    z-index: 2;
+  }
+  /* Bottom gradient overlay for depth */
+  .gallery-scroll .g-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 40%;
+    background: linear-gradient(0deg, rgba(0,0,0,0.2) 0%, transparent 100%);
+    pointer-events: none;
+    border-radius: 0 0 14px 14px;
     z-index: 1;
   }
 
-  /* Layout: first image tall spanning 2 rows, others fill right column */
-  .g-featured {
-    grid-row: 1 / 3;
-    aspect-ratio: 3 / 5;
+  /* Scroll indicator dots */
+  .gallery-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 16px;
   }
-  .g-small {
-    aspect-ratio: 1 / 1;
+  .gallery-dots span {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    opacity: 0.25;
+    transition: opacity 0.3s ease, transform 0.3s ease;
   }
-  .g-wide {
-    grid-column: 1 / 3;
-    aspect-ratio: 16 / 9;
+  .gallery-dots span.active {
+    opacity: 0.8;
+    transform: scale(1.4);
+  }
+
+  .gallery-swipe-hint {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    color: var(--maroon-light);
+    opacity: 0.4;
+    margin-top: 10px;
+    letter-spacing: 2px;
   }
 
   .gallery-quote {
     font-family: 'Great Vibes', cursive;
     font-size: 22px;
     color: var(--maroon-light);
-    margin-top: 28px;
+    margin-top: 24px;
     opacity: 0.6;
     line-height: 1.4;
+    padding: 0 20px;
   }
 
   /* ===================== RESPONSIVE ===================== */
@@ -1090,13 +1170,25 @@
 <section class="gallery-section">
   <div class="section-heading reveal">Our Moments</div>
   <div class="gallery-subtitle reveal reveal-delay-1">Together is a beautiful place</div>
-  <div class="gallery-masonry">
-    <div class="g-item g-featured reveal"><img src="https://drive.google.com/thumbnail?id=12FcxqAYNA4ybAaiFAWLlx_PdldUUypxG&sz=w800" alt="Utsav & Ananya" loading="lazy"></div>
-    <div class="g-item g-small reveal reveal-delay-1"><img src="https://drive.google.com/thumbnail?id=1iowk_1Hk31Z9EttP9R22De-O8YG75IWw&sz=w800" alt="Utsav & Ananya" loading="lazy" style="object-position: center 70%;"></div>
-    <div class="g-item g-small reveal reveal-delay-2"><img src="https://drive.google.com/thumbnail?id=1h_X-GmWSJ7vdCpAyfEfz2CYygn1PQww0&sz=w800" alt="Utsav & Ananya" loading="lazy"></div>
-    <div class="g-item g-wide reveal reveal-delay-3"><img src="https://drive.google.com/thumbnail?id=1lGZrXIQmnn_QxDkfCq7XiF4u-Tg-6cJm&sz=w800" alt="Utsav & Ananya" loading="lazy"></div>
+  <div class="gallery-scroll" id="galleryScroll">
+    <div class="g-card reveal"><img src="https://drive.google.com/thumbnail?id=12FcxqAYNA4ybAaiFAWLlx_PdldUUypxG&sz=w800" alt="Utsav & Ananya" loading="lazy"></div>
+    <div class="g-card reveal reveal-delay-1"><img src="https://drive.google.com/thumbnail?id=1iowk_1Hk31Z9EttP9R22De-O8YG75IWw&sz=w800" alt="Utsav & Ananya" loading="lazy" style="object-position: center 70%;"></div>
+    <div class="g-card reveal reveal-delay-2"><img src="https://drive.google.com/thumbnail?id=1h_X-GmWSJ7vdCpAyfEfz2CYygn1PQww0&sz=w800" alt="Utsav & Ananya" loading="lazy"></div>
+    <div class="g-card reveal reveal-delay-3"><img src="https://drive.google.com/thumbnail?id=1lGZrXIQmnn_QxDkfCq7XiF4u-Tg-6cJm&sz=w800" alt="Utsav & Ananya" loading="lazy"></div>
   </div>
+  <div class="gallery-dots" id="galleryDots">
+    <span class="active"></span><span></span><span></span><span></span>
+  </div>
+  <div class="gallery-swipe-hint reveal">swipe to explore →</div>
   <div class="gallery-quote reveal">— Every love story is beautiful, but ours is my favourite —</div>
+</section>
+
+<!-- ==================== SAVE THE DATE ==================== -->
+<section class="save-date-section">
+  <a class="save-date-btn reveal" id="saveTheDate" href="#" onclick="return false;">
+    <svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/><path d="M9.5 12h-2v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2z"/></svg>
+    Save the Date
+  </a>
 </section>
 
 <!-- ==================== COUNTDOWN ==================== -->
@@ -1280,6 +1372,45 @@
     setTimeout(function() { s.remove(); }, 5000);
   }
   setInterval(spark, 600);
+})();
+
+// ===================== GALLERY SCROLL DOTS =====================
+(function() {
+  var scroll = document.getElementById('galleryScroll');
+  var dots = document.getElementById('galleryDots');
+  if (!scroll || !dots) return;
+  var spans = dots.querySelectorAll('span');
+  scroll.addEventListener('scroll', function() {
+    var cards = scroll.querySelectorAll('.g-card');
+    var scrollLeft = scroll.scrollLeft;
+    var scrollW = scroll.scrollWidth - scroll.clientWidth;
+    if (scrollW <= 0) return;
+    var ratio = scrollLeft / scrollW;
+    var idx = Math.round(ratio * (cards.length - 1));
+    for (var i = 0; i < spans.length; i++) {
+      spans[i].classList.toggle('active', i === idx);
+    }
+  }, { passive: true });
+})();
+
+// ===================== SAVE THE DATE =====================
+(function() {
+  var btn = document.getElementById('saveTheDate');
+  if (!btn) return;
+  btn.addEventListener('click', function(e) {
+    e.preventDefault();
+    var start = '20260619T133000Z'; // 7pm IST = 1:30pm UTC
+    var end = '20260620T003000Z';   // ~6am IST next day
+    var title = 'Utsav %26 Ananya Wedding';
+    var loc = 'Grand Lumbini Convention%2C Chandrasekharpur%2C Bhubaneswar 751021';
+    var det = 'Wedding Ceremony of Utsav %26 Ananya. Mangalkrutya %26 Baranugaman at 7%3A00 PM.';
+    var url = 'https://calendar.google.com/calendar/render?action=TEMPLATE'
+      + '&text=' + title
+      + '&dates=' + start + '/' + end
+      + '&details=' + det
+      + '&location=' + loc;
+    window.open(url, '_blank', 'noopener');
+  });
 })();
 
 // ===================== MUSIC PLAYER =====================
