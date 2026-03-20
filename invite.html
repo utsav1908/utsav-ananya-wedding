@@ -384,77 +384,54 @@
   /* ===================== VENUE SECTION (removed) ===================== */
 
   /* ===================== COUNTDOWN ===================== */
-  /* ===================== SAVE THE DATE (index.html style) ===================== */
+  /* ===================== SAVE THE DATE (reception card) ===================== */
   .save-date-wrapper {
     display: inline-block;
-    padding: 24px 48px;
-    border: 1px solid rgba(212,175,55,0.4);
+    padding: 18px 32px;
+    border: 1px solid rgba(240,214,138,0.3);
     border-radius: 2px;
     position: relative;
-    background: rgba(245,236,216,0.6);
-    margin-top: 28px;
+    background: rgba(255,255,255,0.08);
+    margin-top: 20px;
     cursor: pointer;
     transition: all 0.3s ease;
+    text-decoration: none;
   }
   .save-date-wrapper:hover {
-    background: rgba(245,236,216,0.85);
-    border-color: var(--gold);
+    background: rgba(255,255,255,0.14);
+    border-color: var(--gold-light);
   }
   .save-date-wrapper::before,
   .save-date-wrapper::after {
     content: '';
     position: absolute;
-    width: 16px;
-    height: 16px;
-    border-color: var(--gold);
+    width: 12px;
+    height: 12px;
+    border-color: var(--gold-light);
     border-style: solid;
   }
   .save-date-wrapper::before {
     top: -1px; left: -1px;
-    border-width: 2px 0 0 2px;
+    border-width: 1.5px 0 0 1.5px;
   }
   .save-date-wrapper::after {
     bottom: -1px; right: -1px;
-    border-width: 0 2px 2px 0;
+    border-width: 0 1.5px 1.5px 0;
   }
   .save-date-label {
     font-family: 'Playfair Display', serif;
     text-transform: uppercase;
-    letter-spacing: 6px;
-    font-size: 12px;
-    color: var(--gold-dark);
-    margin-bottom: 10px;
-    display: block;
-  }
-  .save-date-separator {
-    width: 50px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    margin: 0 auto 10px;
-  }
-  .save-date-value {
-    font-family: 'Cormorant Garamond', serif;
     letter-spacing: 4px;
-    color: var(--maroon);
-    font-size: clamp(1.1rem, 3vw, 1.5rem);
-    font-weight: 600;
-  }
-  .save-date-venue {
+    font-size: 11px;
+    color: var(--gold-light);
     display: block;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 12px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--maroon-light);
-    margin-top: 8px;
-    opacity: 0.6;
   }
   .save-date-wrapper .cal-icon {
-    width: 14px; height: 14px;
-    fill: var(--gold-dark);
+    width: 13px; height: 13px;
+    fill: var(--gold-light);
     vertical-align: -2px;
     margin-right: 4px;
-    opacity: 0.7;
+    opacity: 0.8;
   }
 
   .countdown-section {
@@ -616,12 +593,8 @@
     object-fit: cover;
     object-position: center 30%;
     z-index: 0;
-    animation: kenBurns 18s ease-in-out infinite alternate;
+    transform-origin: center center;
     will-change: transform;
-  }
-  @keyframes kenBurns {
-    0% { transform: scale(1) translate(0, 0); }
-    100% { transform: scale(1.12) translate(-1.5%, -1%); }
   }
   .photo-splash-overlay {
     position: absolute;
@@ -1053,6 +1026,9 @@
     <div class="event-time">7:30 PM onwards</div>
     <div class="event-venue-line">Grand Lumbini Convention, Bhubaneswar</div>
     <a href="https://maps.google.com/?q=Grand+Lumbini+Convention+Chandrasekharpur+Bhubaneswar+751021" target="_blank" rel="noopener" class="map-btn" style="margin-top: 18px;">Get Directions</a>
+    <div class="save-date-wrapper" id="saveTheDate">
+      <span class="save-date-label"><svg class="cal-icon" viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/></svg> Save the Date</span>
+    </div>
   </div>
 
 </section>
@@ -1086,7 +1062,7 @@
   <div class="gallery-quote reveal">— Every love story is beautiful, but ours is my favourite —</div>
 </section>
 
-<!-- ==================== COUNTDOWN + SAVE THE DATE ==================== -->
+<!-- ==================== COUNTDOWN ==================== -->
 <section class="countdown-section">
   <div class="section-heading reveal">Counting Down To</div>
   <div class="countdown-grid reveal reveal-delay-1">
@@ -1106,12 +1082,6 @@
       <div class="countdown-number" id="cd-secs">--</div>
       <div class="countdown-unit">Secs</div>
     </div>
-  </div>
-  <div class="save-date-wrapper reveal reveal-delay-2" id="saveTheDate">
-    <span class="save-date-label"><svg class="cal-icon" viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/></svg> Save the Date</span>
-    <div class="save-date-separator"></div>
-    <div class="save-date-value">JUNE 19, 2026</div>
-    <span class="save-date-venue">Bhubaneswar, Odisha</span>
   </div>
 </section>
 
@@ -1200,10 +1170,11 @@
   setInterval(update, 1000);
 })();
 
-// ===================== PHOTO SPLASH PARALLAX =====================
+// ===================== PHOTO SPLASH SCROLL ZOOM (like index.html) =====================
 (function() {
   var splash = document.getElementById('photoSplash');
   if (!splash) return;
+  var img = splash.querySelector('.photo-splash-img');
   var text = splash.querySelector('.photo-splash-text');
   var overlay = splash.querySelector('.photo-splash-overlay');
   var hint = splash.querySelector('.splash-scroll-hint');
@@ -1213,6 +1184,11 @@
     var y = window.scrollY;
     if (y > h) return;
     var progress = y / h; // 0 to 1
+    // Image zooms in as you scroll (like index.html)
+    if (img) {
+      var scale = 1 + progress * 0.35;
+      img.style.transform = 'scale(' + scale + ')';
+    }
     // Text rises and fades
     if (text) {
       text.style.transform = 'translateY(' + (-y * 0.4) + 'px)';
@@ -1300,10 +1276,10 @@
 
   btn.addEventListener('click', function(e) {
     e.preventDefault();
-    var title = 'Utsav & Ananya Wedding';
-    var start = '2026-06-19T19:00:00+05:30';
-    var end   = '2026-06-20T06:00:00+05:30';
-    var loc   = 'Kokila Resort, Bhubaneswar';
+    var title = 'Utsav & Ananya Reception';
+    var start = '2026-06-21T19:30:00+05:30';
+    var end   = '2026-06-22T00:00:00+05:30';
+    var loc   = 'Grand Lumbini Convention, Bhubaneswar';
 
     if (isAndroid) {
       var params = new URLSearchParams({
@@ -1311,12 +1287,12 @@
         text: title,
         dates: fmtICS(start) + '/' + fmtICS(end),
         location: loc,
-        details: 'Wedding Ceremony of Utsav & Ananya. Mangalkrutya & Baranugaman at 7:00 PM.'
+        details: 'Reception of Utsav & Ananya. 7:30 PM onwards at Grand Lumbini Convention.'
       });
       window.location.href = 'https://calendar.google.com/calendar/render?' + params.toString();
     } else {
       var ics = generateICS(title, start, end, loc);
-      downloadICS('utsav_ananya_wedding.ics', ics);
+      downloadICS('utsav_ananya_reception.ics', ics);
     }
   });
 })();
