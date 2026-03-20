@@ -88,9 +88,7 @@
     text-align: center;
     padding: 60px 24px 50px;
     position: relative;
-    background:
-      linear-gradient(180deg, rgba(255,251,240,0.92) 0%, rgba(245,236,216,0.95) 50%, rgba(255,251,240,0.92) 100%),
-      url('hero.jpg') center center / cover no-repeat;
+    background: linear-gradient(180deg, rgba(255,251,240,0.92) 0%, rgba(245,236,216,0.95) 50%, rgba(255,251,240,0.92) 100%);
   }
 
   .hero-border {
@@ -386,46 +384,77 @@
   /* ===================== VENUE SECTION (removed) ===================== */
 
   /* ===================== COUNTDOWN ===================== */
-  /* ===================== SAVE THE DATE (inside countdown) ===================== */
-  .save-date-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    font-family: 'Playfair Display', serif;
-    font-size: 15px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--white);
-    background: linear-gradient(135deg, var(--maroon) 0%, #5C0015 50%, var(--maroon) 100%);
-    border: 1.5px solid var(--gold);
-    border-radius: 50px;
-    padding: 16px 36px;
-    text-decoration: none;
-    box-shadow: 0 6px 24px rgba(139,0,0,0.2), inset 0 1px 0 rgba(212,175,55,0.15);
-    transition: all 0.3s ease;
+  /* ===================== SAVE THE DATE (index.html style) ===================== */
+  .save-date-wrapper {
+    display: inline-block;
+    padding: 24px 48px;
+    border: 1px solid rgba(212,175,55,0.4);
+    border-radius: 2px;
     position: relative;
-    overflow: hidden;
+    background: rgba(245,236,216,0.6);
+    margin-top: 28px;
+    cursor: pointer;
+    transition: all 0.3s ease;
   }
-  .save-date-btn::before {
+  .save-date-wrapper:hover {
+    background: rgba(245,236,216,0.85);
+    border-color: var(--gold);
+  }
+  .save-date-wrapper::before,
+  .save-date-wrapper::after {
     content: '';
     position: absolute;
-    inset: 3px;
-    border: 1px solid rgba(212,175,55,0.2);
-    border-radius: 50px;
-    pointer-events: none;
+    width: 16px;
+    height: 16px;
+    border-color: var(--gold);
+    border-style: solid;
   }
-  .save-date-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 32px rgba(139,0,0,0.3);
+  .save-date-wrapper::before {
+    top: -1px; left: -1px;
+    border-width: 2px 0 0 2px;
   }
-  .save-date-btn svg {
-    width: 18px; height: 18px;
-    fill: var(--gold-light);
-    flex-shrink: 0;
+  .save-date-wrapper::after {
+    bottom: -1px; right: -1px;
+    border-width: 0 2px 2px 0;
   }
-
-  .countdown-section .save-date-btn {
-    margin-top: 24px;
+  .save-date-label {
+    font-family: 'Playfair Display', serif;
+    text-transform: uppercase;
+    letter-spacing: 6px;
+    font-size: 12px;
+    color: var(--gold-dark);
+    margin-bottom: 10px;
+    display: block;
+  }
+  .save-date-separator {
+    width: 50px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto 10px;
+  }
+  .save-date-value {
+    font-family: 'Cormorant Garamond', serif;
+    letter-spacing: 4px;
+    color: var(--maroon);
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
+    font-weight: 600;
+  }
+  .save-date-venue {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--maroon-light);
+    margin-top: 8px;
+    opacity: 0.6;
+  }
+  .save-date-wrapper .cal-icon {
+    width: 14px; height: 14px;
+    fill: var(--gold-dark);
+    vertical-align: -2px;
+    margin-right: 4px;
+    opacity: 0.7;
   }
 
   .countdown-section {
@@ -615,28 +644,19 @@
     0% { opacity: 0; transform: translateY(30px); }
     100% { opacity: 1; transform: translateY(0); }
   }
-  .splash-names {
+  .splash-monogram {
     font-family: 'Great Vibes', cursive;
-    font-size: clamp(42px, 11vw, 72px);
-    line-height: 1.2;
+    font-size: clamp(52px, 14vw, 90px);
+    line-height: 1;
     color: var(--white);
     text-shadow: 0 2px 20px rgba(0,0,0,0.4), 0 0 40px rgba(212,175,55,0.2);
+    letter-spacing: 6px;
   }
-  .splash-weds {
-    font-family: 'Playfair Display', serif;
-    font-size: 14px;
-    letter-spacing: 8px;
-    text-transform: uppercase;
+  .splash-monogram .splash-amp {
+    font-size: 0.6em;
     color: var(--gold-light);
-    margin: 8px 0;
-    text-shadow: 0 1px 8px rgba(0,0,0,0.4);
-  }
-  .splash-date {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 16px;
-    color: rgba(255,255,255,0.8);
-    margin-top: 12px;
-    letter-spacing: 3px;
+    margin: 0 8px;
+    vertical-align: baseline;
   }
   .splash-scroll-hint {
     position: absolute;
@@ -928,10 +948,7 @@
   <img src="hero.jpg" class="photo-splash-img" alt="Utsav & Ananya">
   <div class="photo-splash-overlay"></div>
   <div class="photo-splash-text">
-    <div class="splash-names">Utsav</div>
-    <div class="splash-weds">Weds</div>
-    <div class="splash-names">Ananya</div>
-    <div class="splash-date">19 · 06 · 2026</div>
+    <div class="splash-monogram">U <span class="splash-amp">&amp;</span> A</div>
   </div>
   <div class="splash-scroll-hint">
     <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
@@ -1090,10 +1107,12 @@
       <div class="countdown-unit">Secs</div>
     </div>
   </div>
-  <a class="save-date-btn reveal reveal-delay-2" id="saveTheDate" href="#" onclick="return false;">
-    <svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/><path d="M9.5 12h-2v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2z"/></svg>
-    Save the Date
-  </a>
+  <div class="save-date-wrapper reveal reveal-delay-2" id="saveTheDate">
+    <span class="save-date-label"><svg class="cal-icon" viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/></svg> Save the Date</span>
+    <div class="save-date-separator"></div>
+    <div class="save-date-value">JUNE 19, 2026</div>
+    <span class="save-date-venue">Bhubaneswar, Odisha</span>
+  </div>
 </section>
 
 <!-- ==================== BLESSING ==================== -->
@@ -1243,23 +1262,62 @@
   setInterval(spark, 600);
 })();
 
-// ===================== SAVE THE DATE =====================
+// ===================== SAVE THE DATE (ICS / Google Calendar) =====================
 (function() {
   var btn = document.getElementById('saveTheDate');
   if (!btn) return;
+  var isAndroid = /Android/i.test(navigator.userAgent);
+
+  function fmtICS(d) {
+    return new Date(d).toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
+  }
+
+  function generateICS(title, start, end, location) {
+    return [
+      'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//UtsavAnanyaWedding//EN',
+      'BEGIN:VEVENT',
+      'DTSTART:' + fmtICS(start),
+      'DTEND:' + fmtICS(end),
+      'SUMMARY:' + title,
+      'LOCATION:' + location,
+      'DESCRIPTION:Wedding Ceremony of Utsav & Ananya',
+      'STATUS:CONFIRMED',
+      'END:VEVENT','END:VCALENDAR'
+    ].join('\r\n');
+  }
+
+  function downloadICS(filename, content) {
+    var blob = new Blob([content], { type: 'text/calendar;charset=utf-8' });
+    var url = URL.createObjectURL(blob);
+    var link = document.createElement('a');
+    link.href = url;
+    link.download = filename;
+    link.style.display = 'none';
+    document.body.appendChild(link);
+    link.click();
+    setTimeout(function() { document.body.removeChild(link); URL.revokeObjectURL(url); }, 500);
+  }
+
   btn.addEventListener('click', function(e) {
     e.preventDefault();
-    var start = '20260619T133000Z'; // 7pm IST = 1:30pm UTC
-    var end = '20260620T003000Z';   // ~6am IST next day
-    var title = 'Utsav %26 Ananya Wedding';
-    var loc = 'Kokila Resort%2C Bhubaneswar';
-    var det = 'Wedding Ceremony of Utsav %26 Ananya. Mangalkrutya %26 Baranugaman at 7%3A00 PM.';
-    var url = 'https://calendar.google.com/calendar/render?action=TEMPLATE'
-      + '&text=' + title
-      + '&dates=' + start + '/' + end
-      + '&details=' + det
-      + '&location=' + loc;
-    window.open(url, '_blank', 'noopener');
+    var title = 'Utsav & Ananya Wedding';
+    var start = '2026-06-19T19:00:00+05:30';
+    var end   = '2026-06-20T06:00:00+05:30';
+    var loc   = 'Kokila Resort, Bhubaneswar';
+
+    if (isAndroid) {
+      var params = new URLSearchParams({
+        action: 'TEMPLATE',
+        text: title,
+        dates: fmtICS(start) + '/' + fmtICS(end),
+        location: loc,
+        details: 'Wedding Ceremony of Utsav & Ananya. Mangalkrutya & Baranugaman at 7:00 PM.'
+      });
+      window.location.href = 'https://calendar.google.com/calendar/render?' + params.toString();
+    } else {
+      var ics = generateICS(title, start, end, loc);
+      downloadICS('utsav_ananya_wedding.ics', ics);
+    }
   });
 })();
 
