@@ -58,71 +58,6 @@
     top: 0;
   }
 
-  /* ===================== FLOATING NAVIGATION ===================== */
-  .floating-nav {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    background: rgba(27, 77, 126, 0.95);
-    backdrop-filter: blur(10px);
-    border: 1.5px solid rgba(212, 175, 55, 0.4);
-    border-radius: 60px;
-    padding: 12px 20px;
-    z-index: 8000;
-    display: flex;
-    gap: 8px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    animation: navSlideIn 0.5s ease-out;
-  }
-  .floating-nav a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    color: var(--gold);
-    text-decoration: none;
-    transition: all 0.3s ease;
-    font-size: 12px;
-    font-weight: 600;
-    border: 1px solid transparent;
-  }
-  .floating-nav a:hover, .floating-nav a:focus {
-    background: rgba(212, 175, 55, 0.2);
-    border-color: var(--gold);
-    outline: none;
-  }
-  @keyframes navSlideIn {
-    from { transform: translateY(100px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-  }
-  @media (max-width: 768px) {
-    .floating-nav {
-      bottom: 20px;
-      right: 20px;
-      padding: 10px 14px;
-    }
-    .floating-nav a {
-      width: 32px;
-      height: 32px;
-      font-size: 11px;
-    }
-  }
-  @media (max-width: 480px) {
-    .floating-nav {
-      bottom: 15px;
-      right: 15px;
-      padding: 8px 10px;
-      gap: 4px;
-    }
-    .floating-nav a {
-      width: 28px;
-      height: 28px;
-      font-size: 9px;
-    }
-  }
-
   body {
     font-family: 'Cormorant Garamond', serif;
     background-color: var(--cream);
@@ -730,7 +665,7 @@
     position: fixed;
     bottom: 20px;
     right: 20px;
-    z-index: 1000;
+    z-index: 999;
     width: 48px; height: 48px;
     border-radius: 50%;
     border: 2px solid var(--gold);
@@ -1420,15 +1355,6 @@
 <!-- FLOATING PETALS -->
 <canvas id="petal-canvas" aria-hidden="true"></canvas>
 
-<!-- ==================== FLOATING NAVIGATION ==================== -->
-<nav class="floating-nav" role="navigation" aria-label="Quick navigation menu">
-  <a href="#photoSplash" title="Go to hero section" aria-label="Navigate to hero image">Home</a>
-  <a href=".hero" title="Go to invitation" aria-label="Navigate to invitation card">Card</a>
-  <a href="#eventsSection" title="Go to events" aria-label="Navigate to ceremony and events">Events</a>
-  <a href="#polaroidLightbox" title="Go to gallery" aria-label="Navigate to photo gallery">Gallery</a>
-  <a href="#countdownSection" title="Go to countdown" aria-label="Navigate to countdown timer">Count</a>
-</nav>
-
 <!-- ==================== STICKY HEADER ==================== -->
 <div class="sticky-header" id="stickyHeader">
   <div class="sticky-header-names">
@@ -1440,17 +1366,9 @@
 
 <!-- ==================== HERO IMAGE (index.html style) ==================== -->
 <section class="photo-splash" id="photoSplash">
-  <picture>
-    <source srcset="jgtemp.webp" type="image/webp">
-    <source srcset="jgtemp.png" type="image/png">
-    <img src="jgtemp.png" class="hero-image-spacer" alt="">
-  </picture>
+  <img src="jgtemp.png" class="hero-image-spacer" alt="">
   <div class="hero-image-wrapper">
-    <picture>
-      <source srcset="jgtemp.webp" type="image/webp">
-      <source srcset="jgtemp.png" type="image/png">
-      <img src="jgtemp.png" class="hero-image" alt="Utsav & Ananya" loading="lazy">
-    </picture>
+    <img src="jgtemp.png" class="hero-image" alt="Utsav & Ananya" loading="eager">
     <div class="hero-overlay"></div>
     <div class="hero-vignette"></div>
   </div>
