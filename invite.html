@@ -50,18 +50,20 @@
     pointer-events: none; z-index: 9999; overflow: hidden;
   }
   .petal {
-    position: absolute; top: -60px;
+    position: absolute; top: -40px;
     width: 18px; height: 22px;
     opacity: 0;
+    will-change: transform, opacity;
     animation: petalFall linear infinite;
   }
   .petal svg { width: 100%; height: 100%; }
 
   @keyframes petalFall {
-    0%   { opacity: 0; transform: translateX(0) rotate(0deg); }
-    10%  { opacity: 0.7; }
-    90%  { opacity: 0.5; }
-    100% { opacity: 0; transform: translateX(80px) rotate(360deg); top: 105vh; }
+    0%   { opacity: 0; transform: translateY(0) translateX(0) rotate(0deg); }
+    5%   { opacity: 0.6; }
+    50%  { opacity: 0.55; transform: translateY(50vh) translateX(40px) rotate(180deg); }
+    85%  { opacity: 0.35; }
+    100% { opacity: 0; transform: translateY(110vh) translateX(70px) rotate(400deg); }
   }
 
   /* ===================== REVEAL ANIMATIONS ===================== */
@@ -672,6 +674,34 @@
     text-shadow: 0 0 25px rgba(212,175,55,0.4);
     z-index: 1;
   }
+  .entrance-btn {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    display: flex; justify-content: center;
+    z-index: 2;
+    transform: translateY(50%);
+  }
+  .entrance-btn button {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: var(--maroon);
+    border: 1.5px solid var(--gold);
+    border-radius: 50px;
+    padding: 14px 36px;
+    cursor: pointer;
+    opacity: 0;
+    animation: monogramReveal 0.8s ease 1.2s forwards;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3), inset 0 0 12px rgba(212,175,55,0.1);
+    transition: all 0.3s ease;
+  }
+  .entrance-btn button:hover {
+    background: var(--gold);
+    color: var(--maroon);
+  }
   @keyframes monogramReveal {
     0% { opacity: 0; transform: scale(0.7); }
     100% { opacity: 1; transform: scale(1); }
@@ -725,6 +755,9 @@
 <div class="entrance-overlay" id="entranceOverlay">
   <div class="entrance-half top">
     <div class="entrance-om">ॐ</div>
+  </div>
+  <div class="entrance-btn">
+    <button id="entranceBtn">Open Invitation</button>
   </div>
   <div class="entrance-half bottom">
     <div class="entrance-monogram">U &amp; A</div>
@@ -1002,6 +1035,7 @@
 // ===================== ENTRANCE OVERLAY =====================
 (function() {
   var overlay = document.getElementById('entranceOverlay');
+  var btn = document.getElementById('entranceBtn');
   if (!overlay) return;
   document.body.style.overflow = 'hidden';
   var opened = false;
@@ -1012,8 +1046,7 @@
     document.body.style.overflow = '';
     setTimeout(function() { overlay.remove(); }, 1600);
   }
-  setTimeout(open, 2400);
-  overlay.addEventListener('click', open);
+  if (btn) btn.addEventListener('click', open);
 })();
 
 // ===================== GOLD SPARKLES =====================
