@@ -387,51 +387,35 @@
   /* ===================== SAVE THE DATE (reception card) ===================== */
   .save-date-wrapper {
     display: inline-block;
-    padding: 18px 32px;
-    border: 1px solid rgba(240,214,138,0.3);
-    border-radius: 2px;
-    position: relative;
-    background: rgba(255,255,255,0.08);
+    padding: 14px 36px;
+    border: 1.5px solid var(--gold);
+    border-radius: 50px;
+    background: linear-gradient(135deg, var(--gold), #AA8C2C);
+    box-shadow: 0 2px 8px rgba(212,175,55,0.2);
     margin-top: 20px;
     cursor: pointer;
     transition: all 0.3s ease;
     text-decoration: none;
   }
-  .save-date-wrapper:hover {
-    background: rgba(255,255,255,0.14);
-    border-color: var(--gold-light);
-  }
-  .save-date-wrapper::before,
-  .save-date-wrapper::after {
-    content: '';
-    position: absolute;
-    width: 12px;
-    height: 12px;
-    border-color: var(--gold-light);
-    border-style: solid;
-  }
-  .save-date-wrapper::before {
-    top: -1px; left: -1px;
-    border-width: 1.5px 0 0 1.5px;
-  }
-  .save-date-wrapper::after {
-    bottom: -1px; right: -1px;
-    border-width: 0 1.5px 1.5px 0;
+  .save-date-wrapper:hover, .save-date-wrapper:active {
+    background: linear-gradient(135deg, var(--maroon), #5C0015);
+    border-color: var(--maroon);
+    box-shadow: 0 4px 16px rgba(139,0,0,0.3);
   }
   .save-date-label {
     font-family: 'Playfair Display', serif;
     text-transform: uppercase;
-    letter-spacing: 4px;
-    font-size: 11px;
-    color: var(--gold-light);
+    letter-spacing: 2px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--white);
     display: block;
   }
   .save-date-wrapper .cal-icon {
     width: 13px; height: 13px;
-    fill: var(--gold-light);
+    fill: var(--white);
     vertical-align: -2px;
     margin-right: 4px;
-    opacity: 0.8;
   }
 
   .countdown-section {
