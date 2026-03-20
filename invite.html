@@ -559,74 +559,195 @@
     100% { height: 16px; }
   }
 
-  /* ===================== HERO IMAGE ===================== */
+  /* ===================== HERO IMAGE (index.html style) ===================== */
   .photo-splash {
     position: relative;
     width: 100%;
-    height: 100vh; height: 100dvh;
+    background-color: #000;
+  }
+  .hero-image-spacer {
+    width: 100%;
+    height: auto;
+    display: block;
+    visibility: hidden;
+  }
+  .hero-image-wrapper {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
     overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-  }
-  .photo-splash-img {
-    position: absolute;
-    inset: 0;
-    width: 100%; height: 100%;
-    object-fit: cover;
-    object-position: center 30%;
-    z-index: 0;
-    transform-origin: center center;
-    will-change: transform;
-  }
-  .photo-splash-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg,
-      rgba(61,0,0,0.35) 0%,
-      rgba(0,0,0,0.15) 40%,
-      rgba(0,0,0,0.2) 60%,
-      rgba(61,0,0,0.55) 100%);
     z-index: 1;
   }
-  .photo-splash-text {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    color: var(--white);
-    animation: splashTextIn 1.8s ease-out 0.3s both;
+  .hero-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    opacity: 0.85;
+    transform-origin: top center;
   }
-  @keyframes splashTextIn {
-    0% { opacity: 0; transform: translateY(30px); }
-    100% { opacity: 1; transform: translateY(0); }
+  @media (max-width: 900px) {
+    .hero-image-spacer,
+    .hero-image {
+      width: 100%;
+      height: 180vh;
+      min-height: 180vh;
+      object-fit: cover;
+      object-position: 65% 30%;
+    }
   }
-  .splash-monogram {
-    font-family: 'Great Vibes', cursive;
-    font-size: clamp(52px, 14vw, 90px);
-    line-height: 1;
-    color: var(--white);
-    text-shadow: 0 2px 20px rgba(0,0,0,0.4), 0 0 40px rgba(212,175,55,0.2);
-    letter-spacing: 6px;
-  }
-  .splash-monogram .splash-amp {
-    font-size: 0.6em;
-    color: var(--gold-light);
-    margin: 0 8px;
-    vertical-align: baseline;
-  }
-  .splash-scroll-hint {
+  .hero-overlay {
     position: absolute;
-    bottom: 32px;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(
+      to bottom,
+      rgba(0,0,0,0.75) 0%,
+      rgba(0,0,0,0.15) 12%,
+      rgba(0,0,0,0.03) 40%,
+      rgba(0,0,0,0.03) 60%,
+      rgba(0,0,0,0.15) 85%,
+      rgba(0,0,0,0.85) 100%
+    );
+    z-index: 2;
+    pointer-events: none;
+  }
+  .hero-vignette {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 3;
+    pointer-events: none;
+    box-shadow: inset 0 0 150px rgba(0,0,0,0.5);
+  }
+  .sticky-container {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 6;
+    pointer-events: none;
+  }
+  .names-block {
+    position: sticky;
+    top: 14vh;
+    text-align: center;
+    width: 100%;
+    padding: 0 20px;
+  }
+  .hero-names {
+    font-family: 'Playfair Display', serif;
+    text-transform: uppercase;
+    font-size: clamp(3rem, 10vw, 5.5rem);
+    font-weight: 700;
+    line-height: 1;
+    color: #ffffff;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.8);
+  }
+  .hero-weds {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(2.2rem, 6vw, 3.5rem);
+    color: var(--gold-light);
+    margin: 10px 0;
+    text-shadow: 0 2px 15px rgba(0,0,0,0.8);
+  }
+  .bottom-date {
+    position: absolute;
+    bottom: 10%;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 2;
-    animation: scrollBounce 2s ease-in-out infinite;
+    width: 100%;
+    z-index: 5;
+    text-align: center;
+    padding: 0 20px;
+  }
+  .splash-save-date {
+    display: inline-block;
+    padding: 24px 48px;
+    border: 1px solid rgba(184, 134, 69, 0.5);
+    border-radius: 2px;
+    position: relative;
+    backdrop-filter: blur(4px);
+    background: rgba(0, 0, 0, 0.25);
+  }
+  .splash-save-date::before,
+  .splash-save-date::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-color: var(--gold);
+    border-style: solid;
+  }
+  .splash-save-date::before {
+    top: -1px; left: -1px;
+    border-width: 2px 0 0 2px;
+  }
+  .splash-save-date::after {
+    bottom: -1px; right: -1px;
+    border-width: 0 2px 2px 0;
+  }
+  .splash-save-label {
+    font-family: 'Playfair Display', serif;
+    text-transform: uppercase;
+    letter-spacing: 6px;
+    font-size: clamp(0.85rem, 2.5vw, 1.2rem);
+    color: var(--gold);
+    text-shadow: 0 2px 10px rgba(0,0,0,0.9);
+    margin-bottom: 10px;
+    display: block;
+  }
+  .splash-date-sep {
+    width: 50px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto 10px;
+  }
+  .splash-date-value {
+    font-family: 'Cormorant Garamond', serif;
+    letter-spacing: 4px;
+    color: #fff;
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
+    font-weight: 300;
+    text-shadow: 0 2px 15px rgba(0,0,0,0.9);
+  }
+  .splash-date-venue {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(0.65rem, 1.5vw, 0.8rem);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 8px;
+  }
+  .scroll-indicator {
+    position: absolute;
+    bottom: 3%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
     opacity: 0.7;
   }
-  .splash-scroll-hint svg {
-    width: 24px; height: 24px;
-    stroke: var(--gold-light);
+  .scroll-indicator span {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.6rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    animation: gentlePulse 3s ease-in-out infinite;
+  }
+  .scroll-arrow {
+    width: 20px;
+    height: 20px;
+    border-right: 1.5px solid rgba(255,255,255,0.4);
+    border-bottom: 1.5px solid rgba(255,255,255,0.4);
+    transform: rotate(45deg);
+    animation: scrollBounce 2s ease-in-out infinite;
+  }
+  @keyframes gentlePulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+  }
+  @media (max-width: 900px) {
+    .names-block { top: 12vh; }
   }
 
   /* ===================== GALLERY ===================== */
@@ -901,15 +1022,35 @@
 <!-- FLOATING ROSE PETALS -->
 <div class="petals-container" id="petals"></div>
 
-<!-- ==================== PHOTO SPLASH ==================== -->
+<!-- ==================== HERO IMAGE (index.html style) ==================== -->
 <section class="photo-splash" id="photoSplash">
-  <img src="hero.jpg" class="photo-splash-img" alt="Utsav & Ananya">
-  <div class="photo-splash-overlay"></div>
-  <div class="photo-splash-text">
-    <div class="splash-monogram">U <span class="splash-amp">&amp;</span> A</div>
+  <img src="hero.jpg" class="hero-image-spacer" alt="">
+  <div class="hero-image-wrapper">
+    <img src="hero.jpg" class="hero-image" alt="Utsav & Ananya" loading="eager">
+    <div class="hero-overlay"></div>
+    <div class="hero-vignette"></div>
   </div>
-  <div class="splash-scroll-hint">
-    <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+
+  <div class="sticky-container">
+    <div class="names-block">
+      <div class="hero-names">Utsav</div>
+      <div class="hero-weds">Weds</div>
+      <div class="hero-names">Ananya</div>
+    </div>
+  </div>
+
+  <div class="bottom-date">
+    <div class="splash-save-date">
+      <span class="splash-save-label">Save the Date</span>
+      <div class="splash-date-sep"></div>
+      <div class="splash-date-value">JUNE 19, 2026</div>
+      <span class="splash-date-venue">Bhubaneswar, Odisha</span>
+    </div>
+  </div>
+
+  <div class="scroll-indicator" id="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-arrow"></div>
   </div>
 </section>
 
@@ -1155,37 +1296,60 @@
   setInterval(update, 1000);
 })();
 
-// ===================== PHOTO SPLASH SCROLL ZOOM (like index.html) =====================
+// ===================== HERO SCROLL ZOOM & PARALLAX =====================
 (function() {
   var splash = document.getElementById('photoSplash');
   if (!splash) return;
-  var img = splash.querySelector('.photo-splash-img');
-  var text = splash.querySelector('.photo-splash-text');
-  var overlay = splash.querySelector('.photo-splash-overlay');
-  var hint = splash.querySelector('.splash-scroll-hint');
-  var h = splash.offsetHeight;
+  var img = splash.querySelector('.hero-image');
+  var namesBlock = splash.querySelector('.names-block');
+  var bottomDate = splash.querySelector('.bottom-date');
+  var hint = document.getElementById('scroll-hint');
+  var splashTop = splash.offsetTop;
+  var splashH = splash.offsetHeight;
+  var isMobile = window.innerWidth <= 900;
+  var maxScale = isMobile ? 1.6 : 1.25;
+
+  // Animate save-date in on load
+  if (bottomDate) {
+    bottomDate.style.opacity = '0';
+    bottomDate.style.transform = 'translateX(-50%) translateY(30px)';
+    bottomDate.style.transition = 'opacity 1.2s ease, transform 1.2s ease';
+  }
 
   window.addEventListener('scroll', function() {
-    var y = window.scrollY;
-    if (y > h) return;
-    var progress = y / h; // 0 to 1
-    // Image zooms in as you scroll (like index.html)
+    var scrollY = window.scrollY;
+    var relY = scrollY - splashTop;
+    if (relY < 0) relY = 0;
+    if (relY > splashH) return;
+    var progress = relY / splashH; // 0 to 1
+
+    // Image zooms as you scroll
     if (img) {
-      var scale = 1 + progress * 0.35;
+      var scale = 1 + progress * (maxScale - 1);
       img.style.transform = 'scale(' + scale + ')';
     }
-    // Text rises and fades
-    if (text) {
-      text.style.transform = 'translateY(' + (-y * 0.4) + 'px)';
-      text.style.opacity = Math.max(0, 1 - progress * 1.8);
+
+    // Names fade out and rise as you scroll down
+    if (namesBlock) {
+      var namesFade = Math.max(0, 1 - progress * 2.5);
+      namesBlock.style.opacity = namesFade;
+      namesBlock.style.transform = 'translateY(' + (-progress * 50) + 'px)';
     }
-    // Overlay darkens as you scroll
-    if (overlay) {
-      overlay.style.background = 'rgba(0,0,0,' + (0.15 + progress * 0.5) + ')';
+
+    // Save-date fades in after 30% scroll
+    if (bottomDate) {
+      if (progress > 0.3) {
+        bottomDate.style.opacity = '1';
+        bottomDate.style.transform = 'translateX(-50%) translateY(0)';
+      } else {
+        bottomDate.style.opacity = '0';
+        bottomDate.style.transform = 'translateX(-50%) translateY(30px)';
+      }
     }
-    // Hint fades
-    if (hint && progress > 0.1) {
-      hint.style.opacity = Math.max(0, 1 - progress * 3);
+
+    // Scroll indicator fades out early
+    if (hint) {
+      hint.style.opacity = Math.max(0, 0.7 - progress * 3);
     }
   }, { passive: true });
 })();
