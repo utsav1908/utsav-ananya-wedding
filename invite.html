@@ -1492,6 +1492,72 @@
     fill: var(--gold);
     filter: drop-shadow(0 0 3px rgba(212,175,55,0.6));
   }
+
+  /* ===================== LANGUAGE SWITCHER ===================== */
+  .lang-switcher {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+  .lang-switcher.open .lang-options { display: flex; }
+  .lang-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--gold);
+    background: rgba(251, 248, 243, 0.92);
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Noto Sans Devanagari', 'Playfair Display', serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 0.5px;
+    transition: 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  }
+  .lang-btn:hover { background: var(--gold); color: #fff; transform: scale(1.1); }
+  .lang-btn.active { background: var(--gold); color: #fff; }
+  .lang-options {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .lang-options .lang-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 0.65rem;
+  }
+
+  /* Entrance overlay language buttons */
+  .entrance-lang-btns {
+    display: flex;
+    gap: 10px;
+    margin-top: 18px;
+    justify-content: center;
+  }
+  .entrance-lang-btns .lang-btn {
+    width: 38px;
+    height: 38px;
+    font-size: 0.6rem;
+    border-color: var(--gold-light);
+    background: rgba(109, 46, 70, 0.6);
+    color: var(--gold-light);
+  }
+  .entrance-lang-btns .lang-btn:hover,
+  .entrance-lang-btns .lang-btn.active {
+    background: var(--gold);
+    color: #fff;
+    border-color: var(--gold);
+  }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
@@ -1505,7 +1571,13 @@
     <div class="entrance-om">ॐ</div>
   </div>
   <div class="entrance-btn">
-    <button id="entranceBtn" aria-label="Open invitation - split screen animation">Open Invitation</button>
+    <button id="entranceBtn" aria-label="Open invitation - split screen animation" data-i18n="open_invitation">Open Invitation</button>
+    <div class="entrance-lang-btns">
+      <button class="lang-btn active" data-lang="en" title="English">EN</button>
+      <button class="lang-btn" data-lang="hi" title="हिन्दी">हिं</button>
+      <button class="lang-btn" data-lang="bn" title="বাংলা">বাং</button>
+      <button class="lang-btn" data-lang="or" title="ଓଡ଼ିଆ">ଓଡ଼ି</button>
+    </div>
   </div>
   <div class="entrance-half bottom">
     <div class="entrance-monogram">U &amp; A</div>
@@ -1565,7 +1637,7 @@
   </div>
 
   <div class="scroll-indicator" id="scroll-hint">
-    <span>Scroll</span>
+    <span data-i18n="scroll">Scroll</span>
     <div class="scroll-arrow"></div>
   </div>
 </section>
@@ -1602,8 +1674,8 @@
     </div>
 
     <div class="reveal reveal-delay-2">
-      <div class="hero-hosts">Smt. Shrabani Gan &amp; Sri Sandip Gan</div>
-      <div class="hero-invite-line">
+      <div class="hero-hosts" data-i18n="hero_hosts">Smt. Shrabani Gan &amp; Sri Sandip Gan</div>
+      <div class="hero-invite-line" data-i18n="hero_invite_line">
         cordially invite your presence with family<br>
         on the auspicious occasion of the wedding of their nephew
       </div>
@@ -1614,7 +1686,7 @@
     <div class="reveal reveal-delay-3">
       <div class="groom-name">Utsav</div>
       <div class="nickname">(Sipu)</div>
-      <div class="parent-line">Son of <strong>Smt. Uma Gan &amp; Sri Sanjaya Gan</strong></div>
+      <div class="parent-line" data-i18n="son_of">Son of <strong>Smt. Uma Gan &amp; Sri Sanjaya Gan</strong></div>
     </div>
 
     <div class="ampersand reveal reveal-delay-3">&amp;</div>
@@ -1622,7 +1694,7 @@
     <div class="reveal reveal-delay-4">
       <div class="bride-name">Ananya</div>
       <div class="nickname">(Komal)</div>
-      <div class="parent-line">Daughter of <strong>Smt. Sujaya Chand &amp; Sri Satyaranjan Chand</strong></div>
+      <div class="parent-line" data-i18n="daughter_of">Daughter of <strong>Smt. Sujaya Chand &amp; Sri Satyaranjan Chand</strong></div>
     </div>
   </div>
   </div>
@@ -1640,21 +1712,21 @@
 <!-- ==================== EVENTS ==================== -->
 <section class="events-section" id="eventsSection">
 
-  <div class="section-heading reveal">Ceremony &amp; Celebration</div>
+  <div class="section-heading reveal" data-i18n="ceremony_celebration">Ceremony &amp; Celebration</div>
 
   <div class="event-card wedding reveal">
     <svg class="event-corner tl" viewBox="0 0 24 24"><path d="M2,22 L2,8 Q2,2 8,2 L22,2" stroke="#D4AF37" stroke-width="1.5" fill="none"/><circle cx="4" cy="4" r="1.5" fill="#D4AF37"/></svg>
     <svg class="event-corner tr" viewBox="0 0 24 24"><path d="M2,22 L2,8 Q2,2 8,2 L22,2" stroke="#D4AF37" stroke-width="1.5" fill="none"/><circle cx="4" cy="4" r="1.5" fill="#D4AF37"/></svg>
     <svg class="event-corner bl" viewBox="0 0 24 24"><path d="M2,22 L2,8 Q2,2 8,2 L22,2" stroke="#D4AF37" stroke-width="1.5" fill="none"/><circle cx="4" cy="4" r="1.5" fill="#D4AF37"/></svg>
     <svg class="event-corner br" viewBox="0 0 24 24"><path d="M2,22 L2,8 Q2,2 8,2 L22,2" stroke="#D4AF37" stroke-width="1.5" fill="none"/><circle cx="4" cy="4" r="1.5" fill="#D4AF37"/></svg>
-    <div class="event-label">Wedding Ceremony</div>
-    <div class="event-title">Shubh Vivah</div>
-    <div class="event-date-text">Friday, 19th June 2026</div>
-    <div class="event-time">
+    <div class="event-label" data-i18n="wedding_label">Wedding Ceremony</div>
+    <div class="event-title" data-i18n="wedding_title">Shubh Vivah</div>
+    <div class="event-date-text" data-i18n="wedding_date">Friday, 19th June 2026</div>
+    <div class="event-time" data-i18n="wedding_time">
       Mangalkrutya &amp; Baranugaman – 7:00 PM<br>
       Wedding &amp; Panigrahana Ceremony – Night
     </div>
-    <div class="event-venue-line">Kokila Resort, Bhubaneswar</div>
+    <div class="event-venue-line" data-i18n="wedding_venue">Kokila Resort, Bhubaneswar</div>
   </div>
 
   <div class="ornate-divider reveal">
@@ -1673,14 +1745,14 @@
     <svg class="event-corner tr" viewBox="0 0 24 24"><path d="M2,22 L2,8 Q2,2 8,2 L22,2" stroke="#F0D68A" stroke-width="1.5" fill="none"/><circle cx="4" cy="4" r="1.5" fill="#F0D68A"/></svg>
     <svg class="event-corner bl" viewBox="0 0 24 24"><path d="M2,22 L2,8 Q2,2 8,2 L22,2" stroke="#F0D68A" stroke-width="1.5" fill="none"/><circle cx="4" cy="4" r="1.5" fill="#F0D68A"/></svg>
     <svg class="event-corner br" viewBox="0 0 24 24"><path d="M2,22 L2,8 Q2,2 8,2 L22,2" stroke="#F0D68A" stroke-width="1.5" fill="none"/><circle cx="4" cy="4" r="1.5" fill="#F0D68A"/></svg>
-    <div class="event-label">Join Us for the</div>
-    <div class="event-title">Reception</div>
-    <div class="event-date-text">Sunday, 21st June 2026</div>
-    <div class="event-time">7:30 PM onwards</div>
-    <div class="event-venue-line">Grand Lumbini Convention, Bhubaneswar</div>
-    <a href="https://maps.google.com/?q=Grand+Lumbini+Convention+Chandrasekharpur+Bhubaneswar+751021" target="_blank" rel="noopener" class="map-btn" style="margin-top: 18px;">Get Directions</a>
+    <div class="event-label" data-i18n="reception_label">Join Us for the</div>
+    <div class="event-title" data-i18n="reception_title">Reception</div>
+    <div class="event-date-text" data-i18n="reception_date">Sunday, 21st June 2026</div>
+    <div class="event-time" data-i18n="reception_time">7:30 PM onwards</div>
+    <div class="event-venue-line" data-i18n="reception_venue">Grand Lumbini Convention, Bhubaneswar</div>
+    <a href="https://maps.google.com/?q=Grand+Lumbini+Convention+Chandrasekharpur+Bhubaneswar+751021" target="_blank" rel="noopener" class="map-btn" style="margin-top: 18px;" data-i18n="get_directions">Get Directions</a>
     <div class="save-date-wrapper" id="saveTheDate">
-      <span class="save-date-label"><svg class="cal-icon" viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/></svg> Save the Date</span>
+      <span class="save-date-label" data-i18n="save_the_date"><svg class="cal-icon" viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/></svg> Save the Date</span>
     </div>
   </div>
 
@@ -1688,9 +1760,9 @@
 
 <!-- ==================== GALLERY ==================== -->
 <section class="gallery-section">
-  <div class="section-heading reveal">Our Moments</div>
-  <div class="gallery-subtitle reveal reveal-delay-1">Memories</div>
-  <div class="gallery-description reveal reveal-delay-1">A glimpse into our journey together.</div>
+  <div class="section-heading reveal" data-i18n="our_moments">Our Moments</div>
+  <div class="gallery-subtitle reveal reveal-delay-1" data-i18n="memories">Memories</div>
+  <div class="gallery-description reveal reveal-delay-1" data-i18n="gallery_desc">A glimpse into our journey together.</div>
   
   <!-- PEACOCK MOTIF ON GALLERY BACKGROUND -->
   <svg class="peacock-motif lg" style="top: -60px; right: -80px;" viewBox="0 0 200 200">
@@ -1723,7 +1795,7 @@
       <div class="caption">U &amp; A</div>
     </div>
   </div>
-  <div class="gallery-scroll-hint reveal"><span>swipe &rarr;</span></div>
+  <div class="gallery-scroll-hint reveal"><span data-i18n="swipe_hint">swipe &rarr;</span></div>
 </section>
 
 <!-- LIGHTBOX -->
@@ -1743,23 +1815,23 @@
   <svg class="gold-star" style="bottom: 30px; left: 40px; width: 18px; height: 18px;" viewBox="0 0 24 24"><polygon points="12,2 15.09,10.26 24,10.26 17.55,15.74 20.64,24 12,19.52 3.36,24 6.45,15.74 0,10.26 8.91,10.26"/></svg>
   <svg class="gold-star" style="bottom: 40px; right: 50px; width: 22px; height: 22px;" viewBox="0 0 24 24"><polygon points="12,2 15.09,10.26 24,10.26 17.55,15.74 20.64,24 12,19.52 3.36,24 6.45,15.74 0,10.26 8.91,10.26"/></svg>
   
-  <div class="section-heading reveal">Counting Down To</div>
+  <div class="section-heading reveal" data-i18n="counting_down">Counting Down To</div>
   <div class="countdown-grid reveal reveal-delay-1">
     <div class="countdown-item">
       <div class="countdown-number" id="cd-days">--</div>
-      <div class="countdown-unit">Days</div>
+      <div class="countdown-unit" data-i18n="days">Days</div>
     </div>
     <div class="countdown-item">
       <div class="countdown-number" id="cd-hours">--</div>
-      <div class="countdown-unit">Hours</div>
+      <div class="countdown-unit" data-i18n="hours">Hours</div>
     </div>
     <div class="countdown-item">
       <div class="countdown-number" id="cd-mins">--</div>
-      <div class="countdown-unit">Mins</div>
+      <div class="countdown-unit" data-i18n="mins">Mins</div>
     </div>
     <div class="countdown-item">
       <div class="countdown-number" id="cd-secs">--</div>
-      <div class="countdown-unit">Secs</div>
+      <div class="countdown-unit" data-i18n="secs">Secs</div>
     </div>
   </div>
   <!-- MANDALAS ON COUNTDOWN -->
@@ -1797,7 +1869,7 @@
       <svg width="30" height="30" viewBox="0 0 50 50"><ellipse cx="25" cy="38" rx="12" ry="6" fill="#C9A84C" opacity="0.4"/><path d="M18,38 Q18,22 25,10 Q32,22 32,38Z" fill="#C9A84C" opacity="0.25"/><ellipse cx="25" cy="10" rx="4" ry="7" fill="#C9A84C" opacity="0.5"/><ellipse cx="25" cy="8" rx="2" ry="4" fill="#C9A84C" opacity="0.7"/></svg>
       <svg width="30" height="30" viewBox="0 0 50 50"><ellipse cx="25" cy="38" rx="12" ry="6" fill="#C9A84C" opacity="0.4"/><path d="M18,38 Q18,22 25,10 Q32,22 32,38Z" fill="#C9A84C" opacity="0.25"/><ellipse cx="25" cy="10" rx="4" ry="7" fill="#C9A84C" opacity="0.5"/><ellipse cx="25" cy="8" rx="2" ry="4" fill="#C9A84C" opacity="0.7"/></svg>
     </div>
-    <div class="blessing-text">
+    <div class="blessing-text" data-i18n="blessing_text">
       Kindly grace the occasion<br>and bless the newlyweds.
     </div>
     <svg class="lotus-graphic" width="80" height="28" viewBox="0 0 120 50">
@@ -1810,14 +1882,25 @@
     <div class="whatsapp-rsvp">
       <a href="https://wa.me/919853967471?text=Hi%20Utsav%20and%20Ananya,%20I%20would%20like%20to%20attend%20the%20reception!" target="_blank" rel="noopener noreferrer" aria-label="Confirm attendance via WhatsApp">
         <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-5.031 1.378l-.361.214-3.741-.982.998 3.645-.235.374a9.86 9.86 0 001.51 5.169c.987 1.413 2.318 2.605 3.807 3.355 1.49.75 3.079 1.145 4.692 1.145 1.217 0 2.42-.189 3.585-.559l.379-.125 3.85 1.009-1.02-3.738.188-.271a9.874 9.874 0 001.38-5.032c0-5.468-4.453-9.922-9.921-9.922"/></svg>
-        RSVP via WhatsApp
+        <span data-i18n="rsvp_whatsapp">RSVP via WhatsApp</span>
       </a>
     </div>
-    <div class="footer-note">With Love &amp; Blessings</div>
+    <div class="footer-note" data-i18n="footer_note">With Love &amp; Blessings</div>
   </div>
 </section>
 
 </div><!-- end footer-bg -->
+
+<!-- LANGUAGE SWITCHER -->
+<div class="lang-switcher" id="lang-switcher">
+  <div class="lang-options" id="lang-options">
+    <button class="lang-btn" data-lang="or" title="ଓଡ଼ିଆ">ଓଡ଼ି</button>
+    <button class="lang-btn" data-lang="bn" title="বাংলা">বাং</button>
+    <button class="lang-btn" data-lang="hi" title="हिन्दी">हिं</button>
+    <button class="lang-btn active" data-lang="en" title="English">EN</button>
+  </div>
+  <button class="lang-btn" id="lang-toggle" title="Change language">EN</button>
+</div>
 
 <!-- MUSIC -->
 <audio id="bgMusic" loop preload="auto">
@@ -2252,6 +2335,198 @@
 
   reveals.forEach(function(reveal) {
     observer.observe(reveal);
+  });
+})();
+
+// ===================== LANGUAGE SWITCHER =====================
+(function() {
+  const translations = {
+    en: {
+      open_invitation: 'Open Invitation',
+      scroll: 'Scroll',
+      hero_hosts: 'Smt. Shrabani Gan &amp; Sri Sandip Gan',
+      hero_invite_line: 'cordially invite your presence with family<br>on the auspicious occasion of the wedding of their nephew',
+      son_of: 'Son of <strong>Smt. Uma Gan &amp; Sri Sanjaya Gan</strong>',
+      daughter_of: 'Daughter of <strong>Smt. Sujaya Chand &amp; Sri Satyaranjan Chand</strong>',
+      ceremony_celebration: 'Ceremony &amp; Celebration',
+      wedding_label: 'Wedding Ceremony',
+      wedding_title: 'Shubh Vivah',
+      wedding_date: 'Friday, 19th June 2026',
+      wedding_time: 'Mangalkrutya &amp; Baranugaman – 7:00 PM<br>Wedding &amp; Panigrahana Ceremony – Night',
+      wedding_venue: 'Kokila Resort, Bhubaneswar',
+      reception_label: 'Join Us for the',
+      reception_title: 'Reception',
+      reception_date: 'Sunday, 21st June 2026',
+      reception_time: '7:30 PM onwards',
+      reception_venue: 'Grand Lumbini Convention, Bhubaneswar',
+      get_directions: 'Get Directions',
+      save_the_date: '<svg class="cal-icon" viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/></svg> Save the Date',
+      our_moments: 'Our Moments',
+      memories: 'Memories',
+      gallery_desc: 'A glimpse into our journey together.',
+      swipe_hint: 'swipe &rarr;',
+      counting_down: 'Counting Down To',
+      days: 'Days',
+      hours: 'Hours',
+      mins: 'Mins',
+      secs: 'Secs',
+      blessing_text: 'Kindly grace the occasion<br>and bless the newlyweds.',
+      rsvp_whatsapp: 'RSVP via WhatsApp',
+      footer_note: 'With Love &amp; Blessings'
+    },
+    hi: {
+      open_invitation: 'निमंत्रण खोलें',
+      scroll: 'स्क्रॉल करें',
+      hero_hosts: 'श्रीमती श्रावणी गण एवं श्री संदीप गण',
+      hero_invite_line: 'सपरिवार आपकी उपस्थिति का हार्दिक अनुरोध करते हैं<br>अपने भतीजे के विवाह के शुभ अवसर पर',
+      son_of: 'पुत्र — <strong>श्रीमती उमा गण एवं श्री संजय गण</strong>',
+      daughter_of: 'पुत्री — <strong>श्रीमती सुजया चंद एवं श्री सत्यरंजन चंद</strong>',
+      ceremony_celebration: 'समारोह एवं उत्सव',
+      wedding_label: 'विवाह संस्कार',
+      wedding_title: 'शुभ विवाह',
+      wedding_date: 'शुक्रवार, 19 जून 2026',
+      wedding_time: 'मंगलकृत्य एवं बरानुगमन – शाम 7:00 बजे<br>विवाह एवं पाणिग्रहण संस्कार – रात्रि',
+      wedding_venue: 'कोकिला रिसॉर्ट, भुवनेश्वर',
+      reception_label: 'आइए शामिल हों',
+      reception_title: 'स्वागत समारोह',
+      reception_date: 'रविवार, 21 जून 2026',
+      reception_time: 'शाम 7:30 बजे से',
+      reception_venue: 'ग्रैंड लुम्बिनी कन्वेंशन, भुवनेश्वर',
+      get_directions: 'दिशा-निर्देश',
+      save_the_date: '<svg class="cal-icon" viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/></svg> तिथि सुरक्षित करें',
+      our_moments: 'हमारे पल',
+      memories: 'यादें',
+      gallery_desc: 'हमारी साथ की यात्रा की एक झलक।',
+      swipe_hint: 'स्वाइप करें &rarr;',
+      counting_down: 'उलटी गिनती',
+      days: 'दिन',
+      hours: 'घंटे',
+      mins: 'मिनट',
+      secs: 'सेकंड',
+      blessing_text: 'कृपया इस शुभ अवसर पर पधारें<br>और नवदंपती को आशीर्वाद दें।',
+      rsvp_whatsapp: 'व्हाट्सएप पर RSVP करें',
+      footer_note: 'प्रेम और आशीर्वाद सहित'
+    },
+    bn: {
+      open_invitation: 'নিমন্ত্রণ খুলুন',
+      scroll: 'স্ক্রল করুন',
+      hero_hosts: 'শ্রীমতী শ্রাবণী গণ এবং শ্রী সন্দীপ গণ',
+      hero_invite_line: 'সপরিবারে আপনার উপস্থিতি হার্দিকভাবে কামনা করেন<br>তাঁদের ভাইপোর বিবাহের শুভ অনুষ্ঠানে',
+      son_of: 'পুত্র — <strong>শ্রীমতী উমা গণ এবং শ্রী সঞ্জয় গণ</strong>',
+      daughter_of: 'কন্যা — <strong>শ্রীমতী সুজয়া চন্দ এবং শ্রী সত্যরঞ্জন চন্দ</strong>',
+      ceremony_celebration: 'অনুষ্ঠান এবং উদ্‌যাপন',
+      wedding_label: 'বিবাহ অনুষ্ঠান',
+      wedding_title: 'শুভ বিবাহ',
+      wedding_date: 'শুক্রবার, ১৯ জুন ২০২৬',
+      wedding_time: 'মঙ্গলকৃত্য ও বরানুগমন – সন্ধ্যা ৭:০০টা<br>বিবাহ ও পাণিগ্রহণ অনুষ্ঠান – রাত্রি',
+      wedding_venue: 'কোকিলা রিসোর্ট, ভুবনেশ্বর',
+      reception_label: 'আমাদের সাথে যোগ দিন',
+      reception_title: 'সংবর্ধনা',
+      reception_date: 'রবিবার, ২১ জুন ২০২৬',
+      reception_time: 'সন্ধ্যা ৭:৩০ থেকে',
+      reception_venue: 'গ্র্যান্ড লুম্বিনী কনভেনশন, ভুবনেশ্বর',
+      get_directions: 'দিকনির্দেশনা',
+      save_the_date: '<svg class="cal-icon" viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/></svg> তারিখ সংরক্ষণ করুন',
+      our_moments: 'আমাদের মুহূর্ত',
+      memories: 'স্মৃতি',
+      gallery_desc: 'আমাদের একসাথে কাটানো সময়ের এক ঝলক।',
+      swipe_hint: 'সোয়াইপ করুন &rarr;',
+      counting_down: 'কাউন্টডাউন',
+      days: 'দিন',
+      hours: 'ঘন্টা',
+      mins: 'মিনিট',
+      secs: 'সেকেন্ড',
+      blessing_text: 'অনুগ্রহ করে এই শুভ অনুষ্ঠানে উপস্থিত থেকে<br>নবদম্পতিকে আশীর্বাদ করুন।',
+      rsvp_whatsapp: 'হোয়াটসঅ্যাপে RSVP করুন',
+      footer_note: 'ভালোবাসা ও আশীর্বাদ সহ'
+    },
+    or: {
+      open_invitation: 'ନିମନ୍ତ୍ରଣ ଖୋଲନ୍ତୁ',
+      scroll: 'ସ୍କ୍ରୋଲ କରନ୍ତୁ',
+      hero_hosts: 'ଶ୍ରୀମତୀ ଶ୍ରାବଣୀ ଗଣ ଏବଂ ଶ୍ରୀ ସନ୍ଦୀପ ଗଣ',
+      hero_invite_line: 'ସପରିବାରେ ଆପଣଙ୍କ ଉପସ୍ଥିତି ହାର୍ଦ୍ଦିକ ଭାବରେ କାମନା କରନ୍ତି<br>ସେମାନଙ୍କ ଭାଇପୋର ବିବାହର ଶୁଭ ଉତ୍ସବରେ',
+      son_of: 'ପୁତ୍ର — <strong>ଶ୍ରୀମତୀ ଉମା ଗଣ ଏବଂ ଶ୍ରୀ ସଞ୍ଜୟ ଗଣ</strong>',
+      daughter_of: 'କନ୍ୟା — <strong>ଶ୍ରୀମତୀ ସୁଜୟା ଚନ୍ଦ ଏବଂ ଶ୍ରୀ ସତ୍ୟରଞ୍ଜନ ଚନ୍ଦ</strong>',
+      ceremony_celebration: 'ଅନୁଷ୍ଠାନ ଏବଂ ଉତ୍ସବ',
+      wedding_label: 'ବିବାହ ଅନୁଷ୍ଠାନ',
+      wedding_title: 'ଶୁଭ ବିବାହ',
+      wedding_date: 'ଶୁକ୍ରବାର, ୧୯ ଜୁନ ୨୦୨୬',
+      wedding_time: 'ମଙ୍ଗଳକୃତ୍ୟ ଏବଂ ବରାନୁଗମନ – ସନ୍ଧ୍ୟା ୭:୦୦<br>ବିବାହ ଏବଂ ପାଣିଗ୍ରହଣ ଅନୁଷ୍ଠାନ – ରାତ୍ରି',
+      wedding_venue: 'କୋକିଳା ରିସୋର୍ଟ, ଭୁବନେଶ୍ୱର',
+      reception_label: 'ଆମ ସହ ଯୋଗ ଦିଅନ୍ତୁ',
+      reception_title: 'ସ୍ୱାଗତ ସମାରୋହ',
+      reception_date: 'ରବିବାର, ୨୧ ଜୁନ ୨୦୨୬',
+      reception_time: 'ସନ୍ଧ୍ୟା ୭:୩୦ ରୁ',
+      reception_venue: 'ଗ୍ରାଣ୍ଡ ଲୁମ୍ବିନୀ କନ୍‌ଭେନ୍‌ସନ, ଭୁବନେଶ୍ୱର',
+      get_directions: 'ଦିଗନିର୍ଦ୍ଦେଶ',
+      save_the_date: '<svg class="cal-icon" viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/></svg> ତାରିଖ ସୁରକ୍ଷିତ କରନ୍ତୁ',
+      our_moments: 'ଆମର ମୁହୂର୍ତ୍ତ',
+      memories: 'ସ୍ମୃତି',
+      gallery_desc: 'ଆମର ଏକାଠି ଯାତ୍ରାର ଏକ ଝଲକ।',
+      swipe_hint: 'ସ୍ୱାଇପ କରନ୍ତୁ &rarr;',
+      counting_down: 'ଉଲଟା ଗଣନା',
+      days: 'ଦିନ',
+      hours: 'ଘଣ୍ଟା',
+      mins: 'ମିନିଟ',
+      secs: 'ସେକେଣ୍ଡ',
+      blessing_text: 'ଦୟାକରି ଏହି ଶୁଭ ଅନୁଷ୍ଠାନରେ ଉପସ୍ଥିତ ଥାଇ<br>ନବଦମ୍ପତୀଙ୍କୁ ଆଶୀର୍ବାଦ ଦିଅନ୍ତୁ।',
+      rsvp_whatsapp: 'ହ୍ୱାଟସ୍‌ଆପରେ RSVP କରନ୍ତୁ',
+      footer_note: 'ଶ୍ରଦ୍ଧା ଓ ଆଶୀର୍ବାଦ ସହ'
+    }
+  };
+
+  let currentLang = 'en';
+  const langToggle = document.getElementById('lang-toggle');
+  const langOptions = document.getElementById('lang-options');
+  const langSwitcher = document.getElementById('lang-switcher');
+  const langLabels = { en: 'EN', hi: 'हिं', bn: 'বাং', or: 'ଓଡ଼ి' };
+
+  function applyLanguage(lang) {
+    if (lang === currentLang) return;
+    currentLang = lang;
+
+    document.querySelectorAll('[data-i18n]').forEach(function(el) {
+      var key = el.dataset.i18n;
+      if (translations[lang] && translations[lang][key]) {
+        el.innerHTML = translations[lang][key];
+      }
+    });
+
+    // Sync floating switcher
+    langToggle.textContent = langLabels[lang];
+    langOptions.querySelectorAll('.lang-btn').forEach(function(b) {
+      b.classList.toggle('active', b.dataset.lang === lang);
+    });
+
+    // Sync entrance buttons (if still visible)
+    document.querySelectorAll('.entrance-lang-btns .lang-btn').forEach(function(b) {
+      b.classList.toggle('active', b.dataset.lang === lang);
+    });
+  }
+
+  // Floating toggle
+  langToggle.addEventListener('click', function() {
+    langSwitcher.classList.toggle('open');
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!langSwitcher.contains(e.target)) {
+      langSwitcher.classList.remove('open');
+    }
+  });
+
+  langOptions.querySelectorAll('.lang-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      applyLanguage(btn.dataset.lang);
+      langSwitcher.classList.remove('open');
+    });
+  });
+
+  // Entrance overlay buttons
+  document.querySelectorAll('.entrance-lang-btns .lang-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      applyLanguage(btn.dataset.lang);
+    });
   });
 })();
 </script>
